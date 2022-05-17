@@ -4,16 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
 
+    return (<></>)
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const logOut = () => {
-        dispatch({ type: 'LOGOUT', payload: null });
-        window.localStorage.removeItem('accessToken');
-        window.localStorage.removeItem('user');
-        navigate('/');
-    }
-    return (
-        <MDBBtn onClick={logOut}>logout</MDBBtn>
-    )
 }
