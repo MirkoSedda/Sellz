@@ -2,8 +2,10 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import { loginUser } from "../../redux/actions";
-import { MDBContainer, MDBBtn, MDBInput } from 'mdb-react-ui-kit';
 import { ToastContainer } from 'react-toastify';
 import { validateInputs } from "../../utils/validateInputs";
 
@@ -14,6 +16,8 @@ export default function Login() {
 
     const [email, emailSetter] = useState("m@m.com");
     const [password, passwordSetter] = useState("m");
+    const [loading, loadingSetter] = useState(false)
+    const [error, errorSetter] = useState(false)
 
     const user = { email, password };
 
@@ -21,43 +25,55 @@ export default function Login() {
     const handlePassword = e => passwordSetter(e.target.value)
 
     const handleSubmit = async e => {
-        e.preventDefault();
-        console.log(user);
-        validateInputs(email, password)
-        dispatch(loginUser(user))
-        emailSetter("")
-        passwordSetter("")
-        navigate("/")
+        try {
+            e.preventDefault();
+            loadingSetter(true)
+            console.log(user);
+            validateInputs(email, password)
+            dispatch(loginUser(user))
+            emailSetter("")
+            passwordSetter("")
+            loadingSetter(false)
+            navigate("/")
+        } catch (error) {
+            console.log(error)
+            errorSetter(true)
+            loadingSetter(false)
+        }
     }
 
     return (
-        <MDBContainer >
-            <h4>Login</h4>
-            <ToastContainer />
-            <MDBInput
-                label='Email input'
-                id='typeEmail'
-                type='email'
-                contrast
-                placeholder="Please provide email"
-                value={email}
-                onChange={handleEmail}
-                autoFocus />
-            <MDBInput
-                label='Password input'
-                id='typePassword'
-                type='password'
-                contrast
-                placeholder="Please provide password"
-                value={password}
-                onChange={handlePassword} />
-            <form onSubmit={handleSubmit}>
-                <MDBBtn
-                    type="submit"
-                    onClick={handleSubmit}>
-                    Login
-                </MDBBtn>
-            </form>
-        </MDBContainer>
-    );
+        <Container >
+            {error && <div className="d-flex justify-content-center">Error</div>}
+            {loading ? <div className="d-flex justify-content-center">loading...</div> : (
+                <>
+                    <h4>Login</h4>
+                    <ToastContainer />
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control type="email" placeholder="Enter email" value={email}
+                                onChange={handleEmail} />
+                            <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                            </Form.Text>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Password" value={password}
+                                onChange={handlePassword} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                            <Form.Check type="checkbox" label="Check me out" />
+                        </Form.Group>
+                        <Button variant="dark" type="submit" onClick={handleSubmit}>
+                            Login
+                        </Button>
+                    </Form>
+                </>
+            )}
+        </Container>
+    )
 }
+

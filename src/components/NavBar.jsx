@@ -1,28 +1,19 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom'
-import {
-    MDBContainer,
-    MDBNavbar,
-    MDBNavbarBrand,
-    MDBNavbarToggler,
-    MDBIcon,
-    MDBNavbarNav,
-    MDBNavbarItem,
-    MDBNavbarLink,
-    MDBBtn,
-    // MDBDropdown,
-    // MDBDropdownToggle,
-    // MDBDropdownMenu,
-    // MDBDropdownItem,
-    // MDBDropdownLink,
-    MDBCollapse
-} from 'mdb-react-ui-kit';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, Link } from 'react-router-dom'
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Nav from 'react-bootstrap/Nav';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
+
 
 export default function NavBar() {
 
-    const [showBasic, setShowBasic] = useState(false);
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.user);
+    console.log(user);
     const navigate = useNavigate();
 
     const logOut = () => {
@@ -33,71 +24,49 @@ export default function NavBar() {
     }
 
     return (
-        <MDBNavbar expand='sm' dark bgColor='dark'>
-            <MDBContainer fluid>
-                <MDBNavbarBrand href='#'>Brand</MDBNavbarBrand>
-                <MDBNavbarToggler
-                    aria-controls='navbarSupportedContent'
-                    aria-expanded='false'
-                    aria-label='Toggle navigation'
-                    onClick={() => setShowBasic(!showBasic)}
-                >
-                    <MDBIcon icon='bars' fas />
-                </MDBNavbarToggler>
-                <MDBCollapse navbar show={showBasic}>
-                    <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
-                        <MDBNavbarItem>
-                            <Link to="/">
-                                <MDBNavbarLink aria-current='page'>Home</MDBNavbarLink>
-                            </Link>
-                        </MDBNavbarItem>
-                        <MDBNavbarItem>
-                            <Link to="/shop">
-                                <MDBNavbarLink>Shop</MDBNavbarLink>
-                            </Link>
-                        </MDBNavbarItem>
-                        <MDBNavbarItem>
-                            <Link to="/cart">
-                                <MDBNavbarLink>Cart</MDBNavbarLink>
-                            </Link>
-                        </MDBNavbarItem>
-                        <MDBNavbarItem>
-                            <Link to="/login">
-                                <MDBNavbarLink>Login</MDBNavbarLink>
-                            </Link>
-                        </MDBNavbarItem>
-                        <MDBNavbarItem>
-                            <Link to="/register">
-                                <MDBNavbarLink>Register</MDBNavbarLink>
-                            </Link>
-                        </MDBNavbarItem>
-                        {/* <MDBNavbarItem>
-                               <MDBDropdown>
-                                <MDBDropdownToggle tag='a' className='nav-link'>
-                                    Dropdown
-                                </MDBDropdownToggle>
-                                <MDBDropdownMenu>
-                                    <MDBDropdownItem>
-                                        <MDBDropdownLink>Action</MDBDropdownLink>
-                                    </MDBDropdownItem>
-                                    <MDBDropdownItem>
-                                        <MDBDropdownLink>Another action</MDBDropdownLink>
-                                    </MDBDropdownItem>
-                                    <MDBDropdownItem>
-                                        <MDBDropdownLink>Something else here</MDBDropdownLink>
-                                    </MDBDropdownItem>
-                                </MDBDropdownMenu>
-                            </MDBDropdown>
-                        </MDBNavbarItem> */}
-                    </MDBNavbarNav>
-                    <form className='d-flex input-group w-auto'>
-                        <input type='search' className='form-control' placeholder='Type query' aria-label='Search' />
-                        <MDBBtn color='dark'>Search</MDBBtn>
-                    </form>
-                    <MDBBtn color='dark'
-                        onClick={logOut}>Logout</MDBBtn>
-                </MDBCollapse>
-            </MDBContainer>
-        </MDBNavbar>
+        <Navbar bg="dark" variant="dark" expand="l">
+            <Container fluid>
+                <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+                <Navbar.Toggle aria-controls="navbarScroll" />
+                <Navbar.Collapse id="navbarScroll">
+                    <Nav
+                        className="me-auto my-2 my-lg-0"
+                        style={{ maxHeight: '100px' }}
+                        navbarScroll
+                    >
+                        <Nav.Link >Home</Nav.Link>
+                        <Nav.Link href="#action2">Login</Nav.Link>
+                        <Nav.Link href="#action2">Register</Nav.Link>
+                        <NavDropdown title="Link" id="navbarScrollingDropdown">
+                            <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                            <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action5">
+                                Something else here
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                        <Nav.Link href="#" disabled>
+                            Link
+                        </Nav.Link>
+                    </Nav>
+                    <Form className="d-flex">
+                        <FormControl
+                            type="search"
+                            placeholder="Search"
+                            className="me-2"
+                            aria-label="Search"
+                        />
+                        <Button color='dark'
+                            type="submit" variant="dark">
+                            Search
+                        </Button>
+                    </Form>
+                    <Button variant="dark"
+                        onClick={logOut}>
+                        Logout
+                    </Button>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 }

@@ -1,14 +1,10 @@
-import { useState } from "react"
 import { LOGIN_URL } from "../../costants"
 import { toastSuccess, toastError } from "../../utils/toastNotification"
 import "react-toastify/dist/ReactToastify.css"
 
 export const loginUser = userData => {
   return async dispatch => {
-    const [loading, loadingSetter] = useState(false)
-    const [error, errorSetter] = useState(false)
     try {
-      loadingSetter(true)
       const res = await fetch(LOGIN_URL, {
         method: "POST",
         body: JSON.stringify(userData),
@@ -29,16 +25,12 @@ export const loginUser = userData => {
             accessToken,
           },
         })
-
         toastSuccess("Logged in successfully")
         return { accessToken, user }
       }
     } catch (error) {
-      errorSetter(true)
       toastError(`Error logging in user: ${error}`)
       console.log(error)
-    } finally {
-      loadingSetter(false)
     }
   }
 }
