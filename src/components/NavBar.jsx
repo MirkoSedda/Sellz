@@ -12,13 +12,12 @@ import Button from 'react-bootstrap/Button';
 export default function NavBar() {
 
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.user);
-    console.log(user);
+    const user = useSelector((state) => state.userReducer?.user.name);
     const navigate = useNavigate();
 
     const logOut = () => {
-        window.localStorage.removeItem('accessToken');
-        window.localStorage.removeItem('user');
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('user');
         dispatch({ type: 'LOGOUT', payload: null });
         navigate('/');
     }
@@ -26,7 +25,14 @@ export default function NavBar() {
     return (
         <Navbar bg="dark" variant="dark" expand="l">
             <Container fluid>
-                <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+                {user && <>
+                    <div className="text-white">{`Hello ${user}`}</div>
+                    <Button variant="dark"
+                        onClick={logOut}>
+                        Logout
+                    </Button>
+                </>}
+                <Navbar.Brand>Navbar scroll</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -34,9 +40,11 @@ export default function NavBar() {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link >Home</Nav.Link>
-                        <Nav.Link href="#action2">Login</Nav.Link>
-                        <Nav.Link href="#action2">Register</Nav.Link>
+                        <Nav.Link ><Link to="/">Home</Link></Nav.Link>
+                        {!user && <>
+                            <Nav.Link ><Link to="/login">Login</Link></Nav.Link>
+                            <Nav.Link ><Link to="/register">Register</Link></Nav.Link>
+                        </>}
                         <NavDropdown title="Link" id="navbarScrollingDropdown">
                             <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                             <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
@@ -61,12 +69,9 @@ export default function NavBar() {
                             Search
                         </Button>
                     </Form>
-                    <Button variant="dark"
-                        onClick={logOut}>
-                        Logout
-                    </Button>
+
                 </Navbar.Collapse>
-            </Container>
-        </Navbar>
+            </Container >
+        </Navbar >
     );
 }

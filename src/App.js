@@ -15,9 +15,9 @@ export default function App() {
   // useEffect(() => {
   //   const dispatchUser = async () => {
   //     const accessToken = await JSON.parse(
-  //       window.localStorage.getItem("accessToken")
+  //       localStorage.getItem("accessToken")
   //     )
-  //     const user = await JSON.parse(window.localStorage.getItem("user"))
+  //     const user = await JSON.parse(localStorage.getItem("user"))
   //     console.log("app user", user)
   //     dispatch({
   //       type: "LOGIN",

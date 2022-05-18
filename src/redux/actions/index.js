@@ -16,8 +16,8 @@ export const loginUser = userData => {
         const { user, accessToken } = await res.json()
         console.log("user:", user)
         console.log("accessToken:", accessToken)
-        window.localStorage.setItem("user", JSON.stringify(user))
-        window.localStorage.setItem("accessToken", JSON.stringify(accessToken))
+        localStorage.setItem("user", JSON.stringify(user))
+        localStorage.setItem("accessToken", JSON.stringify(accessToken))
         dispatch({
           type: "LOGIN",
           payload: {
