@@ -23,15 +23,8 @@ export default function NavBar() {
     }
 
     return (
-        <Navbar bg="dark" variant="dark" expand="l">
-            <Container fluid>
-                {user && <>
-                    <div className="text-white">{`Hello ${user}`}</div>
-                    <Button variant="dark"
-                        onClick={logOut}>
-                        Logout
-                    </Button>
-                </>}
+        <Container fluid>
+            <Navbar bg="dark" variant="dark" expand="lg">
                 <Navbar.Brand>Navbar scroll</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
@@ -69,9 +62,15 @@ export default function NavBar() {
                             Search
                         </Button>
                     </Form>
-
+                    {user && <>
+                        <div className="text-white">{`Hello ${user}`}</div>
+                        <Button variant="dark"
+                            onClick={logOut}>
+                            Logout
+                        </Button>
+                    </>}
                 </Navbar.Collapse>
-            </Container >
-        </Navbar >
+            </Navbar >
+        </Container >
     );
 }

@@ -1,7 +1,7 @@
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -14,12 +14,13 @@ export default function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const [email, emailSetter] = useState("m@m.com");
-    const [password, passwordSetter] = useState("m");
+    const [email, emailSetter] = useState('');
+    const [password, passwordSetter] = useState('');
     const [loading, loadingSetter] = useState(false)
     const [error, errorSetter] = useState(false)
 
-    const user = { email, password };
+    const userData = { email, password };
+    const user = useSelector((state) => state.userReducer?.user.name);
 
     const handleEmail = e => emailSetter(e.target.value)
     const handlePassword = e => passwordSetter(e.target.value)
@@ -28,19 +29,20 @@ export default function Login() {
         try {
             e.preventDefault();
             loadingSetter(true)
-            console.log(user);
+            console.log(userData);
             validateInputs(email, password)
-            dispatch(loginUser(user))
+            dispatch(loginUser(userData))
             emailSetter("")
             passwordSetter("")
             loadingSetter(false)
-            navigate("/")
         } catch (error) {
             console.log(error)
             errorSetter(true)
             loadingSetter(false)
         }
     }
+
+    useEffect(() => user && navigate("/"), [navigate, user])
 
     return (
         <Container >

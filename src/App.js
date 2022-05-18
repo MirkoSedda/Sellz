@@ -7,7 +7,6 @@ import Login from "./pages/auth/Login"
 import NavBar from "./components/NavBar"
 // import { useDispatch } from "react-redux"
 // import { useEffect } from "react"
-import { Container } from "react-bootstrap"
 
 export default function App() {
   //const dispatch = useDispatch()
@@ -32,9 +31,7 @@ export default function App() {
 
   return (
     <Router>
-      <Container>
-        <NavBar />
-      </Container>
+      <NavBar />
       <Routes>
         <Route>
           <Route path="/" exact element={<Home />} />
