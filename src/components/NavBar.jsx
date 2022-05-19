@@ -13,6 +13,8 @@ export default function NavBar() {
 
     const dispatch = useDispatch();
     const user = useSelector((state) => state.userReducer?.user.name);
+    const admin = useSelector((state) => state.userReducer?.user.role);
+    console.log(admin);
     const navigate = useNavigate();
 
     const logOut = () => {
@@ -34,6 +36,9 @@ export default function NavBar() {
                         navbarScroll
                     >
                         <Nav.Link ><Link to="/">Home</Link></Nav.Link>
+                        {admin && <>
+                            <Nav.Link ><Link to="/dashboard">Dashboard</Link></Nav.Link>
+                        </>}
                         {!user && <>
                             <Nav.Link ><Link to="/login">Login</Link></Nav.Link>
                             <Nav.Link ><Link to="/register">Register</Link></Nav.Link>

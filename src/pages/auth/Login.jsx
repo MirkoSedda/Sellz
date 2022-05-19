@@ -14,8 +14,8 @@ export default function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const [email, emailSetter] = useState('');
-    const [password, passwordSetter] = useState('');
+    const [email, emailSetter] = useState('m@m.com');
+    const [password, passwordSetter] = useState('m');
     const [loading, loadingSetter] = useState(false)
     const [error, errorSetter] = useState(false)
 

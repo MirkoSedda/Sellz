@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { registerUser } from "../../utils/fetch"
+// import { registerUserAxios } from "../../utils/userFetch"
+import { registerUserFetch } from "../../utils/userFetch"
 import Container from "react-bootstrap/Container"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
@@ -24,7 +25,7 @@ export default function Register() {
 
     const handleSubmit = e => {
         e.preventDefault()
-        registerUser(user)
+        registerUserFetch(user)
         console.log(user)
         nameSetter("")
         surnameSetter("")
