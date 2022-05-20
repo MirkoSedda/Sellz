@@ -1,23 +1,25 @@
+
+import {
+    Container,
+    Navbar,
+    Form,
+    Nav,
+    FormControl,
+    NavDropdown,
+} from "react-bootstrap";
+import { BsPersonCircle, BsCartPlus, BsPercent } from "react-icons/bs";
+import { MdOutlineLocalOffer } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom'
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Nav from 'react-bootstrap/Nav';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
 
-
-export default function NavBar() {
+export const NavBar = () => {
 
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.userReducer?.user.name);
-    const admin = useSelector((state) => state.userReducer?.user.role);
-    console.log(admin);
     const navigate = useNavigate();
+    const userRole = useSelector((state) => state.userReducer?.user.role);
+    const user = useSelector((state) => state.userReducer?.user.name);
 
-    const logOut = () => {
+    const logout = () => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('user');
         dispatch({ type: 'LOGOUT', payload: null });
@@ -25,57 +27,66 @@ export default function NavBar() {
     }
 
     return (
-        <Container fluid>
-            <Navbar bg="dark" variant="dark" expand="lg">
-                <Navbar.Brand>Navbar scroll</Navbar.Brand>
+        <Navbar bg="dark" expand="sm" className="p-0" sticky="top">
+            <Container>
+                <Navbar.Brand href="#" className="mr-5">
+                    <Link to={"/"} style={{ textDecoration: "none" }}>
+                        <div className="d-flex flex-column align-items-center">
+                            {/* <img src={ } alt="" className="navLogo py-1" /> */}
+                            <p className="my-0 whiteText">Sellz</p>
+                        </div>
+                    </Link>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
-                <Navbar.Collapse id="navbarScroll">
-                    <Nav
-                        className="me-auto my-2 my-lg-0"
-                        style={{ maxHeight: '100px' }}
-                        navbarScroll
-                    >
-                        <Nav.Link ><Link to="/">Home</Link></Nav.Link>
-                        {admin && <>
-                            <Nav.Link ><Link to="/dashboard">Dashboard</Link></Nav.Link>
-                        </>}
-                        {!user && <>
-                            <Nav.Link ><Link to="/login">Login</Link></Nav.Link>
-                            <Nav.Link ><Link to="/register">Register</Link></Nav.Link>
-                        </>}
-                        <NavDropdown title="Link" id="navbarScrollingDropdown">
-                            <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action5">
-                                Something else here
-                            </NavDropdown.Item>
-                        </NavDropdown>
-                        <Nav.Link href="#" disabled>
-                            Link
-                        </Nav.Link>
-                    </Nav>
-                    <Form className="d-flex">
+                <Navbar.Collapse id="navbarScroll" className="whiteText ml-3">
+                    <Nav.Link href="#action1" className="whiteText">
+                        <MdOutlineLocalOffer className="navIcons" />
+                    </Nav.Link>
+                    <Nav.Link href="#action2" className="whiteText">
+                        <BsPercent className="navIcons" />
+                    </Nav.Link>
+                    <Form className=" d-flex w-50 ml-1">
                         <FormControl
                             type="search"
                             placeholder="Search"
                             className="me-2"
                             aria-label="Search"
                         />
-                        <Button color='dark'
-                            type="submit" variant="dark">
-                            Search
-                        </Button>
                     </Form>
-                    {user && <>
-                        <div className="text-white">{`Hello ${user}`}</div>
-                        <Button variant="dark"
-                            onClick={logOut}>
-                            Logout
-                        </Button>
-                    </>}
                 </Navbar.Collapse>
-            </Navbar >
-        </Container >
+                <div className="d-flex flex-column align-items-center px-1 ml-3 ">
+                    <BsCartPlus className="navIcons" />
+                </div>
+                {user && <div className={"text-white ms-4"}>{`Hello ${user}`} </div>}
+                {!user && (
+                    <>
+                        <Link to={"/login"} className={"text-white ms-4"}>Login</Link>
+                        <Link to={"/register"} className={"text-white ms-4"}>Register</Link>
+                    </>
+                )}
+                {user && (
+                    <NavDropdown
+                        title={<BsPersonCircle className="navIcons" />}
+                        id="basic-nav-dropdown"
+                    >
+                        <NavDropdown.Item>
+                            {userRole && userRole === "Admin" && (
+                                <Link to="/admin/dashboard" >
+                                    Dashboard
+                                </Link>
+                            )}
+                            {userRole && userRole === "User" && (
+                                <Link to="/user/history" >
+                                    Dashboard
+                                </Link>
+                            )}
+                        </NavDropdown.Item>
+                        {userRole && (
+                            <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+                        )}
+                    </NavDropdown>
+                )}
+            </Container>
+        </Navbar>
     );
 }

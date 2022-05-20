@@ -1,22 +1,23 @@
 import axios from "axios"
-import { BE_CATEGORIES_URL } from "../constants"
+import { API_URL } from "../costants"
 
-export const getCategories = async () => await axios.get(`${BE_CATEGORIES_URL}`)
+export const getCategories = async () =>
+  await axios.get(`${API_URL}/categories`)
 
 export const getCategory = async slug =>
-  await axios.get(`${BE_CATEGORIES_URL}/${slug}`)
+  await axios.get(`${API_URL}/category/${slug}`)
 
 export const deleteCategory = async (slug, accessToken) =>
-  await axios.delete(`${BE_CATEGORIES_URL}/${slug}`, {
+  await axios.delete(`${API_URL}/category/${slug}`, {
     headers: { accessToken },
   })
 
-export const updateCategory = async (slug, category, accessToken) =>
-  await axios.put(`${BE_CATEGORIES_URL}/${slug}`, {
+export const updateCategory = async (slug, accessToken) =>
+  await axios.put(`${API_URL}/category/${slug}`, {
     headers: { accessToken },
   })
 
 export const newCategory = async (category, accessToken) =>
-  await axios.put(`${BE_CATEGORIES_URL}/category`, category, {
+  await axios.put(`${API_URL}/category`, category, {
     headers: { accessToken },
   })

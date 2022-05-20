@@ -1,24 +1,10 @@
-import axios from "axios"
-import { REGISTER_URL } from "../costants"
-import { BE_URL } from "../costants"
-import { toastSuccess, toastError } from "./toastNotification"
+import { API_URL } from "../costants"
+import { toastSuccess, toastError } from "../utils/toastNotification"
 import "react-toastify/dist/ReactToastify.css"
 
-export const registerUserAxios = async user => {
-  return await axios.post(
-    `${REGISTER_URL}`,
-    { body: JSON.stringify(user) },
-    {
-      headers: {
-        "Content-type": "application/json",
-      },
-    }
-  )
-}
-
-export const registerUserFetch = async user => {
+export const registerUser = async user => {
   try {
-    const res = await fetch(`${REGISTER_URL}`, {
+    const res = await fetch(`${API_URL}/users/register`, {
       method: "POST",
       body: JSON.stringify(user),
       headers: {

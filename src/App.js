@@ -1,36 +1,39 @@
 import "./App.css"
 import "bootstrap/dist/css/bootstrap.min.css"
+import { ToastContainer } from "react-toastify"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Home from "./pages/Home"
-import Dashboard from "./pages/Dashboard"
-import Register from "./pages/auth/Register"
-import Login from "./pages/auth/Login"
-import NavBar from "./components/NavBar"
-// import {
-//   ProtectedRoutes,
-//   PublicRoutes,
-// } from "./components/Protected&PublicRoutes"
-// import { useDispatch } from "react-redux"
-// import { useEffect } from "react"
+import { Home } from "./pages/Home"
+import { AdminDashboard } from "./pages/admin/AdminDashboard"
+import { Register } from "./pages/auth/Register"
+import { Login } from "./pages/auth/Login"
+import { NavBar } from "./components/NavBar"
+import { Categories } from "./pages/admin/Categories"
+import { History } from "./pages/user/History"
+import { Wishlist } from "./pages/user/Wishlist"
 
 export default function App() {
-  //const dispatch = useDispatch()
-
   return (
     <Router>
       <NavBar />
+      <ToastContainer />
       <Routes>
         <Route>
           <Route path="/" exact element={<Home />} />
-          <Route path="/dashboard" exact element={<Dashboard />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/register" exact element={<Register />} />
+          <Route path="/admin/dashboard" exact element={<AdminDashboard />} />
+          <Route path="/admin/categories" exact element={<Categories />} />
+          <Route path="/user/history" exact element={<History />} />
+          <Route path="/user/wishlist" exact element={<Wishlist />} />
         </Route>
       </Routes>
     </Router>
   )
 }
 
+// import { ProtectedRoutes, PublicRoutes } from "./components/Protected&PublicRoutes"
+// import { useDispatch } from "react-redux"
+// import { useEffect } from "react"
 // export default function App() {
 //   return (
 //     <Router>

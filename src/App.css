@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+/* Navbar classes */
+
+.navLogo {
+  width: 3rem;
+  height: 3rem;
+  color: white;
+}
+
+.navIcons {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: white;
+}
+
+/* Navbar classes */

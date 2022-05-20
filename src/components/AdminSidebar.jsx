@@ -23,13 +23,13 @@ export const AdminSidebar = () => (
             </li>
 
             <li className="nav-item">
-                <Link to="/category" className="nav-link">
-                    Category
+                <Link to="/categories" className="nav-link">
+                    Categories
                 </Link>
             </li>
 
             <li className="nav-item">
-                <Link to="/sub" className="nav-link">
+                <Link to="/subcategories" className="nav-link">
                     Sub Category
                 </Link>
             </li>
@@ -39,12 +39,6 @@ export const AdminSidebar = () => (
                     Coupon
                 </Link>
             </li>
-
-            {/* <li className="nav-item">
-                <Link to="/user/password" className="nav-link">
-                    Password
-                </Link>
-            </li> */}
         </ul>
     </nav>
 );
