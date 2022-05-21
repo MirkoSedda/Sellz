@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { newCategory, getCategories, deleteCategory } from "../../utils/categoriesFetch";
 import { AdminSidebar } from "../../components/AdminSidebar"
@@ -7,7 +8,9 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 export const Categories = () => {
 
-    const accessToken = localStorage.getItem("accessToken");
+    // const accessToken = localStorage.getItem("accessToken");
+    const accessToken = useSelector((state) => state.userReducer?.accessToken)
+    console.log(accessToken);
     const [name, nameSetter] = useState("");
     const [loading, loadingSetter] = useState(false);
     const [categories, categoriesSetter] = useState([]);
@@ -19,8 +22,9 @@ export const Categories = () => {
     const loadCategories = () =>
         getCategories().then((c) => categoriesSetter(c.data));
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e, accessToken) => {
         e.preventDefault();
+        console.log(accessToken);
         loadingSetter(true);
         newCategory({ name }, accessToken)
             .then((res) => {
@@ -37,22 +41,20 @@ export const Categories = () => {
             });
     };
 
-    const handleRemove = async (slug) => {
-        if (window.confirm("Delete?")) {
-            loadingSetter(true);
-            deleteCategory(slug, accessToken)
-                .then((res) => {
+    const handleRemove = async (slug, accessToken) => {
+        loadingSetter(true);
+        deleteCategory(slug, accessToken)
+            .then((res) => {
+                loadingSetter(false);
+                toast.error(`${res.data.name} deleted`);
+                loadCategories();
+            })
+            .catch((err) => {
+                if (err.response.status === 400) {
                     loadingSetter(false);
-                    toast.error(`${res.data.name} deleted`);
-                    loadCategories();
-                })
-                .catch((err) => {
-                    if (err.response.status === 400) {
-                        loadingSetter(false);
-                        toast.error(err.response.data);
-                    }
-                });
-        }
+                    toast.error(err.response.data);
+                }
+            });
     };
 
     const categoryForm = () => (
