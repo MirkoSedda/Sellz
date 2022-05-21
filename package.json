@@ -16,13 +16,15 @@
     "react-toastify": "^9.0.1",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
+    "redux-persist": "^6.0.0",
+    "redux-persist-transform-encrypt": "^3.0.1",
     "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts ejeredux-persist-transform-encryptct"
   },
   "eslintConfig": {
     "extends": [

@@ -1,8 +1,10 @@
 
 import { Navigate, Outlet } from 'react-router-dom'
+import { useSelector } from "react-redux"
 
 const useAuth = () => {
-    const user = localStorage.getItem("user")
+    const user = useSelector((state) => state.userReducer?.user)
+    // const user = localStorage.getItem("user")
     console.log(user)
     if (user) return true
     if (!user) return false

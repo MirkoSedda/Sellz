@@ -20,8 +20,8 @@ export const NavBar = () => {
     const user = useSelector((state) => state.userReducer?.user.name);
 
     const logout = () => {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('user');
+        // localStorage.removeItem('accessToken');
+        // localStorage.removeItem('user');
         dispatch({ type: 'LOGOUT', payload: null });
         navigate('/');
     }
