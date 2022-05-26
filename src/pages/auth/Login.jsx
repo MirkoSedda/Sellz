@@ -1,29 +1,25 @@
-
+import { toast } from "react-toastify";
+import { Button } from "antd";
+import { MailOutlined } from "@ant-design/icons";
+// import { GoogleOutlined } from "@ant-design/icons";
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { loginUser } from "../../redux/actions";
-import { ToastContainer } from 'react-toastify';
 import { validateInputs } from "../../utils/validateInputs";
 
-export default function Login() {
+export const Login = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const [email, emailSetter] = useState('');
-    const [password, passwordSetter] = useState('');
+    const [email, emailSetter] = useState('admin@admin.com');
+    const [password, passwordSetter] = useState('admin');
     const [loading, loadingSetter] = useState(false)
-    const [error, errorSetter] = useState(false)
+    const [errorSetter] = useState(false)
 
     const userData = { email, password };
     const user = useSelector((state) => state.userReducer?.user.name);
-
-    const handleEmail = e => emailSetter(e.target.value)
-    const handlePassword = e => passwordSetter(e.target.value)
 
     const handleSubmit = async e => {
         try {
@@ -37,6 +33,7 @@ export default function Login() {
             loadingSetter(false)
         } catch (error) {
             console.log(error)
+            toast.error(error.message);
             errorSetter(true)
             loadingSetter(false)
         }
@@ -44,38 +41,70 @@ export default function Login() {
 
     useEffect(() => user && navigate("/"), [navigate, user])
 
-    return (
-        <Container >
-            {error && <div className="d-flex justify-content-center">Error</div>}
-            {loading ? <div className="d-flex justify-content-center">loading...</div> : (
-                <>
-                    <h4>Login</h4>
-                    <ToastContainer />
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" value={email}
-                                onChange={handleEmail} />
-                            <Form.Text className="text-muted">
-                                We'll never share your email with anyone else.
-                            </Form.Text>
-                        </Form.Group>
+    const loginForm = () => (
+        <form onSubmit={handleSubmit}>
+            <div className="form-group">
+                <input
+                    type="email"
+                    className="form-control"
+                    value={email}
+                    onChange={(e) => emailSetter(e.target.value)}
+                    placeholder="Your email"
+                    autoFocus
+                />
+            </div>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password" value={password}
-                                onChange={handlePassword} />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox" label="Check me out" />
-                        </Form.Group>
-                        <Button variant="dark" type="submit" onClick={handleSubmit}>
-                            Login
-                        </Button>
-                    </Form>
-                </>
-            )}
-        </Container>
+            <div className="form-group">
+                <input
+                    type="password"
+                    className="form-control"
+                    value={password}
+                    onChange={(e) => passwordSetter(e.target.value)}
+                    placeholder="Your password"
+                />
+            </div>
+
+            <br />
+            <Button
+                onClick={handleSubmit}
+                type="primary"
+                className="mb-3"
+                block
+                shape="round"
+                icon={<MailOutlined />}
+                size="large"
+            >
+                Login with Email/Password
+            </Button>
+        </form>
+    );
+
+    return (
+        <div className="container p-5">
+            <div className="row">
+                <div className="col-md-6 offset-md-3">
+                    {loading ? (
+                        <h4 className="text-danger">Loading...</h4>
+                    ) : (
+                        <h4>Login</h4>
+                    )}
+                    {loginForm()}
+
+                    {/* <Button
+                        onClick={googleLogin}
+                        type="danger"
+                        className="mb-3"
+                        block
+                        shape="round"
+                        icon={<GoogleOutlined />}
+                        size="large"
+                    >
+                        Login with Google
+                    </Button> */}
+                </div>
+            </div>
+        </div>
+
     )
 }
 

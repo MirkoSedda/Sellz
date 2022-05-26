@@ -1,11 +1,11 @@
-import { LOGIN_URL } from "../../costants"
+import { API_URL } from "../../costants"
 import { toastSuccess, toastError } from "../../utils/toastNotification"
 import "react-toastify/dist/ReactToastify.css"
 
 export const loginUser = userData => {
   return async dispatch => {
     try {
-      const res = await fetch(LOGIN_URL, {
+      const res = await fetch(`${API_URL}/users/login`, {
         method: "POST",
         body: JSON.stringify(userData),
         headers: {
@@ -16,8 +16,6 @@ export const loginUser = userData => {
         const { user, accessToken } = await res.json()
         console.log("user:", user)
         console.log("accessToken:", accessToken)
-        localStorage.setItem("user", JSON.stringify(user))
-        localStorage.setItem("accessToken", JSON.stringify(accessToken))
         dispatch({
           type: "LOGIN",
           payload: {
