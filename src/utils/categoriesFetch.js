@@ -9,15 +9,21 @@ export const getCategory = async slug =>
 
 export const deleteCategory = async (slug, accessToken) =>
   await axios.delete(`${API_URL}/categories/${slug}`, {
-    headers: { accessToken },
+    headers: {
+      authorization: accessToken,
+    },
   })
 
-export const updateCategory = async (slug, accessToken) =>
-  await axios.put(`${API_URL}/categories/${slug}`, {
-    headers: { accessToken },
+export const updateCategory = async (slug, category, accessToken) =>
+  await axios.put(`${API_URL}/categories/${slug}`, category, {
+    headers: {
+      authorization: accessToken,
+    },
   })
 
 export const newCategory = async (category, accessToken) =>
   await axios.post(`${API_URL}/categories`, category, {
-    headers: { accessToken },
+    headers: {
+      authorization: accessToken,
+    },
   })

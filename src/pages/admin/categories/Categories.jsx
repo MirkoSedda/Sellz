@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { newCategory, getCategories, deleteCategory } from "../../utils/categoriesFetch";
-import { AdminSidebar } from "../../components/AdminSidebar"
+import { newCategory, getCategories, deleteCategory } from "../../../utils/categoriesFetch";
+import { AdminSidebar } from "../../../components/AdminSidebar"
 import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { CategoryForm } from "../../../components/Forms/CategoryForm";
+import { SearchForm } from "../../../components/Forms/SearchForm";
 
 export const Categories = () => {
 
-    // const accessToken = localStorage.getItem("accessToken");
     const accessToken = useSelector((state) => state.userReducer?.accessToken)
-    console.log(accessToken);
+
     const [name, nameSetter] = useState("");
     const [loading, loadingSetter] = useState(false);
     const [categories, categoriesSetter] = useState([]);
+    const [query, querySetter] = useState("");
 
     useEffect(() => {
         loadCategories();
@@ -22,13 +24,13 @@ export const Categories = () => {
     const loadCategories = () =>
         getCategories().then((c) => categoriesSetter(c.data));
 
-    const handleSubmit = (e, accessToken) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log(accessToken);
         loadingSetter(true);
         newCategory({ name }, accessToken)
             .then((res) => {
-                console.log(res)
+                console.log(res.data)
                 loadingSetter(false);
                 nameSetter("");
                 toast.success(`${res.data.name} is created`);
@@ -41,12 +43,14 @@ export const Categories = () => {
             });
     };
 
-    const handleRemove = async (slug, accessToken) => {
+    const handleRemove = async (slug) => {
+        console.log(accessToken);
         loadingSetter(true);
         deleteCategory(slug, accessToken)
             .then((res) => {
+                console.log(res)
                 loadingSetter(false);
-                toast.error(`${res.data.name} deleted`);
+                toast.error(`${slug} deleted`);
                 loadCategories();
             })
             .catch((err) => {
@@ -57,23 +61,12 @@ export const Categories = () => {
             });
     };
 
-    const categoryForm = () => (
-        <form onSubmit={handleSubmit}>
-            <div className="form-group">
-                <label>Name</label>
-                <input
-                    type="text"
-                    className="form-control"
-                    onChange={(e) => nameSetter(e.target.value)}
-                    value={name}
-                    autoFocus
-                    required
-                />
-                <br />
-                <button className="btn btn-outline-primary">Save</button>
-            </div>
-        </form>
-    );
+    const handleSearch = (e) => {
+        e.preventDefault();
+        querySetter(e.target.value.toLowerCase());
+    }
+
+    const searched = (query) => (q) => q.name.toLowerCase().includes(query);
 
     return (
         <div className="container-fluid">
@@ -87,9 +80,15 @@ export const Categories = () => {
                     ) : (
                         <h4>Create category</h4>
                     )}
-                    {categoryForm()}
-                    <hr />
-                    {categories.map((c) => (
+
+                    <CategoryForm
+                        handleSubmit={handleSubmit}
+                        name={name}
+                        nameSetter={nameSetter} />
+                    <SearchForm
+                        handleSearch={handleSearch}
+                        query={query} />
+                    {categories.filter(searched(query)).map((c) => (
                         <div className="alert alert-secondary" key={c._id}>
                             {c.name}
                             <span
@@ -98,7 +97,7 @@ export const Categories = () => {
                             >
                                 <DeleteOutlined className="text-danger" />
                             </span>
-                            <Link to={`/admin/category/${c.slug}`}>
+                            <Link to={`/admin/categories/${c.slug}`}>
                                 <span className="btn btn-sm float-right">
                                     <EditOutlined className="text-warning" />
                                 </span>

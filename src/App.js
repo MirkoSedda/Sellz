@@ -7,7 +7,10 @@ import { AdminDashboard } from "./pages/admin/AdminDashboard"
 import { Register } from "./pages/auth/Register"
 import { Login } from "./pages/auth/Login"
 import { NavBar } from "./components/NavBar"
-import { Categories } from "./pages/admin/Categories"
+import { Categories } from "./pages/admin/categories/Categories"
+import { SubCategories } from "./pages/admin/subcategories/SubCategories"
+import { UpdateCategory } from "./pages/admin/categories/UpdateCategory"
+import { UpdateSubCategory } from "./pages/admin/subcategories/UpdateSubCategory"
 import { History } from "./pages/user/History"
 import { Wishlist } from "./pages/user/Wishlist"
 
@@ -23,6 +26,21 @@ export default function App() {
           <Route path="/register" exact element={<Register />} />
           <Route path="/admin/dashboard" exact element={<AdminDashboard />} />
           <Route path="/admin/categories" exact element={<Categories />} />
+          <Route
+            path="/admin/categories/:slug"
+            exact
+            element={<UpdateCategory />}
+          />
+          <Route
+            path="/admin/subcategories"
+            exact
+            element={<SubCategories />}
+          />
+          <Route
+            path="/admin/subcategories/:slug"
+            exact
+            element={<UpdateSubCategory />}
+          />
           <Route path="/user/history" exact element={<History />} />
           <Route path="/user/wishlist" exact element={<Wishlist />} />
         </Route>

@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { registerUser } from "../../utils/userFetch"
-import { toast } from "react-toastify"
 import { Button } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom"
