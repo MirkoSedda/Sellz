@@ -5,7 +5,9 @@ import { newProduct } from "../../../utils/product"
 import { getSubCategoryBasedOnCategory } from "../../../utils/categoriesFetch"
 import { AdminSidebar } from "../../../components/AdminSidebar"
 import { ProductForm } from "../../../components/Forms/ProductForm"
+import { FileUpload } from "../../../components/Forms/FileUpload"
 import { getCategories } from "../../../utils/categoriesFetch";
+import { Col, Container, Row } from "react-bootstrap"
 
 export const CreateProduct = () => {
 
@@ -68,28 +70,34 @@ export const CreateProduct = () => {
   }
 
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-2">
+    <Container>
+      <Row>
+        <Col md={2}>
           <AdminSidebar />
-        </div>
-        <div className="col">
-          {loading ? (
-            <h4 className="text-danger">Loading..</h4>
-          ) : (
-            <h4>Create product</h4>
-          )}
-          <ProductForm
-            handleSubmit={handleSubmit}
-            handleChange={handleChange}
-            handleCategoryChange={handleCategoryChange}
-            valuesSetter={valuesSetter}
-            values={values}
-            subCategoryOption={subCategoryOption}
-            showSubCategories={showSubCategories}
-          />
-        </div>
-      </div>
-    </div>
+        </Col>
+
+        {loading ? (
+          <h4 className="text-danger">Loading..</h4>
+        ) : (
+          <h4>Create product</h4>
+        )}
+
+        <ProductForm
+          values={values}
+          subCategoryOption={subCategoryOption}
+          showSubCategories={showSubCategories}
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          handleCategoryChange={handleCategoryChange}
+          valuesSetter={valuesSetter}
+        />
+
+        <FileUpload
+          values={values}
+          valuesSetter={valuesSetter}
+          loadingSetter={loadingSetter}
+        />
+      </Row>
+    </Container>
   )
 }
