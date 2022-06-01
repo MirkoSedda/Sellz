@@ -12,25 +12,25 @@ export const AdminSidebar = () => (
 
             <li className="nav-item">
                 <Link to="/admin/product" className="nav-link">
-                    Product
+                    Create product
                 </Link>
             </li>
 
             <li className="nav-item">
                 <Link to="/admin/products" className="nav-link">
-                    Products
+                    See all Products
                 </Link>
             </li>
 
             <li className="nav-item">
                 <Link to="/admin/categories" className="nav-link">
-                    Categories
+                    Create or modify Categories
                 </Link>
             </li>
 
             <li className="nav-item">
                 <Link to="/admin/subcategories" className="nav-link">
-                    Sub Category
+                    Create or modify Sub Category
                 </Link>
             </li>
 

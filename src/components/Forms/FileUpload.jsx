@@ -1,11 +1,14 @@
-import { Container, Row } from "react-bootstrap"
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import Resizer from "react-image-file-resizer"
 import axios from "axios"
 import { useSelector } from "react-redux"
 import { Avatar, Badge } from "antd"
 import { API_URL } from "../../costants"
 
-export const FileUpload = ({ values, valuesSetter, loadingSetter }) => {
+export const FileUpload = ({ values, setValues, setLoading }) => {
 
   const accessToken = useSelector(state => state.userReducer?.accessToken)
 
@@ -15,7 +18,7 @@ export const FileUpload = ({ values, valuesSetter, loadingSetter }) => {
     const allUploadedFiles = values.images
 
     if (files) {
-      loadingSetter(true)
+      setLoading(true)
       for (let i = 0; i < files.length; i++) {
         Resizer.imageFileResizer(
           files[i],
@@ -31,13 +34,13 @@ export const FileUpload = ({ values, valuesSetter, loadingSetter }) => {
               { headers: { authorization: accessToken } }
             ).then(res => {
               console.log(res)
-              loadingSetter(false)
+              setLoading(false)
               allUploadedFiles.push(res.data)
-              valuesSetter({ ...values, images: allUploadedFiles })
+              setValues({ ...values, images: allUploadedFiles })
             })
               .catch(err => {
                 console.log(err)
-                loadingSetter(false)
+                setLoading(false)
               })
           },
           "base64"
@@ -47,7 +50,7 @@ export const FileUpload = ({ values, valuesSetter, loadingSetter }) => {
   }
 
   const handleImageRemove = (public_id) => {
-    loadingSetter(true);
+    setLoading(true);
     console.log("remove image", public_id);
     axios
       .post(
@@ -56,16 +59,16 @@ export const FileUpload = ({ values, valuesSetter, loadingSetter }) => {
         { headers: { authorization: accessToken } }
       )
       .then((res) => {
-        loadingSetter(false);
+        setLoading(false);
         const { images } = values;
         let filteredImages = images.filter((item) => {
           return item.public_id !== public_id;
         });
-        valuesSetter({ ...values, images: filteredImages });
+        setValues({ ...values, images: filteredImages });
       })
       .catch((err) => {
         console.log(err);
-        loadingSetter(false);
+        setLoading(false);
       });
   };
 
@@ -89,16 +92,18 @@ export const FileUpload = ({ values, valuesSetter, loadingSetter }) => {
           ))}
       </Row>
       <Row>
-        <label className="btn btn-primary">
-          Choose File
-          <input
-            type="file"
-            multiple
-            hidden
-            accept="images/*"
-            onChange={fileUploadAndResize}
-          />
-        </label>
+        <Form.Group>
+          <Form.Label className="btn btn-primary">
+            Choose File
+            <Form.Control
+              type="file"
+              multiple
+              hidden
+              accept="images/*"
+              onChange={fileUploadAndResize}
+            />
+          </Form.Label>
+        </Form.Group>
       </Row>
     </Container>
   )

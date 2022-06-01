@@ -12,8 +12,10 @@ import { SubCategories } from "./pages/admin/subcategories/SubCategories"
 import { UpdateCategory } from "./pages/admin/categories/UpdateCategory"
 import { UpdateSubCategory } from "./pages/admin/subcategories/UpdateSubCategory"
 import { CreateProduct } from "./pages/admin/products/CreateProduct"
+import { UpdateProduct } from "./pages/admin/products/UpdateProduct"
 import { History } from "./pages/user/History"
 import { Wishlist } from "./pages/user/Wishlist"
+import { GetAllProducts } from "./pages/admin/products/GetAllProducts"
 
 export default function App() {
   return (
@@ -43,6 +45,12 @@ export default function App() {
             element={<UpdateSubCategory />}
           />
           <Route path="/admin/product" exact element={<CreateProduct />} />
+          <Route
+            path="/admin/product/:slug"
+            exact
+            element={<UpdateProduct />}
+          />
+          <Route path="/admin/products" exact element={<GetAllProducts />} />
           <Route path="/user/history" exact element={<History />} />
           <Route path="/user/wishlist" exact element={<Wishlist />} />
         </Route>

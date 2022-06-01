@@ -1,13 +1,17 @@
-import React from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { UserSidebar } from "../../components/UserSidebar";
 
 export const History = () => (
-    <div className="container-fluid">
-        <div className="row">
-            <div className="col-md-2">
+    <Container>
+        <Row>
+            <Col md={2}>
                 <UserSidebar />
-            </div>
-            <div className="col">user history page</div>
-        </div>
-    </div>
+            </Col>
+            <Col md={10}>
+                user history page
+            </Col>
+        </Row>
+    </Container>
 );

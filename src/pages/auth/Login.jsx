@@ -1,3 +1,7 @@
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 import { toast } from "react-toastify";
 import { Button } from "antd";
 import { MailOutlined } from "@ant-design/icons";
@@ -6,17 +10,17 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../redux/actions";
-import { validateInputs } from "../../utils/validateInputs";
+import { validateInputs } from "../../functions/validateInputs";
 
 export const Login = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const [email, emailSetter] = useState('admin@admin.com');
-    const [password, passwordSetter] = useState('admin');
-    const [loading, loadingSetter] = useState(false)
-    const [errorSetter] = useState(false)
+    const [email, setEmail] = useState('admin@admin.com');
+    const [password, setPassword] = useState('admin');
+    const [loading, setLoading] = useState(false)
+    const [setError] = useState(false)
 
     const userData = { email, password };
     const user = useSelector((state) => state.userReducer?.user.name);
@@ -24,45 +28,46 @@ export const Login = () => {
     const handleSubmit = async e => {
         try {
             e.preventDefault();
-            loadingSetter(true)
+            setLoading(true)
             console.log(userData);
             validateInputs(email, password)
             dispatch(loginUser(userData))
-            emailSetter("")
-            passwordSetter("")
-            loadingSetter(false)
+            setEmail("")
+            setPassword("")
+            setLoading(false)
         } catch (error) {
             console.log(error)
             toast.error(error.message);
-            errorSetter(true)
-            loadingSetter(false)
+            setError(true)
+            setLoading(false)
         }
     }
 
     useEffect(() => user && navigate("/"), [navigate, user])
 
     const loginForm = () => (
-        <form onSubmit={handleSubmit}>
-            <div className="form-group">
-                <input
+
+        <Form onSubmit={handleSubmit}>
+            <Form.Group>
+                <Form.Control
                     type="email"
                     className="form-control"
                     value={email}
-                    onChange={(e) => emailSetter(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="Your email"
                     autoFocus
                 />
-            </div>
+            </Form.Group>
 
-            <div className="form-group">
-                <input
+            <Form.Group>
+                <Form.Control
                     type="password"
-                    className="form-control"
+                    className=""
                     value={password}
-                    onChange={(e) => passwordSetter(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="Your password"
                 />
-            </div>
+            </Form.Group>
 
             <br />
             <Button
@@ -76,13 +81,13 @@ export const Login = () => {
             >
                 Login with Email/Password
             </Button>
-        </form>
+        </Form>
     );
 
     return (
-        <div className="container p-5">
-            <div className="row">
-                <div className="col-md-6 offset-md-3">
+        <Container className="p-5">
+            <Row>
+                <Col md={6} className="offset-md-3">
                     {loading ? (
                         <h4 className="text-danger">Loading...</h4>
                     ) : (
@@ -101,10 +106,9 @@ export const Login = () => {
                     >
                         Login with Google
                     </Button> */}
-                </div>
-            </div>
-        </div>
-
+                </Col>
+            </Row>
+        </Container>
     )
 }
 

@@ -1,13 +1,18 @@
-import React from "react";
+
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { UserSidebar } from "../../components/UserSidebar";
 
 export const Wishlist = () => (
-    <div className="container-fluid">
-        <div className="row">
-            <div className="col-md-2">
+    <Container>
+        <Row>
+            <Col md={2}>
                 <UserSidebar />
-            </div>
-            <div className="col">user wishlist page</div>
-        </div>
-    </div>
+            </Col>
+            <Col md={10} className="">
+                user wishlist page
+            </Col>
+        </Row>
+    </Container>
 );

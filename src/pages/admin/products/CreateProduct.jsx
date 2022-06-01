@@ -1,19 +1,25 @@
+
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { toast } from "react-toastify"
-import { newProduct } from "../../../utils/product"
-import { getSubCategoryBasedOnCategory } from "../../../utils/categoriesFetch"
+import { newProduct } from "../../../functions/product"
+import { getSubCategoriesBasedOnCategory } from "../../../functions/categories"
 import { AdminSidebar } from "../../../components/AdminSidebar"
-import { ProductForm } from "../../../components/Forms/ProductForm"
-import { FileUpload } from "../../../components/Forms/FileUpload"
-import { getCategories } from "../../../utils/categoriesFetch";
-import { Col, Container, Row } from "react-bootstrap"
+import { CreateProductForm } from "../../../components/forms/CreateProductForm"
+import { FileUpload } from "../../../components/forms/FileUpload"
+import { getCategories } from "../../../functions/categories";
+import { useNavigate } from "react-router-dom"
 
 export const CreateProduct = () => {
 
   const accessToken = useSelector(state => state.userReducer?.accessToken)
 
-  const [values, valuesSetter] = useState({
+  const navigate = useNavigate()
+
+  const [values, setValues] = useState({
     title: "",
     description: "",
     price: "",
@@ -28,9 +34,9 @@ export const CreateProduct = () => {
     color: "",
     brand: "",
   })
-  const [subCategoryOption, subCategoryOptionSetter] = useState([])
-  const [showSubCategories, showSubCategoriesSetter] = useState(false)
-  const [loading, loadingSetter] = useState(false)
+  const [subCategoryOption, setSubCategoryOption] = useState([])
+  const [showSubCategories, setShowSubCategories] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     loadCategories();
@@ -38,35 +44,36 @@ export const CreateProduct = () => {
   }, []);
 
   const loadCategories = () =>
-    getCategories().then((c) => valuesSetter({ ...values, categories: c.data }));
+    getCategories().then((c) => setValues({ ...values, categories: c.data }));
 
   const handleSubmit = e => {
     e.preventDefault()
-    loadingSetter(true)
+    setLoading(true)
     newProduct(values, accessToken)
       .then(res => {
-        loadingSetter(false)
+        setLoading(false)
         toast.success(`${res.data.title} created successfully`)
+        navigate("/admin/products")
       })
       .catch(err => {
-        loadingSetter(false)
+        setLoading(false)
         toast.error("Something went wrong")
-        //mot working - err.data is undefined :(
+        //not working - err.data is undefined :(
         //toast.error(err.response.data)
       })
   }
 
   const handleChange = e => {
-    valuesSetter({ ...values, [e.target.name]: e.target.value })
+    setValues({ ...values, [e.target.name]: e.target.value })
   }
 
   const handleCategoryChange = e => {
     e.preventDefault()
-    valuesSetter({ ...values, category: e.target.value, subCategories: [] })
-    getSubCategoryBasedOnCategory(e.target.value).then(res => {
-      subCategoryOptionSetter(res.data)
+    setValues({ ...values, category: e.target.value, subCategories: [] })
+    getSubCategoriesBasedOnCategory(e.target.value).then(res => {
+      setSubCategoryOption(res.data)
     })
-    showSubCategoriesSetter(true)
+    setShowSubCategories(true)
   }
 
   return (
@@ -79,25 +86,25 @@ export const CreateProduct = () => {
         {loading ? (
           <h4 className="text-danger">Loading..</h4>
         ) : (
-          <h4>Create product</h4>
+          <Col>
+            <h4>Create product</h4>
+            <FileUpload
+              values={values}
+              setValues={setValues}
+              setLoading={setLoading}
+            />
+            <CreateProductForm
+              values={values}
+              subCategoryOption={subCategoryOption}
+              showSubCategories={showSubCategories}
+              handleSubmit={handleSubmit}
+              handleChange={handleChange}
+              handleCategoryChange={handleCategoryChange}
+              setValues={setValues}
+            />
+          </Col>
         )}
-
-        <ProductForm
-          values={values}
-          subCategoryOption={subCategoryOption}
-          showSubCategories={showSubCategories}
-          handleSubmit={handleSubmit}
-          handleChange={handleChange}
-          handleCategoryChange={handleCategoryChange}
-          valuesSetter={valuesSetter}
-        />
-
-        <FileUpload
-          values={values}
-          valuesSetter={valuesSetter}
-          loadingSetter={loadingSetter}
-        />
       </Row>
-    </Container>
+    </Container >
   )
 }

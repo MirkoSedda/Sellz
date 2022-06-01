@@ -28,5 +28,5 @@ export const newCategory = async (category, accessToken) =>
     },
   })
 
-export const getSubCategoryBasedOnCategory = async _id =>
-  await axios.get(`${API_URL}/categories/subcategories/${_id}/`, {})
+export const getSubCategoriesBasedOnCategory = async _id =>
+  await axios.get(`${API_URL}/categories/subcategories/${_id}`)
