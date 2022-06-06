@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useEffect, useState } from "react";
 import { AdminSidebar } from "../../../components/sidebars/AdminSidebar";
-import { getProductsByParams } from "../../../functions/products";
+import { getProductsByLimit } from "../../../functions/products";
 import { AdminProductCard } from "../../../components/cards/AdminProductCard";
 import { removeProduct } from "../../../functions/products";
 import { useSelector } from "react-redux";
@@ -22,10 +22,10 @@ export const GetAllProducts = () => {
 
     const loadAllProducts = () => {
         setLoading(true);
-        //sort, order, limit
-        getProductsByParams("createdAt", "desc", 3)
+        getProductsByLimit(100)
             .then((res) => {
                 setProducts(res.data);
+                console.log(res.data);
                 setLoading(false);
             })
             .catch((err) => {

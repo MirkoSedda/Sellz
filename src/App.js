@@ -16,6 +16,7 @@ import { UpdateProduct } from "./pages/admin/products/UpdateProduct"
 import { History } from "./pages/user/History"
 import { Wishlist } from "./pages/user/Wishlist"
 import { GetAllProducts } from "./pages/admin/products/GetAllProducts"
+import { Product } from "./pages/product/product"
 
 export default function App() {
   return (
@@ -53,6 +54,7 @@ export default function App() {
           <Route path="/admin/products" exact element={<GetAllProducts />} />
           <Route path="/user/history" exact element={<History />} />
           <Route path="/user/wishlist" exact element={<Wishlist />} />
+          <Route path="/product/:slug" exact element={<Product />} />
         </Route>
       </Routes>
     </Router>

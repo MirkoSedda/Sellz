@@ -4,6 +4,9 @@ import { API_URL } from "../costants"
 export const getProduct = async slug =>
   await axios.get(`${API_URL}/products/${slug}`)
 
+export const getProductsByLimit = async limit =>
+  await axios.get(`${API_URL}/products/limit/${limit}`)
+
 export const getProductsByParams = async (sort, order, page) =>
   await axios.post(`${API_URL}/products/sort-order-limit-products`, {
     sort,
