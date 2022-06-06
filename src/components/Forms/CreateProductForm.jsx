@@ -45,7 +45,7 @@ export const CreateProductForm = ({
         <Form.Label>Description</Form.Label>
         <Form.Control
           type="text"
-          name="Description"
+          name="description"
           className=""
           value={description}
           onChange={handleChange}
@@ -56,7 +56,7 @@ export const CreateProductForm = ({
         <Form.Label>Price</Form.Label>
         <Form.Control
           type="number"
-          name="Price"
+          name="price"
           className=""
           value={price}
           onChange={handleChange}
@@ -66,7 +66,7 @@ export const CreateProductForm = ({
       <Form.Group>
         <Form.Label>Shipping</Form.Label>
         <Form.Select
-          name="Shipping"
+          name="shipping"
           className=""
           onChange={handleChange}
         >
@@ -150,7 +150,10 @@ export const CreateProductForm = ({
           </Form.Group>
         )
       }
-      <Button className="btn btn-outline-dark mt-3">Save</Button>
+      <Button
+        className="btn btn-outline-dark mt-3"
+        onClick={handleSubmit}
+      >Save</Button>
     </Form >
   );
 };

@@ -3,8 +3,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useState, useEffect } from 'react';
-import { AdminSidebar } from "../../components/AdminSidebar"
-import { getProductsByCount } from "../../functions/product"
+import { AdminSidebar } from "../../components/sidebars/AdminSidebar"
+import { getProductsByCount } from "../../functions/products"
 
 export const AdminDashboard = () => {
 

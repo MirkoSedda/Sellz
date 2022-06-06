@@ -2,7 +2,7 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { AdminSidebar } from "../../../components/AdminSidebar";
+import { AdminSidebar } from "../../../components/sidebars/AdminSidebar";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { getCategory, updateCategory } from "../../../functions/categories";

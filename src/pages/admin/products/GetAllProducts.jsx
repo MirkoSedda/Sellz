@@ -3,10 +3,10 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useEffect, useState } from "react";
-import { AdminSidebar } from "../../../components/AdminSidebar";
-import { getProductsByLimit } from "../../../functions/product";
+import { AdminSidebar } from "../../../components/sidebars/AdminSidebar";
+import { getProductsByParams } from "../../../functions/products";
 import { AdminProductCard } from "../../../components/cards/AdminProductCard";
-import { removeProduct } from "../../../functions/product";
+import { removeProduct } from "../../../functions/products";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
@@ -22,7 +22,8 @@ export const GetAllProducts = () => {
 
     const loadAllProducts = () => {
         setLoading(true);
-        getProductsByLimit(100)
+        //sort, order, limit
+        getProductsByParams("createdAt", "desc", 3)
             .then((res) => {
                 setProducts(res.data);
                 setLoading(false);
