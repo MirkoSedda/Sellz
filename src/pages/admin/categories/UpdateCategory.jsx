@@ -1,19 +1,21 @@
 
-import { AdminSidebar } from "../../../components/AdminSidebar";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { AdminSidebar } from "../../../components/sidebars/AdminSidebar";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { getCategory, updateCategory } from "../../../utils/categoriesFetch";
+import { getCategory, updateCategory } from "../../../functions/categories";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { CategoryForm } from "../../../components/Forms/CategoryForm";
+import { CreateCategoryForm } from "../../../components/forms/CreateCategoryForm";
 
 export const UpdateCategory = () => {
     const params = useParams();
     const { slug } = params
     const navigate = useNavigate();
 
-    const [name, nameSetter] = useState(slug);
+    const [name, setName] = useState(slug);
     const [loading, setLoading] = useState(false);
 
     const accessToken = useSelector((state) => state.userReducer?.accessToken);
@@ -25,7 +27,7 @@ export const UpdateCategory = () => {
         updateCategory(slug, { name }, accessToken)
             .then((res) => {
                 setLoading(false);
-                nameSetter("");
+                setName("");
                 toast.success(`"${res.data.name}" is updated !`);
                 navigate("/admin/categories");
             })
@@ -43,7 +45,10 @@ export const UpdateCategory = () => {
                     <AdminSidebar />
                 </Col>
                 <Col md={10}>
-                    <CategoryForm handleSubmit={handleSubmit} name={name} nameSetter={nameSetter} />
+                    <CreateCategoryForm
+                        name={name}
+                        handleSubmit={handleSubmit}
+                        setName={setName} />
                 </Col>
             </Row>
         </Container>

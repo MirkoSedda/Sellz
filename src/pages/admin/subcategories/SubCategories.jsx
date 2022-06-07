@@ -1,66 +1,69 @@
 
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { getCategories } from "../../../utils/categoriesFetch"
-import { newSubCategory, getSubCategories, getSubCategory, deleteSubCategory } from "../../../utils/subCategoriesFetch";
-import { AdminSidebar } from "../../../components/AdminSidebar"
+import { getCategories } from "../../../functions/categories"
+import { newSubCategory, getSubCategories, getSubCategory, deleteSubCategory } from "../../../functions/subCategories";
+import { AdminSidebar } from "../../../components/sidebars/AdminSidebar"
 import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { CategoryForm } from "../../../components/Forms/CategoryForm";
-import { SearchForm } from "../../../components/Forms/SearchForm";
-import { FormGroup } from "react-bootstrap"
+import { CreateCategoryForm } from "../../../components/forms/CreateCategoryForm";
+import { SearchForm } from "../../../components/forms/SearchForm";
 
 export const SubCategories = () => {
 
     const accessToken = useSelector((state) => state.userReducer?.accessToken)
 
-    const [name, nameSetter] = useState("");
-    const [loading, loadingSetter] = useState(false);
-    const [categories, categoriesSetter] = useState([]);
-    const [category, categorySetter] = useState("");
-    const [subCategories, subCategoriesSetter] = useState([]);
-    const [query, querySetter] = useState("");
+    const [name, setName] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [categories, setCategories] = useState([]);
+    const [category, setCategory] = useState("");
+    const [subCategories, setSubCategories] = useState([]);
+    const [query, setQuery] = useState("");
 
     useEffect(() => {
         loadCategories();
         loadSubCategories();
     }, []);
 
-    const loadCategories = () => getCategories().then(c => categoriesSetter(c.data))
+    const loadCategories = () => getCategories().then(c => setCategories(c.data))
 
-    const loadSubCategories = () => getSubCategories().then(s => subCategoriesSetter(s.data))
+    const loadSubCategories = () => getSubCategories().then(s => setSubCategories(s.data))
 
     const handleSubmit = e => {
         e.preventDefault()
-        loadingSetter(true)
+        setLoading(true)
         newSubCategory({ name, parent: category }, accessToken)
             .then(res => {
-                loadingSetter(false)
-                nameSetter("")
+                setLoading(false)
+                setName("")
                 toast.success(`"${res.data.name}" is created`)
                 loadSubCategories()
             })
             .catch(err => {
                 console.log(err)
-                loadingSetter(false)
+                setLoading(false)
                 if (err.response.status === 400) toast.error(err.response.data)
             })
     }
 
     const handleRemove = async (slug) => {
         console.log(accessToken);
-        loadingSetter(true);
+        setLoading(true);
         deleteSubCategory(slug, accessToken)
             .then((res) => {
                 console.log(res)
-                loadingSetter(false);
+                setLoading(false);
                 toast.error(`${slug} deleted`);
                 loadSubCategories()
             })
             .catch((err) => {
                 if (err.response.status === 400) {
-                    loadingSetter(false);
+                    setLoading(false);
                     toast.error(err.response.data);
                 }
             });
@@ -68,29 +71,29 @@ export const SubCategories = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        querySetter(e.target.value.toLowerCase());
+        setQuery(e.target.value.toLowerCase());
     }
 
     const searched = (query) => (q) => q.name.toLowerCase().includes(query);
 
     return (
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col-md-2">
+        <Container>
+            <Row>
+                <Col md={2}>
                     <AdminSidebar />
-                </div>
-                <div className="col">
+                </Col>
+                <Col md={10}>
                     {loading ? (
                         <h4 className="text-danger">Loading..</h4>
                     ) : (
                         <h4>Create sub category</h4>
                     )}
-                    <FormGroup>
-                        <label>Category</label>
-                        <select
+                    <Form.Group>
+                        <Form.Label>Category</Form.Label>
+                        <Form.Select
                             name="category"
-                            className="form-control"
-                            onChange={(e) => categorySetter(e.target.value)}
+                            className=""
+                            onChange={(e) => setCategory(e.target.value)}
                         >
                             <option>Please select a category</option>
                             {categories.length > 0 &&
@@ -99,12 +102,12 @@ export const SubCategories = () => {
                                 </option>
                                 )
                             }
-                        </select>
-                    </FormGroup>
-                    <CategoryForm
+                        </Form.Select>
+                    </Form.Group>
+                    <CreateCategoryForm
                         handleSubmit={handleSubmit}
                         name={name}
-                        nameSetter={nameSetter} />
+                        setName={setName} />
                     <SearchForm
                         handleSearch={handleSearch}
                         query={query} />
@@ -124,8 +127,8 @@ export const SubCategories = () => {
                             </Link>
                         </div>
                     ))}
-                </div>
-            </div>
-        </div >
+                </Col>
+            </Row>
+        </Container >
     );
 };

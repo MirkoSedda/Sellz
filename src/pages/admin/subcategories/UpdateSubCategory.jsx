@@ -1,106 +1,97 @@
-import React, { useState, useEffect } from "react";
+
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-import { getCategories } from "../../../utils/categoriesFetch"
-import { getSubCategories, updateSubCategory } from "../../../utils/subCategoriesFetch"
-import { CategoryForm } from "../../../components/Forms/CategoryForm";
+import { getCategories } from "../../../functions/categories"
+import { getSubCategories, updateSubCategory } from "../../../functions/subCategories"
+import { CreateCategoryForm } from "../../../components/forms/CreateCategoryForm";
 import { useParams, useNavigate } from "react-router-dom";
-import { AdminSidebar } from "../../../components/AdminSidebar";
+import { AdminSidebar } from "../../../components/sidebars/AdminSidebar";
 
 export const UpdateSubCategory = () => {
     const params = useParams()
     const { slug } = params
     const navigate = useNavigate();
-    const [name, nameSetter] = useState("");
-    const [loading, loadingSetter] = useState(false);
-    const [categories, categoriesSetter] = useState([]);
-    const [parent, parentSetter] = useState("");
+    const [name, setName] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [categories, setCategories] = useState([]);
+    const [parent, setParent] = useState("");
 
     const accessToken = useSelector((state) => state.userReducer?.accessToken);
 
     useEffect(() => {
         loadCategories();
         loadSubCategories();
+        // eslint-disable-next-line
     }, []);
 
     const loadCategories = () =>
-        getCategories().then((c) => categoriesSetter(c.data));
+        getCategories().then((c) => setCategories(c.data));
 
     const loadSubCategories = () =>
         getSubCategories(slug).then((s) => {
-            nameSetter(s.data.name);
-            parentSetter(s.data.parent);
+            setName(s.data.name);
+            setParent(s.data.parent);
         });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        loadingSetter(true);
+        setLoading(true);
         updateSubCategory(slug, { name, parent }, accessToken)
             .then((res) => {
                 console.log(slug, name, parent, accessToken);
-                loadingSetter(false);
-                nameSetter("");
+                setLoading(false);
+                setName("");
                 toast.success(`"${res.data.name}" is updated`);
                 navigate("/admin/subcategories");
             })
             .catch((err) => {
                 console.log(err);
-                loadingSetter(false);
+                setLoading(false);
                 if (err.response.status === 400) toast.error(err.response.data);
             });
     };
     return (
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col-md-2">
+        <Container>
+            <Row>
+                <Col md={2}>
                     <AdminSidebar />
-                </div>
-                <div className="col">
+                </Col>
+                <Col md={10}>
                     {loading ? (
                         <h4 className="text-danger">Loading..</h4>
                     ) : (
                         <h4>Update sub category</h4>
                     )}
-
-                    <div className="form-group">
-                        <label>Parent category</label>
-                        <select
-                            name="category"
-                            className="form-control"
-                            onChange={(e) => parentSetter(e.target.value)}
-                        >
-                            <option>Please select</option>
-                            {categories.length > 0 &&
-                                categories.map((c) => (
-                                    <option key={c._id} value={c._id} selected={c._id === parent}>
-                                        {c.name}
-                                    </option>
-                                ))}
-                        </select>
-                    </div>
-                    {/* <form onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label>Name</label>
-                            <input
-                                type="text"
+                    <Form>
+                        <Form.Group>
+                            <Form.Label>Parent category</Form.Label>
+                            <Form.Select
+                                name="category"
                                 className="form-control"
-                                onChange={(e) => nameSetter(e.target.value)}
-                                value={name}
-                                autoFocus
-                                required
-                            />
-                            <br />
-                            <button className="btn btn-outline-primary">Save</button>
-                            <hr />
-                        </div>
-                    </form> */}
-                    <CategoryForm
+                                onChange={(e) => setParent(e.target.value)}
+                            >
+                                <option>Please select</option>
+                                {categories.length > 0 &&
+                                    categories.map((c) => (
+                                        <option key={c._id} value={c._id} selected={c._id === parent}>
+                                            {c.name}
+                                        </option>
+                                    ))}
+                            </Form.Select>
+                        </Form.Group>
+                    </Form>
+                    <CreateCategoryForm
                         handleSubmit={handleSubmit}
                         name={name}
-                        nameSetter={nameSetter}
+                        setName={setName}
                     />
-                </div>
-            </div>
-        </div>
+                </Col>
+            </Row>
+        </Container>
     );
 };

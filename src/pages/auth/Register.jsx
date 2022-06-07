@@ -1,5 +1,7 @@
+
+import Form from "react-bootstrap/Form";
 import { useState } from "react"
-import { registerUser } from "../../utils/userFetch"
+import { registerUser } from "../../functions/user"
 import { Button } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom"
@@ -7,10 +9,10 @@ import { useNavigate } from "react-router-dom"
 export const Register = () => {
 
 
-    const [name, nameSetter] = useState("m")
-    const [surname, surnameSetter] = useState("m")
-    const [email, emailSetter] = useState("m@m.com")
-    const [password, passwordSetter] = useState("m")
+    const [name, setName] = useState("m")
+    const [surname, setSurname] = useState("m")
+    const [email, setEmail] = useState("m@m.com")
+    const [password, setPassword] = useState("m")
     const navigate = useNavigate()
     const user = { name, surname, email, password }
 
@@ -18,47 +20,61 @@ export const Register = () => {
         e.preventDefault()
         registerUser(user)
         console.log(user)
-        nameSetter("")
-        surnameSetter("")
-        emailSetter("")
-        passwordSetter("")
+        setName("")
+        setSurname("")
+        setEmail("")
+        setPassword("")
         navigate("/login")
     }
 
     const registrationForm = () => (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="name"
-                className="form-control"
-                value={name}
-                onChange={(e) => nameSetter(e.target.value)}
-                placeholder="Your name"
-                autoFocus
-            />
-            <input
-                type="surname"
-                className="form-control"
-                value={surname}
-                onChange={(e) => surnameSetter(e.target.value)}
-                placeholder="Your surname"
-                autoFocus
-            />
-            <input
-                type="email"
-                className="form-control"
-                value={email}
-                onChange={(e) => emailSetter(e.target.value)}
-                placeholder="Your email"
-                autoFocus
-            />
-            <input
-                type="password"
-                className="form-control"
-                value={password}
-                onChange={(e) => passwordSetter(e.target.value)}
-                placeholder="Your password"
-                autoFocus
-            />
+
+        <Form onSubmit={handleSubmit}>
+
+            <Form.Group>
+                <Form.Control
+                    type="name"
+                    className=""
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Your name"
+                    autoFocus
+                />
+            </Form.Group>
+
+            <Form.Group>
+                <Form.Control
+                    type="surname"
+                    className=""
+                    value={surname}
+                    onChange={(e) => setSurname(e.target.value)}
+                    placeholder="Your surname"
+                    autoFocus
+                />
+            </Form.Group>
+
+            <Form.Group>
+                <Form.Control
+                    type="email"
+                    className=""
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your email"
+                    autoFocus
+                />
+            </Form.Group>
+
+            <Form.Group>
+                <Form.Control
+                    type="password"
+                    className=""
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Your password"
+                    autoFocus
+                />
+            </Form.Group>
+
             <br />
             <Button
                 onClick={handleSubmit}
@@ -71,7 +87,7 @@ export const Register = () => {
             >
                 Login with Email/Password
             </Button>
-        </form>
+        </Form>
     );
 
     return (<div className="container p-5">

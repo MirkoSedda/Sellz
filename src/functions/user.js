@@ -1,5 +1,5 @@
 import { API_URL } from "../costants"
-import { toastSuccess, toastError } from "../utils/toastNotification"
+import { toastSuccess, toastError } from "./toastNotification"
 import "react-toastify/dist/ReactToastify.css"
 
 export const registerUser = async user => {
