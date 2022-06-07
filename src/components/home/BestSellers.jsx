@@ -34,7 +34,6 @@ export const BestSellers = () => {
         // sort, order, limit
         getProductsByParams("sold", "desc", page).then((res) => {
             setProducts(res.data);
-            console.log(res.data);
             setLoading(false);
         });
     };
