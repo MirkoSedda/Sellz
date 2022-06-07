@@ -1,7 +1,6 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import Resizer from "react-image-file-resizer"
 import axios from "axios"
 import { useSelector } from "react-redux"

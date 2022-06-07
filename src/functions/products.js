@@ -7,6 +7,9 @@ export const getProduct = async slug =>
 export const getProductsByLimit = async limit =>
   await axios.get(`${API_URL}/products/limit/${limit}`)
 
+export const getRelatedProducts = async productId =>
+  await axios.get(`${API_URL}/products/related/${productId}`)
+
 export const getProductsByParams = async (sort, order, page) =>
   await axios.post(`${API_URL}/products/sort-order-limit-products`, {
     sort,
@@ -30,6 +33,17 @@ export const updateProduct = async (slug, product, accessToken) =>
       authorization: accessToken,
     },
   })
+
+export const productRating = async (userId, productId, star, accessToken) =>
+  await axios.put(
+    `${API_URL}/products/rating/${userId}/${productId}`,
+    { star },
+    {
+      headers: {
+        authorization: accessToken,
+      },
+    }
+  )
 
 export const removeProduct = async (slug, accessToken) =>
   await axios.delete(`${API_URL}/products/${slug}`, {
