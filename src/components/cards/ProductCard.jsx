@@ -11,7 +11,7 @@ export const ProductCard = ({ product }) => {
     const { images, title, description, slug } = product;
     return (
         <>
-            {product && product.ratings && product.ratings.length > 0 ? (
+            {product?.ratings?.length > 0 ? (
                 averageStarRating(product)
             ) : (
                 <div className="text-center pt-1 pb-3">No rating yet</div>
@@ -19,7 +19,7 @@ export const ProductCard = ({ product }) => {
             <Card
                 cover={
                     <img
-                        src={images && images.length ? images[0].url : defaultImage}
+                        src={images?.length ? images[0].url : defaultImage}
                         alt={`${title}`}
                         style={{ height: "150px", objectFit: "cover" }}
                         className="p-1"
@@ -38,7 +38,7 @@ export const ProductCard = ({ product }) => {
             >
                 <Meta
                     title={title}
-                    description={`${description && description.substring(0, 40)}...`}
+                    description={`${description?.substring(0, 40)}...`}
                 />
             </Card>
         </>

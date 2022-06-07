@@ -53,11 +53,11 @@ export const UpdateProduct = () => {
       // console.log("single product", p);
       // 1 load single product
       setValues({ ...values, ...p.data });
-      // 2 load single product category subs
+      // 2 load single product category subCategories
       getSubCategoriesBasedOnCategory(p.data.category._id).then((res) => {
         setSubCategoryOptions(res.data); // on first load, show default subs
       });
-      // 3 prepare array of sub ids to show as default sub values in antd Select
+      // 3 prepare array of subCategories ids to show as default sub values in antd Select
       let arr = [];
       p.data.subs && p.data.subs.map((s) => arr.push(s._id));
       console.log("ARR", arr);

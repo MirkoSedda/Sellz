@@ -25,22 +25,19 @@ export const Product = () => {
 
     useEffect(() => {
         loadSingleProduct();
-        console.log(product);
         // eslint-disable-next-line 
     }, []);
 
-    //check why the product is undefined :(
-    // useEffect(() => {
-    //     console.log(product);
-    //     if (userId && product.ratings) {
-    //         const existingRatingObject = product.ratings.find(
-    //             rating => rating.postedBy.toString() === userId.toString()
-    //         )
-    //         existingRatingObject && setStar(existingRatingObject.ratings.star)
-    //     }
-    //     // eslint-disable-next-line 
-    // }, []);
-
+    //check why the product is undefined: (
+    useEffect(() => {
+        if (userId && product.ratings) {
+            const existingRatingObject = product.ratings.find(
+                rating => rating.postedBy.toString() === userId.toString()
+            )
+            existingRatingObject && setStar(existingRatingObject.ratings.star)
+        }
+        // eslint-disable-next-line 
+    }, []);
 
     const loadSingleProduct = () => {
         getProduct(slug).then((res) => {
@@ -53,7 +50,6 @@ export const Product = () => {
                 });
         });
     };
-
 
     const onStarClick = (newStar) => {
         setStar(newStar);
@@ -82,11 +78,11 @@ export const Product = () => {
                 </Col>
             </Row>
             <Row className=" pb-5">
-                {console.log(relatedProducts)}
-                {relatedProducts.length ? (
-                    relatedProducts.map((r) => (
-                        <Col md={4} key={r._id} className="">
-                            <ProductCard product={product} />
+
+                {relatedProducts?.length ? (
+                    relatedProducts.map((relatedProduct) => (
+                        <Col md={4} key={relatedProduct._id} className="">
+                            <ProductCard product={relatedProduct} />
                         </Col>
                     ))
                 ) : (
