@@ -19,14 +19,14 @@ export const SingleProduct = ({ product, onStarClick, star }) => {
     return (
         <>
             <Col md={7} className="">
-                {images && images.length ? (
+                {images?.length ? (
                     <Carousel
                         showArrows={true}
                         autoPlay
                         infiniteLoop
                     >
                         {
-                            images && images.map((i) =>
+                            images?.map((i) =>
                                 <img
                                     src={i.url}
                                     key={i.public_id}
@@ -60,7 +60,7 @@ export const SingleProduct = ({ product, onStarClick, star }) => {
             <Col md={5} className="">
                 <h1 className="bg-info p-3">{title}</h1>
 
-                {product && product.ratings && product.ratings.length > 0 ? (
+                {product?.ratings?.length > 0 ? (
                     averageStarRating(product)
                 ) : (
                     <div className="text-center pt-1 pb-3">No rating yet</div>

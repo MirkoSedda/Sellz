@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -55,6 +54,7 @@ export const NewProducts = () => {
                 </Row>
             )}
             <Row>
+                {/* TODO last page doesnt render with less than 3 products */}
                 <Col className="text-center pt-5 p-3">
                     <Pagination
                         current={page}
@@ -66,6 +66,3 @@ export const NewProducts = () => {
         </Container>
     );
 };
-
-
-

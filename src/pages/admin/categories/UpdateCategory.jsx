@@ -18,7 +18,7 @@ export const UpdateCategory = () => {
     const [name, setName] = useState(slug);
     const [loading, setLoading] = useState(false);
 
-    const accessToken = useSelector((state) => state.userReducer?.accessToken);
+    const accessToken = useSelector((state) => state.user?.accessToken);
 
     const handleSubmit = async (e) => {
         console.log(accessToken);

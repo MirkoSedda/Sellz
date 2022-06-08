@@ -8,7 +8,7 @@ import { averageStarRating } from "../rating/averageStarRating";
 const { Meta } = Card;
 
 export const ProductCard = ({ product }) => {
-    const { images, title, description, slug } = product;
+    const { images, title, description, slug, price } = product;
     return (
         <>
             {product?.ratings?.length > 0 ? (
@@ -26,6 +26,7 @@ export const ProductCard = ({ product }) => {
                     />
                 }
                 actions={[
+                    // TODO this link doesnt work on related products
                     <Link to={`/product/${slug}`}>
                         <EyeOutlined className="text-warning" />
                         <br /> View Product
@@ -37,7 +38,7 @@ export const ProductCard = ({ product }) => {
                 ]}
             >
                 <Meta
-                    title={title}
+                    title={`${title} - $${price}`}
                     description={`${description?.substring(0, 40)}...`}
                 />
             </Card>

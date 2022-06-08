@@ -55,6 +55,7 @@ export const BestSellers = () => {
             )}
             <Row>
                 <Col className="text-center pt-5 p-3">
+                    {/* TODO last page doesnt render with less than 3 products */}
                     <Pagination
                         current={page}
                         // 3 is the number of items per page

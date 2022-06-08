@@ -1,7 +1,7 @@
 import StarRating from "react-star-ratings";
 
 export const averageStarRating = (product) => {
-  if (product && product.ratings) {
+  if (product?.ratings) {
     const ratingsArray = product && product.ratings;
     const total = [];
     const length = ratingsArray.length;

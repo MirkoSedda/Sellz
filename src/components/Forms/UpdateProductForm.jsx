@@ -31,6 +31,8 @@ export const UpdateProductForm = ({
     brand,
   } = values
 
+
+  // TODO render images in the update product form
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group>
@@ -135,7 +137,7 @@ export const UpdateProductForm = ({
         >
           {console.log('selected category', selectedCategory)}
           {console.log('category', category)}
-          {categories.length &&
+          {categories.length > 0 &&
             categories.map((c) => (
               <option key={c._id} value={c._id}>
                 {c.name}
@@ -160,7 +162,6 @@ export const UpdateProductForm = ({
             ))}
         </Select>
       </Form.Group>
-
       <br />
       <Button onClick={handleSubmit} className="btn btn-outline-info">Save</Button>
     </Form>

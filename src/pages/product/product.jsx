@@ -12,8 +12,8 @@ import { productRating, getRelatedProducts } from "../../functions/products";
 
 export const Product = () => {
 
-    const accessToken = useSelector(state => state.userReducer?.accessToken)
-    const userId = useSelector(state => state.userReducer?.user._id)
+    const accessToken = useSelector(state => state.user?.accessToken)
+    const userId = useSelector(state => state.user?.user._id)
 
     const [product, setProduct] = useState({});
     const [relatedProducts, setRelatedProducts] = useState([]);

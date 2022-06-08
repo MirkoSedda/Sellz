@@ -12,7 +12,7 @@ export const AdminProductCard = ({ product, handleRemove }) => {
     <Card
       cover={
         <img
-          src={images && images.length ? images[0].url : defaultImage}
+          src={images?.length ? images[0].url : defaultImage}
           alt={`${title}`}
           style={{ height: "150px", objectFit: "cover" }
           }
@@ -32,7 +32,7 @@ export const AdminProductCard = ({ product, handleRemove }) => {
     >
       <Meta
         title={title}
-        description={`${description && description.substring(0, 40)}...`}
+        description={`${description?.substring(0, 40)}...`}
       />
     </Card >
   );

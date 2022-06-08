@@ -1,3 +1,4 @@
+//console.log(JSON.stringify(data, null, 4))
 import "./App.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 import { ToastContainer } from "react-toastify"
@@ -19,6 +20,7 @@ import { GetAllProducts } from "./pages/admin/products/GetAllProducts"
 import { Product } from "./pages/product/product"
 import { CategoriesList } from "./pages/categories/CategoriesList"
 import { SubCategoriesList } from "./pages/subCategories/SubCategoriesList"
+import { Shop } from "./pages/shop/Shop"
 
 export default function App() {
   return (
@@ -31,7 +33,7 @@ export default function App() {
           <Route path="/login" exact element={<Login />} />
           <Route path="/register" exact element={<Register />} />
           <Route path="/admin/dashboard" exact element={<AdminDashboard />} />
-          <Route path="/admin/categories" exact element={<CategoriesList />} />
+          <Route path="/admin/categories" exact element={<Categories />} />
           <Route
             path="/admin/categories/:slug"
             exact
@@ -64,6 +66,7 @@ export default function App() {
             element={<SubCategoriesList />}
           />
         </Route>
+        <Route path="/Shop" exact element={<Shop />} />
       </Routes>
     </Router>
   )

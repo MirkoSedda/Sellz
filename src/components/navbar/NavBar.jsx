@@ -11,13 +11,14 @@ import { BsPersonCircle, BsCartPlus, BsPercent } from "react-icons/bs";
 import { MdOutlineLocalOffer } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom'
+import { Search } from "../forms/Search";
 
 export const NavBar = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const userRole = useSelector((state) => state.userReducer?.user.role);
-    const user = useSelector((state) => state.userReducer?.user.name);
+    const userRole = useSelector((state) => state.user?.user.role);
+    const user = useSelector((state) => state.user?.user.name);
 
     const logout = () => {
         dispatch({ type: 'LOGOUT', payload: null });
@@ -37,21 +38,17 @@ export const NavBar = () => {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll" className="whiteText ml-3">
-                    <Nav.Link href="#action1" className="whiteText">
+                    {/* TODO inside the product page this link 
+                        goes to /product/shop.. WHYYY??
+                    */}
+                    <Nav.Link href="shop" className="whiteText">
                         <MdOutlineLocalOffer className="navIcons" />
                     </Nav.Link>
                     <Nav.Link href="#action2" className="whiteText">
                         <BsPercent className="navIcons" />
                     </Nav.Link>
-                    <Form className=" d-flex w-50 ml-1">
-                        <FormControl
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                    </Form>
                 </Navbar.Collapse>
+                <Search />
                 <div className="d-flex flex-column align-items-center px-1 ml-3 ">
                     <BsCartPlus className="navIcons" />
                 </div>

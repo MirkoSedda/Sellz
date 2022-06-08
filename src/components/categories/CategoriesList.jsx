@@ -12,7 +12,6 @@ export const CategoriesList = () => {
     useEffect(() => {
         setLoading(true);
         getCategories().then((c) => {
-            console.log(JSON.stringify(c.data, null, 4));
             setCategories(c.data);
             setLoading(false);
         });

@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom'
 import { useSelector } from "react-redux"
 
 const useAuth = () => {
-    const user = useSelector((state) => state.userReducer?.user)
+    const user = useSelector((state) => state.user?.user)
     console.log(user)
     if (user) return true
     if (!user) return false

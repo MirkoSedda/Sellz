@@ -16,7 +16,7 @@ import { SearchForm } from "../../../components/forms/SearchForm";
 
 export const SubCategories = () => {
 
-    const accessToken = useSelector((state) => state.userReducer?.accessToken)
+    const accessToken = useSelector((state) => state.user?.accessToken)
 
     const [name, setName] = useState("");
     const [loading, setLoading] = useState(false);

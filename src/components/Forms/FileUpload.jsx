@@ -9,13 +9,13 @@ import { API_URL } from "../../costants"
 
 export const FileUpload = ({ values, setValues, setLoading }) => {
 
-  const accessToken = useSelector(state => state.userReducer?.accessToken)
+  const accessToken = useSelector(state => state.user?.accessToken)
 
   const fileUploadAndResize = (e) => {
 
     const files = e.target.files
     const allUploadedFiles = values.images
-
+    // TODO remove PayloadTooLargeError: request entity too large
     if (files) {
       setLoading(true)
       for (let i = 0; i < files.length; i++) {
@@ -74,21 +74,20 @@ export const FileUpload = ({ values, setValues, setLoading }) => {
   return (
     <Container>
       <Row>
-        {values.images &&
-          values.images.map(image => (
-            <Badge
-              count="X"
-              key={image.public_id}
-              onClick={() => handleImageRemove(image.public_id)}
-              style={{ cursor: "pointer" }}>
-              <Avatar
-                src={image.url}
-                size={100}
-                shape="square"
-                className="ml-3"
-              />
-            </Badge>
-          ))}
+        {values?.images?.map(image => (
+          <Badge
+            count="X"
+            key={image.public_id}
+            onClick={() => handleImageRemove(image.public_id)}
+            style={{ cursor: "pointer" }}>
+            <Avatar
+              src={image.url}
+              size={100}
+              shape="square"
+              className="ml-3"
+            />
+          </Badge>
+        ))}
       </Row>
       <Row>
         <Form.Group>

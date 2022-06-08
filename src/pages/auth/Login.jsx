@@ -23,7 +23,7 @@ export const Login = () => {
     const [setError] = useState(false)
 
     const userData = { email, password };
-    const user = useSelector((state) => state.userReducer?.user.name);
+    const user = useSelector((state) => state.user?.user.name);
 
     const handleSubmit = async e => {
         try {
@@ -35,6 +35,7 @@ export const Login = () => {
             setEmail("")
             setPassword("")
             setLoading(false)
+            navigate("/")
         } catch (error) {
             console.log(error)
             toast.error(error.message);
@@ -42,8 +43,6 @@ export const Login = () => {
             setLoading(false)
         }
     }
-
-    useEffect(() => user && navigate("/"), [navigate, user])
 
     const loginForm = () => (
 

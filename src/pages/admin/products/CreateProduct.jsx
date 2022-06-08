@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom"
 
 export const CreateProduct = () => {
 
-  const accessToken = useSelector(state => state.userReducer?.accessToken)
+  const accessToken = useSelector(state => state.user?.accessToken)
 
   const navigate = useNavigate()
 
