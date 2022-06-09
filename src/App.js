@@ -8,6 +8,7 @@ import { AdminDashboard } from "./pages/admin/AdminDashboard"
 import { Register } from "./pages/auth/Register"
 import { Login } from "./pages/auth/Login"
 import { NavBar } from "./components/navbar/NavBar"
+import { SideDrawer } from "./components/drawer/SideDrawer"
 import { Categories } from "./pages/admin/categories/Categories"
 import { SubCategories } from "./pages/admin/subcategories/SubCategories"
 import { UpdateCategory } from "./pages/admin/categories/UpdateCategory"
@@ -27,6 +28,7 @@ export default function App() {
   return (
     <Router>
       <NavBar />
+      <SideDrawer />
       <ToastContainer />
       <Routes>
         <Route>

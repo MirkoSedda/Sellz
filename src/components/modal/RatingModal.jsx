@@ -15,7 +15,7 @@ export const RatingModal = ({ children }) => {
     if (user) {
       setModalVisible(true)
     } else {
-      //implement go back to this page after login 
+      //  TODO implement modal for login 
       navigate("/login")
     }
   }

@@ -12,8 +12,6 @@ import { CreateCategoryForm } from "../../../components/forms/CreateCategoryForm
 import { useParams, useNavigate } from "react-router-dom";
 import { AdminSidebar } from "../../../components/sidebars/AdminSidebar";
 
-//TODO fix the update of the subCategories - its broken again
-
 export const UpdateSubCategory = () => {
     const params = useParams()
     const { slug } = params

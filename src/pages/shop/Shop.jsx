@@ -296,7 +296,7 @@ export const Shop = () => {
     <Container className="">
       <Row className="">
         <Col md={3} className="text-center mb-4">
-          <h3>Search/Filter</h3>
+          <h3>Search & Filter</h3>
           <hr />
           <Menu defaultOpenKeys={["1", "2", "3", "4", "5", "6", "7"]} mode="inline">
 

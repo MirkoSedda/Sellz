@@ -7,6 +7,7 @@ import { SECRET_KEY } from "../../costants"
 import { userReducer } from "../reducers/userReducer"
 import { searchReducer } from "../reducers/searchReducer"
 import { cartReducer } from "../reducers/cartReducer"
+import { drawerReducer } from "../reducers/drawerReducer"
 
 export const initialState = {}
 
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   search: searchReducer,
   cart: cartReducer,
+  drawer: drawerReducer,
 })
 
 const persistConfig = {

@@ -20,7 +20,7 @@ export const getProductsByParams = async (sort, order, page) =>
   })
 
 export const getProductsByFilter = async query =>
-  await axios.post(`${API_URL}/products/search/filters`, query)
+  await axios.post(`${API_URL}/products/search&filters`, query)
 
 export const getProductsCountTotal = async () =>
   await axios.get(`${API_URL}/products/total-number-of-products`)

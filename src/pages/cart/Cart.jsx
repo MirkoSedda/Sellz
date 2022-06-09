@@ -3,7 +3,7 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-// import {ProductCardInCheckout} from "../components/cards/ProductCardInCheckout";
+import { ProductCardForCart } from "../../components/cards/ProductCardForCart";
 
 export const Cart = () => {
   const { cart } = useSelector((state) => ({ ...state }));
@@ -14,7 +14,7 @@ export const Cart = () => {
     return currentValue + nextValue.count * nextValue.price;
   }, 0))
 
-  const saveOrderToDb = () => {
+  const saveOrderInDb = () => {
     //
   };
 
@@ -33,9 +33,9 @@ export const Cart = () => {
         </tr>
       </thead>
 
-      {/* {cart.map((p) => (
-         <ProductCardInCheckout key={p._id} p={p} />
-      ))} */}
+      {cart.map((p) => (
+        <ProductCardForCart key={p._id} p={p} />
+      ))}
     </table>
   );
 
@@ -43,7 +43,7 @@ export const Cart = () => {
     <Container className="pt-2">
       <Row className="">
         <Col md={8} className="">
-          <h4>Cart / {cart.length} Product</h4>
+          <h4>Cart ~ {cart.length} Product{cart.length > 1 && "s"}</h4>
 
           {!cart.length ? (
             <p>
@@ -69,7 +69,7 @@ export const Cart = () => {
           <hr />
           {user ? (
             <button
-              onClick={saveOrderToDb}
+              onClick={saveOrderInDb}
               className="btn btn-sm btn-primary mt-2"
               disabled={!cart.length}
             >
@@ -77,11 +77,9 @@ export const Cart = () => {
             </button>
           ) : (
             <button className="btn btn-sm btn-primary mt-2">
+              {/* TODO implement modal for login */}
               <Link
-                to={{
-                  pathname: "/login",
-                  state: { from: "cart" },
-                }}
+                to="/login"
               >
                 Login to Checkout
               </Link>
