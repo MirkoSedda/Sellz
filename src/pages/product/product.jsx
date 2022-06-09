@@ -26,7 +26,7 @@ export const Product = () => {
     useEffect(() => {
         loadSingleProduct();
         // eslint-disable-next-line 
-    }, []);
+    }, [slug]);
 
     //check why the product is undefined: (
     useEffect(() => {

@@ -1,6 +1,8 @@
-import React from "react";
+
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Col from "react-bootstrap/Col";
-import { Card, Tabs } from "antd";
+import { Card, Tabs, Tooltip } from "antd";
 import { Link } from "react-router-dom";
 import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Carousel } from "react-responsive-carousel";
@@ -10,11 +12,50 @@ import defaultImage from "../../images/product-image-placeholder.jpg"
 import { ProductListItems } from "./ProductListItems";
 import { RatingModal } from "../modal/RatingModal";
 import { averageStarRating } from "../rating/averageStarRating";
+import _ from "lodash";
 const { TabPane } = Tabs;
 
 
 export const SingleProduct = ({ product, onStarClick, star }) => {
+
     const { title, images, description, _id } = product;
+
+    const [tooltip, setTooltip] = useState("Click to add");
+
+    const dispatch = useDispatch();
+    const { cart } = useSelector((state) => ({ ...state }));
+    const { user } = useSelector(state => state.user)
+
+    const handleAddToCart = () => {
+        let cart = [];
+        // useful check for future nextJS version if SSR
+        if (typeof window !== "undefined") {
+            // if cart is in local storage GET it
+            if (localStorage.getItem("cart")) {
+                cart = JSON.parse(localStorage.getItem("cart"));
+            }
+            // push new product to cart
+            cart.push({
+                ...product,
+                count: 1,
+            });
+            // remove duplicates
+            let unique = _.uniqWith(cart, _.isEqual);
+            console.log('unique', unique)
+            localStorage.setItem("cart", JSON.stringify(unique));
+            // show tooltip
+            setTooltip("Added");
+            dispatch({
+                type: "ADD_TO_CART",
+                payload: unique,
+            });
+            // show cart items in side drawer
+            dispatch({
+                type: "SET_VISIBLE",
+                payload: true,
+            });
+        }
+    };
 
     return (
         <>
@@ -68,10 +109,12 @@ export const SingleProduct = ({ product, onStarClick, star }) => {
 
                 <Card
                     actions={[
-                        <>
-                            <ShoppingCartOutlined className="text-success" /> <br />
-                            Add to Cart
-                        </>,
+                        <Tooltip title={tooltip}>
+                            <div onClick={handleAddToCart}>
+                                <ShoppingCartOutlined className="text-danger" /> <br /> Add to
+                                Cart
+                            </div>
+                        </Tooltip>,
                         <Link to="/">
                             <HeartOutlined className="text-info" /> <br /> Add to Wishlist
                         </Link>,

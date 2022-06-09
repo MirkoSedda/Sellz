@@ -1,5 +1,3 @@
-import { initialState } from "../store"
-
 export function searchReducer(state = { text: "" }, action) {
   const { type, payload } = action
   switch (type) {

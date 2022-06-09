@@ -19,6 +19,7 @@ export const NavBar = () => {
     const navigate = useNavigate();
     const userRole = useSelector((state) => state.user?.user.role);
     const user = useSelector((state) => state.user?.user.name);
+    const { cart } = useSelector((state) => ({ ...state }));
 
     const logout = () => {
         dispatch({ type: 'LOGOUT', payload: null });
@@ -38,20 +39,18 @@ export const NavBar = () => {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll" className="whiteText ml-3">
-                    {/* TODO inside the product page this link 
-                        goes to /product/shop.. WHYYY??
-                    */}
-                    <Nav.Link href="shop" className="whiteText">
+                    <Link to="/shop" className="whiteText">
                         <MdOutlineLocalOffer className="navIcons" />
-                    </Nav.Link>
+                    </Link>
                     <Nav.Link href="#action2" className="whiteText">
                         <BsPercent className="navIcons" />
                     </Nav.Link>
                 </Navbar.Collapse>
                 <Search />
-                <div className="d-flex flex-column align-items-center px-1 ml-3 ">
-                    <BsCartPlus className="navIcons" />
-                </div>
+                <Link to="/cart" className="d-flex align-items-center px-1 ml-3 ">
+                    {/* TODO change number of items color to white */}
+                    <BsCartPlus className="navIcons mx-2" /> {cart.length}
+                </Link>
                 {user && <div className={"text-white ms-4"}>{`Hello ${user}`} </div>}
                 {!user && (
                     <>

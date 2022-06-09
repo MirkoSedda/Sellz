@@ -6,16 +6,16 @@ import { encryptTransform } from "redux-persist-transform-encrypt"
 import { SECRET_KEY } from "../../costants"
 import { userReducer } from "../reducers/userReducer"
 import { searchReducer } from "../reducers/searchReducer"
+import { cartReducer } from "../reducers/cartReducer"
 
-export const initialState = {
-  userReducer: null,
-}
+export const initialState = {}
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const rootReducer = combineReducers({
   user: userReducer,
   search: searchReducer,
+  cart: cartReducer,
 })
 
 const persistConfig = {
