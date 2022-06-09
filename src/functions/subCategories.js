@@ -1,6 +1,9 @@
 import axios from "axios"
 import { API_URL } from "../costants"
 
+export const getSubcategories = async p =>
+  await axios.get(`${API_URL}/subcategories/${p}`)
+
 export const getSubCategories = async () =>
   await axios.get(`${API_URL}/subcategories`)
 

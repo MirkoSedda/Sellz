@@ -321,6 +321,20 @@ export const Shop = () => {
               </div>
             </SubMenu>
 
+            {/* brands */}
+            <SubMenu
+              key="5"
+              title={
+                <span className="h6">
+                  <DownSquareOutlined /> Brands
+                </span>
+              }
+            >
+              <div style={{ marginTop: "-10px" }} className="pr-5">
+                {showBrands()}
+              </div>
+            </SubMenu>
+
             {/* category */}
             <SubMenu
               key="2"
@@ -331,18 +345,6 @@ export const Shop = () => {
               }
             >
               <div style={{ marginTop: "-10px" }}>{showCategories()}</div>
-            </SubMenu>
-
-            {/* stars */}
-            <SubMenu
-              key="3"
-              title={
-                <span className="h6">
-                  <StarOutlined /> Rating
-                </span>
-              }
-            >
-              <div style={{ marginTop: "-10px" }}>{showStars()}</div>
             </SubMenu>
 
             {/* sub category */}
@@ -359,18 +361,16 @@ export const Shop = () => {
               </div>
             </SubMenu>
 
-            {/* brands */}
+            {/* stars */}
             <SubMenu
-              key="5"
+              key="3"
               title={
                 <span className="h6">
-                  <DownSquareOutlined /> Brands
+                  <StarOutlined /> Rating
                 </span>
               }
             >
-              <div style={{ marginTop: "-10px" }} className="pr-5">
-                {showBrands()}
-              </div>
+              <div style={{ marginTop: "-10px" }}>{showStars()}</div>
             </SubMenu>
 
             {/* colors */}
