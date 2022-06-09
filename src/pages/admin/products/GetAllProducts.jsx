@@ -14,7 +14,7 @@ export const GetAllProducts = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const accessToken = useSelector(state => state.userReducer?.accessToken)
+    const accessToken = useSelector(state => state.user?.accessToken)
 
     useEffect(() => {
         loadAllProducts();

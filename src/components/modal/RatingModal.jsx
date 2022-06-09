@@ -6,7 +6,7 @@ import { StarOutlined } from "@ant-design/icons"
 import { useNavigate } from "react-router-dom"
 
 export const RatingModal = ({ children }) => {
-  const user = useSelector(state => state.userReducer?.user)
+  const user = useSelector(state => state.user?.user)
 
   const [modalVisible, setModalVisible] = useState(false)
   const navigate = useNavigate()

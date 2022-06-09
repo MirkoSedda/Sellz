@@ -37,7 +37,7 @@ export const UpdateProduct = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const accessToken = useSelector(state => state.userReducer?.accessToken)
+  const accessToken = useSelector(state => state.user?.accessToken)
   const navigate = useNavigate()
   const params = useParams();
   const { slug } = params;
@@ -45,21 +45,20 @@ export const UpdateProduct = () => {
   useEffect(() => {
     loadProduct();
     loadCategories();
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
   }, []);
 
   const loadProduct = () => {
     getProduct(slug).then((p) => {
-      // console.log("single product", p);
       // 1 load single product
       setValues({ ...values, ...p.data });
-      // 2 load single product category subCategories
+      // 2 load single product category subs
       getSubCategoriesBasedOnCategory(p.data.category._id).then((res) => {
         setSubCategoryOptions(res.data); // on first load, show default subs
       });
-      // 3 prepare array of subCategories ids to show as default sub values in antd Select
+      // 3 prepare array of sub ids to show as default sub values in antd Select
       let arr = [];
-      p.data.subs && p.data.subs.map((s) => arr.push(s._id));
+      p.data.subCategories && p.data.subCategories.map((s) => arr.push(s._id));
       console.log("ARR", arr);
       setSubCategoryOptions((prev) => arr); // required for ant design select to work
     });
@@ -75,7 +74,7 @@ export const UpdateProduct = () => {
     e.preventDefault();
     setLoading(true);
     console.log('click');
-    values.subs = arrayOfSubCategories;
+    values.subCategories = arrayOfSubCategories;
     values.category = selectedCategory ? selectedCategory : values.category;
 
     updateProduct(slug, values, accessToken)
@@ -99,7 +98,7 @@ export const UpdateProduct = () => {
   const handleCategoryChange = (e) => {
     e.preventDefault();
     console.log("CLICKED CATEGORY", e.target.value);
-    setValues({ ...values, subs: [] });
+    setValues({ ...values, subCategories: [] });
 
     setSelectedCategory(e.target.value);
 

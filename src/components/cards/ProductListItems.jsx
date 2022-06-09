@@ -28,7 +28,7 @@ export const ProductListItems = ({ product }) => {
         <ListGroup.Item className="d-flex justify-content-between">
           Category{" "}
           <Link
-            to={`/category/${category.slug}`}
+            to={`/categories/${category.slug}`}
             className=""
           >
             {category.name}

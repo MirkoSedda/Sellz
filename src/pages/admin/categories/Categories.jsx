@@ -2,7 +2,6 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -15,7 +14,7 @@ import { SearchForm } from "../../../components/forms/SearchForm";
 
 export const Categories = () => {
 
-    const accessToken = useSelector((state) => state.userReducer?.accessToken)
+    const accessToken = useSelector((state) => state.user?.accessToken)
 
     const [name, setName] = useState("");
     const [loading, setLoading] = useState(false);
@@ -31,7 +30,7 @@ export const Categories = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(accessToken);
+        console.log("clicked")
         setLoading(true);
         newCategory({ name }, accessToken)
             .then((res) => {
