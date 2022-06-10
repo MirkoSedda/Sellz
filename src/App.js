@@ -23,6 +23,7 @@ import { CategoriesList } from "./pages/categories/CategoriesList"
 import { SubCategoriesList } from "./pages/subCategories/SubCategoriesList"
 import { Shop } from "./pages/shop/Shop"
 import { Cart } from "./pages/cart/Cart"
+import { Checkout } from "./pages/checkout/Checkout"
 
 export default function App() {
   return (
@@ -71,6 +72,7 @@ export default function App() {
         </Route>
         <Route path="/shop" exact element={<Shop />} />
         <Route path="/cart" exact element={<Cart />} />
+        <Route path="/checkout" exact element={<Checkout />} />
       </Routes>
     </Router>
   )

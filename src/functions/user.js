@@ -1,3 +1,4 @@
+import axios from "axios"
 import { API_URL } from "../costants"
 import { toastSuccess, toastError } from "./toastNotification"
 import "react-toastify/dist/ReactToastify.css"
@@ -21,61 +22,38 @@ export const registerUser = async user => {
   }
 }
 
-// useEffect(() => {
-//   const dispatchUser = async () => {
-//     const accessToken = await JSON.parse(
-//       localStorage.getItem("accessToken")
-//     )
-//     const user = await JSON.parse(localStorage.getItem("user"))
-//     console.log("app user", user)
-//     dispatch({
-//       type: "LOGIN",
-//       payload: {
-//         user,
-//         accessToken,
-//       },
-//     })
-//   }
-//   dispatchUser()
-// }, [])
+export const userCart = async (userId, cart, accessToken) =>
+  await axios.post(
+    `${API_URL}/users/cart/${userId}`,
+    { cart },
+    {
+      headers: {
+        authorization: accessToken,
+      },
+    }
+  )
 
-// export const fetchUser = (token, user) => {
-//   axios({
-//     method: "GET",
-//     url: `${BE_URL}/users/me`,
-//     headers: {
-//       authorization: `Bearer ${token}`,
-//     },
-//     body: JSON.stringify(user),
-//   })
-//     .then(res => {
-//       console.log(res.data)
-//     })
-//     .catch(err => {
-//       console.error(err)
-//     })
-// }
+export const getUserCart = async (userId, accessToken) =>
+  await axios.get(`${API_URL}/users/cart/${userId}`, {
+    headers: {
+      authorization: accessToken,
+    },
+  })
 
-// export const LoginUser = async userData => {
-//   try {
-//     const res = await fetch(`${BE_URL}/users/login`, {
-//       method: "POST",
-//       body: JSON.stringify(userData),
-//       headers: {
-//         "Content-type": "application/json",
-//       },
-//     })
-//     if (res.ok) {
-//       const { user, accessToken } = await res.json()
-//       console.log("user:", user)
-//       console.log("accessToken:", accessToken)
-//       localStorage.setItem("user", JSON.stringify(user))
-//       localStorage.setItem("accessToken", JSON.stringify(accessToken))
-//       toastSuccess("Logged in successfully")
-//       return { accessToken, user }
-//     }
-//   } catch (error) {
-//     toastError(`Error logging in user: ${error}`)
-//     console.log(error)
-//   }
-// }
+export const emptyUserCart = async (userId, accessToken) =>
+  await axios.delete(`${API_URL}/users/cart/${userId}`, {
+    headers: {
+      authorization: accessToken,
+    },
+  })
+
+export const saveUserAddress = async (address, accessToken) =>
+  await axios.post(
+    `${API_URL}/users/address`,
+    { address },
+    {
+      headers: {
+        authorization: accessToken,
+      },
+    }
+  )

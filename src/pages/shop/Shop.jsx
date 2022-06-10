@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { getProducts, getProductsByFilter } from "../../functions/products";
 import { getCategories } from "../../functions/categories";
@@ -19,7 +18,7 @@ const { SubMenu } = Menu;
 export const Shop = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [price, setPrice] = useState([0, 0]);
+  const [price, setPrice] = useState([0, 5000]);
   const [ok, setOk] = useState(false);
   const [categories, setCategories] = useState([]);
   const [categoryIds, setCategoryIds] = useState([]);
@@ -33,7 +32,7 @@ export const Shop = () => {
     "Samsung",
     "Microsoft",
     "Lenovo",
-    "ASUS",
+    "Asus",
   ]);
   const [color, setColor] = useState("");
   const [colors, setColors] = useState([
@@ -316,7 +315,7 @@ export const Shop = () => {
                   range
                   value={price}
                   onChange={handlePriceSlider}
-                  max="4999"
+                  max="5000"
                 />
               </div>
             </SubMenu>
@@ -425,4 +424,3 @@ export const Shop = () => {
     </Container>
   );
 };
-
