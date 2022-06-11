@@ -22,9 +22,9 @@ export const registerUser = async user => {
   }
 }
 
-export const userCart = async (userId, cart, accessToken) =>
+export const userCart = async (cart, accessToken) =>
   await axios.post(
-    `${API_URL}/users/cart/${userId}`,
+    `${API_URL}/users/cart`,
     { cart },
     {
       headers: {
@@ -33,15 +33,15 @@ export const userCart = async (userId, cart, accessToken) =>
     }
   )
 
-export const getUserCart = async (userId, accessToken) =>
-  await axios.get(`${API_URL}/users/cart/${userId}`, {
+export const getUserCart = async accessToken =>
+  await axios.get(`${API_URL}/users/cart`, {
     headers: {
       authorization: accessToken,
     },
   })
 
-export const emptyUserCart = async (userId, accessToken) =>
-  await axios.delete(`${API_URL}/users/cart/${userId}`, {
+export const emptyUserCart = async accessToken =>
+  await axios.delete(`${API_URL}/users/cart`, {
     headers: {
       authorization: accessToken,
     },
@@ -51,6 +51,17 @@ export const saveUserAddress = async (address, accessToken) =>
   await axios.post(
     `${API_URL}/users/address`,
     { address },
+    {
+      headers: {
+        authorization: accessToken,
+      },
+    }
+  )
+
+export const applyCoupon = async (coupon, accessToken) =>
+  await axios.post(
+    `${API_URL}/users/cart/coupon`,
+    { coupon },
     {
       headers: {
         authorization: accessToken,

@@ -11,8 +11,8 @@ export const Cart = () => {
   const { cart } = useSelector((state) => ({ ...state }));
   const userId = useSelector(state => state.user.user._id)
   const accessToken = useSelector(state => state.user?.accessToken)
-  console.log("🚀 ~ file: Cart.jsx ~ line 13 ~ Cart ~ user", userId)
-  console.log("🚀 ~ file: Cart.jsx ~ line 13 ~ Cart ~ accessToken", accessToken)
+  // console.log("🚀 ~ file: Cart.jsx ~ line 13 ~ Cart ~ user", userId)
+  // console.log("🚀 ~ file: Cart.jsx ~ line 13 ~ Cart ~ accessToken", accessToken)
   const navigate = useNavigate();
 
   const getTotal = () => (cart.reduce((currentValue, nextValue) => {
@@ -21,9 +21,9 @@ export const Cart = () => {
 
   const saveOrderInDb = () => {
     // console.log("cart", JSON.stringify(cart, null, 2));
-    userCart(userId, cart, accessToken)
+    userCart(cart, accessToken)
       .then((res) => {
-        console.log("CART POST RES", res.data);
+        console.log("Saved cart in the db", res.data);
         if (res.data) navigate("/checkout");
       })
       .catch((err) => console.log("cart save err", err));

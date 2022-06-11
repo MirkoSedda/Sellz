@@ -18,6 +18,7 @@ import { UpdateProduct } from "./pages/admin/products/UpdateProduct"
 import { History } from "./pages/user/History"
 import { Wishlist } from "./pages/user/Wishlist"
 import { GetAllProducts } from "./pages/admin/products/GetAllProducts"
+import { CreateCouponPage } from "./pages/admin/coupon/CreateCouponPage"
 import { Product } from "./pages/product/product"
 import { CategoriesList } from "./pages/categories/CategoriesList"
 import { SubCategoriesList } from "./pages/subCategories/SubCategoriesList"
@@ -60,6 +61,7 @@ export default function App() {
             element={<UpdateProduct />}
           />
           <Route path="/admin/products" exact element={<GetAllProducts />} />
+          <Route path="/admin/coupon" exact element={<CreateCouponPage />} />
           <Route path="/user/history" exact element={<History />} />
           <Route path="/user/wishlist" exact element={<Wishlist />} />
           <Route path="/product/:slug" exact element={<Product />} />

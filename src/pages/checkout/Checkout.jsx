@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import { useSelector, useDispatch } from "react-redux";
 import { AddressForm } from "../../components/forms/AddressForm";
 import { toast } from "react-toastify";
-import { getUserCart, emptyUserCart, saveUserAddress } from "../../functions/user";
+import { getUserCart, emptyUserCart, saveUserAddress, applyCoupon } from "../../functions/user";
+import { useNavigate } from "react-router-dom";
 
 //TODO fix the rendering problem...products are undefined god knows why
 
@@ -14,23 +17,23 @@ export const Checkout = () => {
     const [total, setTotal] = useState(0);
     const [address, setAddress] = useState("");
     const [addressSaved, setAddressSaved] = useState(false);
+    const [coupon, setCoupon] = useState("DEMODAY20");
+    const [totalAfterDiscount, setTotalAfterDiscount] = useState(0);
+    const [discountError, setDiscountError] = useState("");
 
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const { accessToken } = useSelector(state => state.user)
     const userId = useSelector(state => state.user.user._id)
-    console.log("🚀 ~ file: Checkout.jsx ~ line 22 ~ Checkout ~ userId", userId)
+    // console.log("🚀 ~ file: Checkout.jsx ~ line 22 ~ Checkout ~ userId", userId)
 
     useEffect(() => {
-        cart(userId, accessToken)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        getUserCart(accessToken).then((res) => {
+            console.log("cart in the db response", JSON.stringify(res.data, null, 4));
+            setProducts(res.data.products);
+            setTotal(res.data.cartTotal);
+        });
     }, []);
-
-    const cart = async (userId, accessToken) => {
-        const res = await getUserCart(userId, accessToken)
-        console.log("🚀 ~ file: Checkout.jsx ~ line 38 ~ cart ~ res", res)
-        setProducts(res.data.products);
-        setTotal(res.data.cartTotal);
-    }
 
     const emptyCart = () => {
         if (typeof window !== "undefined") {
@@ -42,7 +45,7 @@ export const Checkout = () => {
             payload: [],
         });
         // remove from backend
-        emptyUserCart(userId, accessToken).then((res) => {
+        emptyUserCart(accessToken).then((res) => {
             setProducts([]);
             setTotal(0);
             toast.success("Cart is empty. Continue shopping.");
@@ -59,6 +62,49 @@ export const Checkout = () => {
         });
     };
 
+    const applyDiscountCoupon = () => {
+        console.log("coupon sent to backend", coupon);
+        applyCoupon(coupon, accessToken).then((res) => {
+            console.log("RES ON COUPON APPLIED", res.data);
+            if (res.data) {
+                setTotalAfterDiscount(res.data);
+                // update redux coupon applied true/false
+                dispatch({
+                    type: "COUPON_APPLIED",
+                    payload: true,
+                });
+            }
+            if (res.data.err) {
+                console.log("🚀 ~ file: Checkout.jsx ~ line 82 ~ applyCoupon ~ res.data", res.status)
+                setDiscountError(res.data);
+                // update redux coupon applied true/false
+                dispatch({
+                    type: "COUPON_APPLIED",
+                    payload: false,
+                });
+            }
+        });
+    };
+
+    const showApplyCoupon = () => (
+        <>
+            <Form>
+                <Form.Control
+                    onChange={(e) => {
+                        setCoupon(e.target.value);
+                        setDiscountError("");
+                    }}
+                    value={coupon}
+                    type="text"
+                    className=""
+                />
+            </Form>
+            <Button onClick={applyDiscountCoupon} className="btn-primary mt-2">
+                Apply
+            </Button>
+        </>
+    );
+
     return (
         <Container>
             <Row className="mt-5">
@@ -74,7 +120,9 @@ export const Checkout = () => {
                     <hr />
                     <h4>Got Coupon?</h4>
                     <br />
-                    coupon input and apply button
+                    {showApplyCoupon()}
+                    <br />
+                    {/* TODO show a proper error message if coupon not valid */}
                 </Col>
 
                 <Col md={6} className="">
@@ -93,26 +141,33 @@ export const Checkout = () => {
                     <hr />
                     <p>Cart Total: {total}</p>
 
-                    <div className="d-flex flex-row ">
+                    {totalAfterDiscount > 0 && (
+                        <p className="bg-success p-2">
+                            Discount Applied: Total Payable: ${totalAfterDiscount}
+                        </p>
+                    )}
+
+                    <Row className="d-flex flex-row ">
                         <div className="me-5">
-                            <button
-                                className="btn btn-primary"
+                            <Button
+                                className="btn-primary me-5"
                                 disabled={!addressSaved || !products?.length}
+                                onClick={() => navigate("/payment")}
                             >
                                 Place Order
-                            </button>
+                            </Button>
                         </div>
 
                         <div className="">
-                            <button
+                            <Button
                                 disabled={!products?.length}
                                 onClick={emptyCart}
-                                className="btn btn-primary"
+                                className="btn-primary"
                             >
                                 Empty Cart
-                            </button>
+                            </Button>
                         </div>
-                    </div>
+                    </Row>
                 </Col>
             </Row>
         </Container>
