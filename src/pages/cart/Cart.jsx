@@ -1,13 +1,14 @@
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { ProductCardForCart } from "../../components/cards/ProductCardForCart";
 import { userCart } from "../../functions/user"
 
 export const Cart = () => {
+
   const { cart } = useSelector((state) => ({ ...state }));
   const userId = useSelector(state => state.user.user._id)
   const accessToken = useSelector(state => state.user?.accessToken)

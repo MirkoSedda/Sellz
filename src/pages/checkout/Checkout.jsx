@@ -24,8 +24,6 @@ export const Checkout = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const { accessToken } = useSelector(state => state.user)
-    const userId = useSelector(state => state.user.user._id)
-    // console.log("🚀 ~ file: Checkout.jsx ~ line 22 ~ Checkout ~ userId", userId)
 
     useEffect(() => {
         getUserCart(accessToken).then((res) => {
@@ -48,6 +46,7 @@ export const Checkout = () => {
         emptyUserCart(accessToken).then((res) => {
             setProducts([]);
             setTotal(0);
+            setTotalAfterDiscount(0);
             toast.success("Cart is empty. Continue shopping.");
         });
     };
@@ -55,8 +54,9 @@ export const Checkout = () => {
     const saveAddressInDb = () => {
         console.log(address);
         saveUserAddress(address, accessToken,).then((res) => {
-            if (res.data.ok) {
+            if (res.data.address) {
                 setAddressSaved(true);
+                // console.log("🚀 ~ file: Checkout.jsx ~ line 59 ~ saveUserAddress ~ res.data", res.data.address)
                 toast.success("Address saved");
             }
         });
@@ -65,9 +65,9 @@ export const Checkout = () => {
     const applyDiscountCoupon = () => {
         console.log("coupon sent to backend", coupon);
         applyCoupon(coupon, accessToken).then((res) => {
-            console.log("RES ON COUPON APPLIED", res.data);
+            console.log("COUPON APPLIED", res.data);
             if (res.data) {
-                setTotalAfterDiscount(res.data);
+                setTotalAfterDiscount(res.data.totalAfterDiscount);
                 // update redux coupon applied true/false
                 dispatch({
                     type: "COUPON_APPLIED",
@@ -141,6 +141,7 @@ export const Checkout = () => {
                     <hr />
                     <p>Cart Total: {total}</p>
 
+                    {/* {console.log("🚀 ~ file: Checkout.jsx ~ line 145 ~ Checkout ~ totalAfterDiscount", totalAfterDiscount)} */}
                     {totalAfterDiscount > 0 && (
                         <p className="bg-success p-2">
                             Discount Applied: Total Payable: ${totalAfterDiscount}
@@ -148,25 +149,20 @@ export const Checkout = () => {
                     )}
 
                     <Row className="d-flex flex-row ">
-                        <div className="me-5">
-                            <Button
-                                className="btn-primary me-5"
-                                disabled={!addressSaved || !products?.length}
-                                onClick={() => navigate("/payment")}
-                            >
-                                Place Order
-                            </Button>
-                        </div>
-
-                        <div className="">
-                            <Button
-                                disabled={!products?.length}
-                                onClick={emptyCart}
-                                className="btn-primary"
-                            >
-                                Empty Cart
-                            </Button>
-                        </div>
+                        <Button
+                            className="btn-primary me-5"
+                            disabled={!addressSaved || !products?.length}
+                            onClick={() => navigate("/payment")}
+                        >
+                            Place Order
+                        </Button>
+                        <Button
+                            disabled={!products?.length}
+                            onClick={emptyCart}
+                            className="btn-primary"
+                        >
+                            Empty Cart
+                        </Button>
                     </Row>
                 </Col>
             </Row>

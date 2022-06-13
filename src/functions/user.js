@@ -68,3 +68,14 @@ export const applyCoupon = async (coupon, accessToken) =>
       },
     }
   )
+
+export const createOrder = async (stripeResponse, accessToken) =>
+  await axios.post(
+    `${API_URL}/users/order`,
+    { stripeResponse },
+    {
+      headers: {
+        authorization: accessToken,
+      },
+    }
+  )

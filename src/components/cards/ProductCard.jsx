@@ -13,10 +13,8 @@ export const ProductCard = ({ product }) => {
 
     const dispatch = useDispatch();
     const { cart } = useSelector((state) => ({ ...state }));
-    const { user } = useSelector(state => state.user)
 
     console.log("🚀 ~ file: ProductCard.jsx ~ line 15 ~ ProductCard ~ cart", cart)
-    console.log("🚀 ~ file: ProductCard.jsx ~ line 15 ~ ProductCard ~ user", user)
 
 
     const { images, title, description, slug, price } = product;

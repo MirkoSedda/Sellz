@@ -23,6 +23,8 @@ export const NavBar = () => {
 
     const logout = () => {
         dispatch({ type: 'LOGOUT', payload: null });
+        dispatch({ type: 'ADD_TO_CART', payload: [] });
+        localStorage.removeItem("cart");
         navigate('/');
     }
 
@@ -47,10 +49,12 @@ export const NavBar = () => {
                     </Nav.Link>
                 </Navbar.Collapse>
                 <Search />
-                <Link to="/cart" className="d-flex align-items-center px-1 ml-3 ">
-                    {/* TODO change number of items color to white */}
-                    <BsCartPlus className="navIcons mx-2" /> {cart.length}
-                </Link>
+                {user && (
+                    <Link to="/cart" className="d-flex align-items-center px-1 ml-3 ">
+                        {/* TODO change number of items color to white */}
+                        <BsCartPlus className="navIcons mx-2" /> {cart.length}
+                    </Link>
+                )}
                 {user && <div className={"text-white ms-4"}>{`Hello ${user}`} </div>}
                 {!user && (
                     <>

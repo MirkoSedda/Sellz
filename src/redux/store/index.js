@@ -8,6 +8,7 @@ import { userReducer } from "../reducers/userReducer"
 import { searchReducer } from "../reducers/searchReducer"
 import { cartReducer } from "../reducers/cartReducer"
 import { drawerReducer } from "../reducers/drawerReducer"
+import { couponReducer } from "../reducers/couponReducer"
 
 export const initialState = {}
 
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   search: searchReducer,
   cart: cartReducer,
   drawer: drawerReducer,
+  coupon: couponReducer,
 })
 
 const persistConfig = {

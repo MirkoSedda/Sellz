@@ -23,8 +23,6 @@ export const SingleProduct = ({ product, onStarClick, star }) => {
     const [tooltip, setTooltip] = useState("Click to add");
 
     const dispatch = useDispatch();
-    const { cart } = useSelector((state) => ({ ...state }));
-    const { user } = useSelector(state => state.user)
 
     const handleAddToCart = () => {
         let cart = [];
