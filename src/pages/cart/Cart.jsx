@@ -10,9 +10,7 @@ import { userCart } from "../../functions/user"
 export const Cart = () => {
 
   const { cart } = useSelector((state) => ({ ...state }));
-  const userId = useSelector(state => state.user.user._id)
   const accessToken = useSelector(state => state.user?.accessToken)
-  // console.log("🚀 ~ file: Cart.jsx ~ line 13 ~ Cart ~ user", userId)
   // console.log("🚀 ~ file: Cart.jsx ~ line 13 ~ Cart ~ accessToken", accessToken)
   const navigate = useNavigate();
 
@@ -21,10 +19,10 @@ export const Cart = () => {
   }, 0))
 
   const saveOrderInDb = () => {
-    // console.log("cart", JSON.stringify(cart, null, 2));
+    console.log("cart", JSON.stringify(cart, null, 2));
     userCart(cart, accessToken)
       .then((res) => {
-        console.log("Saved cart in the db", res.data);
+        console.log("🚀 ~ file: Cart.jsx ~ line 28 ~ .then ~ res.data", res.data)
         if (res.data) navigate("/checkout");
       })
       .catch((err) => console.log("cart save err", err));
@@ -79,7 +77,7 @@ export const Cart = () => {
           <hr />
           Total: <b>${getTotal()}</b>
           <hr />
-          {userId ? (
+          {accessToken ? (
             <Link to="/checkout">
               <button
                 onClick={saveOrderInDb}

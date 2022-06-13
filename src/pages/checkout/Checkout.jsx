@@ -10,8 +10,6 @@ import { toast } from "react-toastify";
 import { getUserCart, emptyUserCart, saveUserAddress, applyCoupon } from "../../functions/user";
 import { useNavigate } from "react-router-dom";
 
-//TODO fix the rendering problem...products are undefined god knows why
-
 export const Checkout = () => {
     const [products, setProducts] = useState([]);
     const [total, setTotal] = useState(0);
@@ -27,22 +25,22 @@ export const Checkout = () => {
 
     useEffect(() => {
         getUserCart(accessToken).then((res) => {
-            console.log("cart in the db response", JSON.stringify(res.data, null, 4));
+            console.log('RES', res)
+            console.log("products in the cart in the database", JSON.stringify(res.data, null, 4));
             setProducts(res.data.products);
             setTotal(res.data.cartTotal);
         });
     }, []);
 
     const emptyCart = () => {
-        if (typeof window !== "undefined") {
-            localStorage.removeItem("cart");
-        }
+        localStorage.removeItem("cart");
+
         // remove from redux
         dispatch({
             type: "ADD_TO_CART",
             payload: [],
         });
-        // remove from backend
+        // remove from database
         emptyUserCart(accessToken).then((res) => {
             setProducts([]);
             setTotal(0);
@@ -125,12 +123,14 @@ export const Checkout = () => {
                     {/* TODO show a proper error message if coupon not valid */}
                 </Col>
 
+                {console.log('products', products)}
+
                 <Col md={6} className="">
                     <h4>Order Summary</h4>
                     <hr />
-                    <p>Products {products?.length}</p>
+                    <p>Products {products.length}</p>
                     <hr />
-                    {products?.map((p, i) => (
+                    {products.map((p, i) => (
                         <div key={i}>
                             <p>
                                 {p.product.title} ({p.color}) x {p.count} ={" "}
