@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Card, Tooltip } from "antd";
 import { EyeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import defaultImage from "../../images/product-image-placeholder.jpg"
@@ -12,10 +12,6 @@ const { Meta } = Card;
 export const ProductCard = ({ product }) => {
 
     const dispatch = useDispatch();
-    const { cart } = useSelector((state) => ({ ...state }));
-
-    console.log("🚀 ~ file: ProductCard.jsx ~ line 15 ~ ProductCard ~ cart", cart)
-
 
     const { images, title, description, slug, price } = product;
 

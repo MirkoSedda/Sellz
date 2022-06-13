@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Col from "react-bootstrap/Col";
 import { Card, Tabs, Tooltip } from "antd";
 import { Link } from "react-router-dom";

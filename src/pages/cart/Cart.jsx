@@ -1,3 +1,5 @@
+
+import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
@@ -11,19 +13,27 @@ export const Cart = () => {
 
   const { cart } = useSelector((state) => ({ ...state }));
   const accessToken = useSelector(state => state.user?.accessToken)
-  // console.log("🚀 ~ file: Cart.jsx ~ line 13 ~ Cart ~ accessToken", accessToken)
   const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false)
 
   const getTotal = () => (cart.reduce((currentValue, nextValue) => {
     return currentValue + nextValue.count * nextValue.price;
   }, 0))
 
+  useEffect(() => {
+    saveOrderInDb()
+    // eslint-disable-next-line 
+  }, [cart])
+
+
   const saveOrderInDb = () => {
-    console.log("cart", JSON.stringify(cart, null, 2));
+    // console.log("cart", JSON.stringify(cart, null, 2));
+    setLoading(true)
     userCart(cart, accessToken)
       .then((res) => {
         console.log("🚀 ~ file: Cart.jsx ~ line 28 ~ .then ~ res.data", res.data)
-        if (res.data) navigate("/checkout");
+        res.data && setLoading(false)
       })
       .catch((err) => console.log("cart save err", err));
   };
@@ -77,10 +87,9 @@ export const Cart = () => {
           <hr />
           Total: <b>${getTotal()}</b>
           <hr />
-          {accessToken ? (
+          {accessToken && !loading ? (
             <Link to="/checkout">
               <button
-                onClick={saveOrderInDb}
                 className="btn btn-sm btn-primary mt-2"
                 disabled={!cart.length}
               >

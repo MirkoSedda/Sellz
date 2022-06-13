@@ -30,6 +30,7 @@ export const Checkout = () => {
             setProducts(res.data.products);
             setTotal(res.data.cartTotal);
         });
+        // eslint-disable-next-line
     }, []);
 
     const emptyCart = () => {
@@ -123,14 +124,12 @@ export const Checkout = () => {
                     {/* TODO show a proper error message if coupon not valid */}
                 </Col>
 
-                {console.log('products', products)}
-
                 <Col md={6} className="">
                     <h4>Order Summary</h4>
                     <hr />
-                    <p>Products {products.length}</p>
+                    <p>Products {products?.length}</p>
                     <hr />
-                    {products.map((p, i) => (
+                    {products?.map((p, i) => (
                         <div key={i}>
                             <p>
                                 {p.product.title} ({p.color}) x {p.count} ={" "}
@@ -141,7 +140,6 @@ export const Checkout = () => {
                     <hr />
                     <p>Cart Total: {total}</p>
 
-                    {/* {console.log("🚀 ~ file: Checkout.jsx ~ line 145 ~ Checkout ~ totalAfterDiscount", totalAfterDiscount)} */}
                     {totalAfterDiscount > 0 && (
                         <p className="bg-success p-2">
                             Discount Applied: Total Payable: ${totalAfterDiscount}
@@ -169,8 +167,5 @@ export const Checkout = () => {
         </Container>
     );
 }
-
-
-
 
 
