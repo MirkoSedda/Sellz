@@ -79,3 +79,10 @@ export const createOrder = async (stripeResponse, accessToken) =>
       },
     }
   )
+
+export const getUserOrders = async accessToken =>
+  await axios.get(`${API_URL}/users/orders`, {
+    headers: {
+      authorization: accessToken,
+    },
+  })

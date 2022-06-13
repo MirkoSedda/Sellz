@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-pdf/renderer": "^2.2.0",
     "@stripe/react-stripe-js": "^1.8.1",
     "@stripe/stripe-js": "^1.31.0",
     "antd": "^4.20.5",
