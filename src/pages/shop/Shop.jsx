@@ -311,7 +311,7 @@ export const Shop = () => {
               <div>
                 <Slider
                   className="ml-4 mr-4 d-flex align-items-center"
-                  tipFormatter={(v) => `$ ${v}`}
+                  tipFormatter={(v) => `€ ${v}`}
                   range
                   value={price}
                   onChange={handlePriceSlider}

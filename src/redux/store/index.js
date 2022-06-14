@@ -9,6 +9,7 @@ import { searchReducer } from "../reducers/searchReducer"
 import { cartReducer } from "../reducers/cartReducer"
 import { drawerReducer } from "../reducers/drawerReducer"
 import { couponReducer } from "../reducers/couponReducer"
+import { CashOnDeliveryReducer } from "../reducers/CashOnDeliveryReducer"
 
 export const initialState = {}
 
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   drawer: drawerReducer,
   coupon: couponReducer,
+  cashOnDelivery: CashOnDeliveryReducer,
 })
 
 const persistConfig = {

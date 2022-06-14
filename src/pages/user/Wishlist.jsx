@@ -14,6 +14,7 @@ export const Wishlist = () => {
     const [wishlist, setWishlist] = useState([]);
 
     const accessToken = useSelector(state => state.user?.accessToken)
+    console.log("🚀 ~ file: Wishlist.jsx ~ line 17 ~ Wishlist ~ accessToken", accessToken)
 
     useEffect(() => {
         loadWishlist();

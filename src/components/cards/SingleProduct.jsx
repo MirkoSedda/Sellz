@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Col from "react-bootstrap/Col";
 import { Card, Tabs, Tooltip } from "antd";
@@ -16,6 +16,7 @@ import { addToWishlist } from "../../functions/user";
 import _ from "lodash";
 const { TabPane } = Tabs;
 
+//TODO check for logged in user before adding to wishlist
 
 export const SingleProduct = ({ product, onStarClick, star }) => {
 
@@ -24,6 +25,7 @@ export const SingleProduct = ({ product, onStarClick, star }) => {
     const accessToken = useSelector(state => state.user?.accessToken)
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleAddToCart = () => {
         let cart = [];
@@ -55,13 +57,22 @@ export const SingleProduct = ({ product, onStarClick, star }) => {
     };
 
     const handleAddToWishlist = () => {
-        console.log("click");
-        addToWishlist(product._id, accessToken).then((res) => {
-            console.log("🚀 ~ file: SingleProduct.jsx ~ line 68 ~ addToWishlist ~ addedToWishlist", res.data)
-            toast.success("Added to wishlist");
-        });
+        if (accessToken) {
+            console.log("🚀 ~ file: SingleProduct.jsx ~ line 60 ~ addToWishlist ~ accessToken", accessToken)
+            addToWishlist(product._id, accessToken).then((res) => {
+                console.log("🚀 ~ file: SingleProduct.jsx ~ line 68 ~ addToWishlist ~ addedToWishlist", res.data)
+                toast.success("Added to wishlist");
+            });
+        } else {
+            //  TODO implement modal for login 
+            navigate("/login")
+        }
+
     };
 
+    const handleModal = () => {
+
+    }
     return (
         <>
             <Col md={7} className="">
@@ -122,12 +133,11 @@ export const SingleProduct = ({ product, onStarClick, star }) => {
                                 Add to cart
                             </div>
                         </Tooltip>,
-                        <Tooltip title={"Add to wishlist"}>
+                        <Tooltip title={accessToken ? "Add to wishlist" : "Please login to add to wishlist."}>
                             <div onClick={handleAddToWishlist}>
                                 <HeartOutlined className="text-info" />
                                 <br />
-                                Add to Wishlist
-                            </div>
+                                {accessToken ? "Add to wishlist" : "Login to add to wishlist."}                            </div>
                         </Tooltip >,
                         <Tooltip title={"Leave rating"}>
                             <RatingModal>

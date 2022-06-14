@@ -20,7 +20,7 @@ export const ProductListItems = ({ product }) => {
       <ListGroup.Item className="d-flex justify-content-between">
         Price{" "}
         <span className="">
-          $ {price}
+          € {price}
         </span>
       </ListGroup.Item>
 

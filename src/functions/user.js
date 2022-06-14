@@ -116,10 +116,14 @@ export const addToWishlist = async (productId, accessToken) =>
     }
   )
 
-export const createCashOrder = async (accessToken, COD, couponTrueOrFalse) =>
+export const createCashOrder = async (
+  accessToken,
+  CashOnDelivery,
+  validCoupon
+) =>
   await axios.post(
     `${API_URL}/users/cash-order`,
-    { couponApplied: couponTrueOrFalse, COD },
+    { couponApplied: validCoupon, CashOnDelivery },
     {
       headers: {
         authorization: accessToken,

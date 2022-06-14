@@ -5,12 +5,16 @@ export const ShowPaymentInfo = ({ order }) => (
       <span>Order Id: {order.paymentIntent.id}</span>
       {" / "}
       <span>
-        Amount:{" / "}
-        {(order.paymentIntent.amount /= 100).toLocaleString("en-US", {
-          style: "currency",
-          currency: "USD",
-        })}
+        Amount:{"  "}
+        {(order.paymentIntent.status === "Cash on delivery" ?
+          order.paymentIntent.amount /= 10 :
+          order.paymentIntent.amount /= 10)
+          .toLocaleString("en-US", {
+            style: "currency",
+            currency: "EUR",
+          })}
       </span>
+
       {" / "}
       <span>Currency: {order.paymentIntent.currency.toUpperCase()}</span>
       {" / "}

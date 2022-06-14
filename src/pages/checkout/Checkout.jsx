@@ -7,11 +7,12 @@ import Form from "react-bootstrap/Form";
 import { useSelector, useDispatch } from "react-redux";
 import { AddressForm } from "../../components/forms/AddressForm";
 import { toast } from "react-toastify";
-import { getUserCart, emptyUserCart, saveUserAddress, applyCoupon } from "../../functions/user";
+import { getUserCart, emptyUserCart, saveUserAddress, applyCoupon, createCashOrder } from "../../functions/user";
 import { useNavigate } from "react-router-dom";
 
 export const Checkout = () => {
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState([]);
     const [total, setTotal] = useState(0);
     const [address, setAddress] = useState("");
     const [addressSaved, setAddressSaved] = useState(false);
@@ -22,6 +23,11 @@ export const Checkout = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const { accessToken } = useSelector(state => state.user)
+    const { cashOnDelivery } = useSelector((state) => state);
+    console.log("🚀 ~ file: Checkout.jsx ~ line 26 ~ Checkout ~ cashOnDelivery", cashOnDelivery)
+    const validCoupon = useSelector((state) => state.coupon);
+    console.log("🚀 ~ file: Checkout.jsx ~ line 28 ~ Checkout ~ validCoupon", validCoupon)
+
 
     useEffect(() => {
         getUserCart(accessToken).then((res) => {
@@ -46,6 +52,7 @@ export const Checkout = () => {
             setProducts([]);
             setTotal(0);
             setTotalAfterDiscount(0);
+            setCoupon("");
             toast.success("Cart is empty. Continue shopping.");
         });
     };
@@ -61,7 +68,7 @@ export const Checkout = () => {
         });
     };
 
-    const applyDiscountCoupon = () => {
+    const applyCouponToCart = () => {
         console.log("coupon sent to backend", coupon);
         applyCoupon(coupon, accessToken).then((res) => {
             console.log("COUPON APPLIED", res.data);
@@ -74,7 +81,7 @@ export const Checkout = () => {
                 });
             }
             if (res.data.err) {
-                console.log("🚀 ~ file: Checkout.jsx ~ line 82 ~ applyCoupon ~ res.data", res.status)
+                console.log("🚀 ~ file: Checkout.jsx ~ line 82 ~ applyCoupon ~ res.data", res.data)
                 setDiscountError(res.data);
                 // update redux coupon applied true/false
                 dispatch({
@@ -84,6 +91,16 @@ export const Checkout = () => {
             }
         });
     };
+
+    const showProductSummary = () =>
+        products.map((p, i) => (
+            <div key={i}>
+                <p>
+                    {p.product.title} ({p.color}) x {p.count} ={" "}
+                    {p.product.price * p.count}
+                </p>
+            </div>
+        ));
 
     const showApplyCoupon = () => (
         <>
@@ -98,11 +115,47 @@ export const Checkout = () => {
                     className=""
                 />
             </Form>
-            <Button onClick={applyDiscountCoupon} className="btn-primary mt-2">
+            <Button onClick={applyCouponToCart} className="btn-primary my-4">
                 Apply
             </Button>
         </>
     );
+
+    const cashOrder = () => {
+        createCashOrder(accessToken, cashOnDelivery, validCoupon).then((res) => {
+            console.log("🚀 ~ file: Checkout.jsx ~ line 123 ~ createCashOrder ~ res", res)
+            if (res.data) {
+                setLoading(true);
+                // empty local storage
+                localStorage.removeItem("cart");
+                // empty redux cart
+                dispatch({
+                    type: "ADD_TO_CART",
+                    payload: [],
+                });
+                // empty redux coupon
+                dispatch({
+                    type: "COUPON_APPLIED",
+                    payload: false,
+                });
+                // empty redux cashOnDelivery
+                dispatch({
+                    type: "CASH_ON_DELIVERY",
+                    payload: false,
+                });
+                // empty cart from backend
+                emptyUserCart(accessToken).then((res) => {
+                    console.log("🚀 ~ file: Checkout.jsx ~ line 148 ~ emptyUserCart ~ res", res)
+                    res.data && (
+                        setTimeout(() => {
+                            navigate("/user/history");
+                        }, 2000))
+                    toast.success("Cash order placed successfully");
+                });
+
+            }
+        });
+    };
 
     return (
         <Container>
@@ -129,37 +182,47 @@ export const Checkout = () => {
                     <hr />
                     <p>Products {products?.length}</p>
                     <hr />
-                    {products?.map((p, i) => (
-                        <div key={i}>
-                            <p>
-                                {p.product.title} ({p.color}) x {p.count} ={" "}
-                                {p.product.price * p.count}
-                            </p>
-                        </div>
-                    ))}
+                    {showProductSummary()}
                     <hr />
-                    <p>Cart Total: {total}</p>
+                    <p>Cart Total: €{total}</p>
 
                     {totalAfterDiscount > 0 && (
                         <p className="bg-success p-2">
-                            Discount Applied: Total Payable: ${totalAfterDiscount}
+                            Discount Applied: Total Payable: {totalAfterDiscount}
                         </p>
                     )}
-
-                    <Button
-                        className="btn-primary my-3 me-5"
-                        disabled={!addressSaved || !products?.length}
-                        onClick={() => navigate("/payment")}
-                    >
-                        Place Order
-                    </Button>
-                    <Button
-                        disabled={!products?.length}
-                        onClick={emptyCart}
-                        className="btn-primary"
-                    >
-                        Empty Cart
-                    </Button>
+                    <Row>
+                        <div className="d-flex flex-row ">
+                            <Col md={6} className="me-5">
+                                {cashOnDelivery ? (
+                                    <Button
+                                        className="btn-primary"
+                                        disabled={!addressSaved || !products.length}
+                                        onClick={cashOrder}
+                                    >
+                                        Cash Order
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        className="btn-primary"
+                                        disabled={!addressSaved || !products.length}
+                                        onClick={() => navigate("/payment")}
+                                    >
+                                        Place Order
+                                    </Button>
+                                )}
+                            </Col>
+                            <Col md={6} className="">
+                                <Button
+                                    disabled={!products.length}
+                                    onClick={emptyCart}
+                                    className="btn-primary"
+                                >
+                                    Empty Cart
+                                </Button>
+                            </Col>
+                        </div>
+                    </Row>
                 </Col>
             </Row>
         </Container>
