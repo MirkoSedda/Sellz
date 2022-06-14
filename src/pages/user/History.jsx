@@ -71,7 +71,6 @@ export const History = () => {
                 {showOrderInTable(order)}
                 <div className="row">
                     <div className="col">
-                        <p>PDF download</p>
                     </div>
                 </div>
             </div>

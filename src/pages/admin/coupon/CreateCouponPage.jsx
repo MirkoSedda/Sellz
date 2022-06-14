@@ -55,7 +55,7 @@ export const CreateCouponPage = () => {
       .then(res => {
         loadAllCoupons()
         setLoading(false)
-        toast.error(`Coupon "${res.data.name}" deleted`)
+        toast.error(`Coupon deleted`)
       })
       .catch(err => console.log(err))
   }
@@ -102,7 +102,7 @@ export const CreateCouponPage = () => {
               <br />
               <DatePicker
                 className="form-control"
-                selected={new Date()}
+                selected={expiry || new Date()}
                 value={expiry}
                 onChange={date => setExpiry(date)}
                 required

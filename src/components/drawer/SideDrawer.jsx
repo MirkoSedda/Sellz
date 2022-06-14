@@ -18,7 +18,7 @@ export const SideDrawer = () => {
     <Drawer
       className="text-center"
       title={`Cart ~ ${cart.length} Product`}
-      placement="bottom"
+      placement="right"
       closable={false}
       onClose={() => {
         dispatch({

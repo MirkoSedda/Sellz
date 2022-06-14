@@ -1,3 +1,4 @@
+
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -23,7 +24,6 @@ export const Login = () => {
     const [setError] = useState(false)
 
     const userData = { email, password };
-    const user = useSelector((state) => state.user?.user.name);
 
     const handleSubmit = async e => {
         try {

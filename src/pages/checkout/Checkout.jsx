@@ -25,10 +25,10 @@ export const Checkout = () => {
 
     useEffect(() => {
         getUserCart(accessToken).then((res) => {
-            console.log('RES', res)
             console.log("products in the cart in the database", JSON.stringify(res.data, null, 4));
             setProducts(res.data.products);
             setTotal(res.data.cartTotal);
+            console.log("🚀 ~ file: Checkout.jsx ~ line 32 ~ getUserCart ~ res.data.cartTotal", res.data.cartTotal)
         });
         // eslint-disable-next-line
     }, []);
@@ -146,22 +146,20 @@ export const Checkout = () => {
                         </p>
                     )}
 
-                    <Row className="d-flex flex-row ">
-                        <Button
-                            className="btn-primary me-5"
-                            disabled={!addressSaved || !products?.length}
-                            onClick={() => navigate("/payment")}
-                        >
-                            Place Order
-                        </Button>
-                        <Button
-                            disabled={!products?.length}
-                            onClick={emptyCart}
-                            className="btn-primary"
-                        >
-                            Empty Cart
-                        </Button>
-                    </Row>
+                    <Button
+                        className="btn-primary my-3 me-5"
+                        disabled={!addressSaved || !products?.length}
+                        onClick={() => navigate("/payment")}
+                    >
+                        Place Order
+                    </Button>
+                    <Button
+                        disabled={!products?.length}
+                        onClick={emptyCart}
+                        className="btn-primary"
+                    >
+                        Empty Cart
+                    </Button>
                 </Col>
             </Row>
         </Container>

@@ -86,3 +86,43 @@ export const getUserOrders = async accessToken =>
       authorization: accessToken,
     },
   })
+
+export const getWishlist = async accessToken =>
+  await axios.get(`${API_URL}/users/wishlist`, {
+    headers: {
+      authorization: accessToken,
+    },
+  })
+
+export const removeFromWishlist = async (productId, accessToken) =>
+  await axios.put(
+    `${API_URL}/users/wishlist/${productId}`,
+    {},
+    {
+      headers: {
+        authorization: accessToken,
+      },
+    }
+  )
+
+export const addToWishlist = async (productId, accessToken) =>
+  await axios.post(
+    `${API_URL}/users/wishlist`,
+    { productId },
+    {
+      headers: {
+        authorization: accessToken,
+      },
+    }
+  )
+
+export const createCashOrder = async (accessToken, COD, couponTrueOrFalse) =>
+  await axios.post(
+    `${API_URL}/users/cash-order`,
+    { couponApplied: couponTrueOrFalse, COD },
+    {
+      headers: {
+        authorization: accessToken,
+      },
+    }
+  )

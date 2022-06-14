@@ -1,9 +1,8 @@
 
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Col from "react-bootstrap/Col";
 import { Card, Tabs, Tooltip } from "antd";
-import { Link } from "react-router-dom";
 import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -12,6 +11,8 @@ import defaultImage from "../../images/product-image-placeholder.jpg"
 import { ProductListItems } from "./ProductListItems";
 import { RatingModal } from "../modal/RatingModal";
 import { averageStarRating } from "../rating/averageStarRating";
+import { toast } from "react-toastify";
+import { addToWishlist } from "../../functions/user";
 import _ from "lodash";
 const { TabPane } = Tabs;
 
@@ -20,7 +21,7 @@ export const SingleProduct = ({ product, onStarClick, star }) => {
 
     const { title, images, description, _id } = product;
 
-    const [tooltip, setTooltip] = useState("Click to add");
+    const accessToken = useSelector(state => state.user?.accessToken)
 
     const dispatch = useDispatch();
 
@@ -41,8 +42,6 @@ export const SingleProduct = ({ product, onStarClick, star }) => {
             let unique = _.uniqWith(cart, _.isEqual);
             console.log('unique', unique)
             localStorage.setItem("cart", JSON.stringify(unique));
-            // show tooltip
-            setTooltip("Added");
             dispatch({
                 type: "ADD_TO_CART",
                 payload: unique,
@@ -53,6 +52,14 @@ export const SingleProduct = ({ product, onStarClick, star }) => {
                 payload: true,
             });
         }
+    };
+
+    const handleAddToWishlist = () => {
+        console.log("click");
+        addToWishlist(product._id, accessToken).then((res) => {
+            console.log("🚀 ~ file: SingleProduct.jsx ~ line 68 ~ addToWishlist ~ addedToWishlist", res.data)
+            toast.success("Added to wishlist");
+        });
     };
 
     return (
@@ -91,7 +98,8 @@ export const SingleProduct = ({ product, onStarClick, star }) => {
                         {description && description}
                     </TabPane>
                     <TabPane tab="More" key="2">
-                        Call use on xxxx xxx xxx to learn more about this product.
+                        Call me on +393518293944 to learn more about this product,
+                        or send me an email at: mirko.sedda1@gmail.com
                     </TabPane>
                 </Tabs>
             </Col>
@@ -107,25 +115,32 @@ export const SingleProduct = ({ product, onStarClick, star }) => {
 
                 <Card
                     actions={[
-                        <Tooltip title={tooltip}>
+                        <Tooltip title={"Add to cart"}>
                             <div onClick={handleAddToCart}>
-                                <ShoppingCartOutlined className="text-danger" /> <br /> Add to
-                                Cart
+                                <ShoppingCartOutlined className="text-danger" />
+                                <br />
+                                Add to cart
                             </div>
                         </Tooltip>,
-                        <Link to="/">
-                            <HeartOutlined className="text-info" /> <br /> Add to Wishlist
-                        </Link>,
-                        <RatingModal>
-                            <StarRating
-                                name={_id}
-                                numberOfStars={5}
-                                rating={star}
-                                changeRating={onStarClick}
-                                isSelectable={true}
-                                starRatedColor="red"
-                            />
-                        </RatingModal>,
+                        <Tooltip title={"Add to wishlist"}>
+                            <div onClick={handleAddToWishlist}>
+                                <HeartOutlined className="text-info" />
+                                <br />
+                                Add to Wishlist
+                            </div>
+                        </Tooltip >,
+                        <Tooltip title={"Leave rating"}>
+                            <RatingModal>
+                                <StarRating
+                                    name={_id}
+                                    numberOfStars={5}
+                                    rating={star}
+                                    changeRating={onStarClick}
+                                    isSelectable={true}
+                                    starRatedColor="red"
+                                />
+                            </RatingModal>
+                        </Tooltip>,
                     ]}
                 >
                     <ProductListItems product={product} />

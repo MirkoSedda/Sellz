@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { createPaymentIntent } from "../../functions/stripe";
 import { Link } from "react-router-dom";
 import { Card } from "antd";
+import { toast } from "react-toastify";
 import { DollarOutlined, CheckOutlined } from "@ant-design/icons";
 import defaultImage from "../../images/product-image-placeholder.jpg"
 import { createOrder, emptyUserCart } from "../../functions/user";
 
 export const StripeCheckout = () => {
 
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const { coupon } = useSelector((state) => ({ ...state }));
   const accessToken = useSelector(state => state.user?.accessToken)
@@ -81,6 +84,10 @@ export const StripeCheckout = () => {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
+      toast.success("Payment successful");
+      setTimeout(() => {
+        navigate("/user/history")
+      }, 6000)
     }
   };
 
