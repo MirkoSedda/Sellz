@@ -1,11 +1,11 @@
 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Col from "react-bootstrap/Col";
 import { Card, Tabs, Tooltip } from "antd";
 import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import StarRating from "react-star-ratings";
 import defaultImage from "../../images/product-image-placeholder.jpg"
 import ProductListItems from "./ProductListItems";
