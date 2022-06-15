@@ -7,14 +7,14 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { getCategories } from "../../../functions/categories"
-import { newSubCategory, getSubCategories, getSubCategory, deleteSubCategory } from "../../../functions/subCategories";
+import { newSubCategory, getSubCategories, deleteSubCategory } from "../../../functions/subCategories";
 import { AdminSidebar } from "../../../components/sidebars/AdminSidebar"
 import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { CreateCategoryForm } from "../../../components/forms/CreateCategoryForm";
 import { SearchForm } from "../../../components/forms/SearchForm";
 
-export const SubCategories = () => {
+const SubCategories = () => {
 
     const accessToken = useSelector((state) => state.user?.accessToken)
 
@@ -132,3 +132,5 @@ export const SubCategories = () => {
         </Container >
     );
 };
+
+export default SubCategories;

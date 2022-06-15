@@ -6,7 +6,7 @@ import { Button } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom"
 
-export const Register = () => {
+const Register = () => {
 
 
     const [name, setName] = useState("m")
@@ -100,3 +100,5 @@ export const Register = () => {
     </div>
     )
 }
+
+export default Register

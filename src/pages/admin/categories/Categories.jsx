@@ -12,7 +12,7 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { CreateCategoryForm } from "../../../components/forms/CreateCategoryForm";
 import { SearchForm } from "../../../components/forms/SearchForm";
 
-export const Categories = () => {
+const Categories = () => {
 
     const accessToken = useSelector((state) => state.user?.accessToken)
 
@@ -113,3 +113,5 @@ export const Categories = () => {
         </Container>
     );
 };
+
+export default Categories;

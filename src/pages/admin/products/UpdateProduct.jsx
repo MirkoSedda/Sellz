@@ -28,7 +28,7 @@ const initialState = {
   brand: "",
 };
 
-export const UpdateProduct = () => {
+const UpdateProduct = () => {
 
   const [values, setValues] = useState(initialState);
   const [categories, setCategories] = useState([]);
@@ -161,3 +161,5 @@ export const UpdateProduct = () => {
     </Container>
   );
 };
+
+export default UpdateProduct

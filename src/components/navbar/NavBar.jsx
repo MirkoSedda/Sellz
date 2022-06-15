@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom'
 import { Search } from "../../components/forms/Search";
 
-export const NavBar = () => {
+const NavBar = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -88,3 +88,5 @@ export const NavBar = () => {
         </Navbar>
     );
 }
+
+export default Navbar

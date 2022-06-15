@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import defaultImage from "../../images/product-image-placeholder.jpg"
 
-export const SideDrawer = () => {
+const SideDrawer = () => {
   const dispatch = useDispatch();
   const { drawer, cart } = useSelector((state) => ({ ...state }));
 
@@ -66,3 +66,5 @@ export const SideDrawer = () => {
     </Drawer>
   );
 };
+
+export default SideDrawer;

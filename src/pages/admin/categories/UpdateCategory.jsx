@@ -3,14 +3,14 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { AdminSidebar } from "../../../components/sidebars/AdminSidebar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
-import { getCategory, updateCategory } from "../../../functions/categories";
+import { updateCategory } from "../../../functions/categories";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { CreateCategoryForm } from "../../../components/forms/CreateCategoryForm";
 
-export const UpdateCategory = () => {
+const UpdateCategory = () => {
     const params = useParams();
     const { slug } = params
     const navigate = useNavigate();
@@ -54,3 +54,5 @@ export const UpdateCategory = () => {
         </Container>
     );
 };
+
+export default UpdateCategory;

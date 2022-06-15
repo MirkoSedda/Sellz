@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import { AdminSidebar } from "../../../components/sidebars/AdminSidebar"
 
-export const AdminDashboard = () => {
+const AdminDashboard = () => {
     const [orders, setOrders] = useState([])
 
     const accessToken = useSelector(state => state.user?.accessToken)
@@ -45,3 +45,5 @@ export const AdminDashboard = () => {
         </Container>
     )
 }
+
+export default AdminDashboard

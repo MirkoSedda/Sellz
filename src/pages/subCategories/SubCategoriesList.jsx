@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { getSubCategory } from "../../functions/subCategories"
 import { ProductCard } from "../../components/cards/ProductCard"
 
-export const SubCategoriesList = () => {
+const SubCategoriesList = () => {
   const [subCategory, setSubCategory] = useState({})
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(false)
@@ -51,4 +51,4 @@ export const SubCategoriesList = () => {
   )
 }
 
-
+export default SubCategoriesList

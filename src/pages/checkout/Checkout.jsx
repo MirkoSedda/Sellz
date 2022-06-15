@@ -10,15 +10,15 @@ import { toast } from "react-toastify";
 import { getUserCart, emptyUserCart, saveUserAddress, applyCoupon, createCashOrder } from "../../functions/user";
 import { useNavigate } from "react-router-dom";
 
-export const Checkout = () => {
+const Checkout = () => {
     const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState([]);
+    const [setLoading] = useState([]);
     const [total, setTotal] = useState(0);
     const [address, setAddress] = useState("");
     const [addressSaved, setAddressSaved] = useState(false);
     const [coupon, setCoupon] = useState("DEMODAY20");
     const [totalAfterDiscount, setTotalAfterDiscount] = useState(0);
-    const [discountError, setDiscountError] = useState("");
+    const [setDiscountError] = useState("");
 
     const navigate = useNavigate()
     const dispatch = useDispatch();
@@ -229,4 +229,4 @@ export const Checkout = () => {
     );
 }
 
-
+export default Checkout;

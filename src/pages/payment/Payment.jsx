@@ -10,7 +10,7 @@ import "./stripe.css";
 // load stripe outside of components render to avoid recreating stripe object on every render
 const promise = loadStripe(STRIPE_KEY);
 
-export const Payment = () => {
+const Payment = () => {
   return (
     <Container className="container p-5 text-center">
       <Row>
@@ -24,3 +24,5 @@ export const Payment = () => {
     </Container>
   );
 };
+
+export default Payment;

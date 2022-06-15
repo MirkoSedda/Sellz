@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { ProductCardForCart } from "../../components/cards/ProductCardForCart";
 import { userCart } from "../../functions/user"
 
-export const Cart = () => {
+const Cart = () => {
 
   const { cart } = useSelector((state) => ({ ...state }));
   const accessToken = useSelector(state => state.user?.accessToken)
@@ -136,3 +136,5 @@ export const Cart = () => {
     </Container>
   );
 };
+
+export default Cart;

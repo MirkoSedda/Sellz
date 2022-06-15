@@ -12,7 +12,7 @@ import { CreateCategoryForm } from "../../../components/forms/CreateCategoryForm
 import { useParams, useNavigate } from "react-router-dom";
 import { AdminSidebar } from "../../../components/sidebars/AdminSidebar";
 
-export const UpdateSubCategory = () => {
+const UpdateSubCategory = () => {
     const params = useParams()
     const { slug } = params
     const navigate = useNavigate();
@@ -95,3 +95,5 @@ export const UpdateSubCategory = () => {
         </Container>
     );
 };
+
+export default UpdateSubCategory;

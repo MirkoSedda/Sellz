@@ -9,7 +9,7 @@ import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { ShowPaymentInfo } from "../../components/cards/ShowPaymentInfo";
 import { UserSidebar } from "../../components/sidebars/UserSidebar";
 
-export const History = () => {
+const History = () => {
 
     //TODO download the invoice for the orders 
 
@@ -92,3 +92,5 @@ export const History = () => {
         </Container>
     )
 }
+
+export default History;

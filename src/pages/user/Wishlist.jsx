@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { DeleteOutlined } from "@ant-design/icons";
 
-export const Wishlist = () => {
+const Wishlist = () => {
 
     const [wishlist, setWishlist] = useState([]);
 
@@ -59,3 +59,5 @@ export const Wishlist = () => {
         </Container>
     )
 }
+
+export default Wishlist;

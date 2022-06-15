@@ -13,7 +13,7 @@ import { FileUpload } from "../../../components/forms/FileUpload"
 import { getCategories } from "../../../functions/categories";
 import { useNavigate } from "react-router-dom"
 
-export const CreateProduct = () => {
+const CreateProduct = () => {
 
   const accessToken = useSelector(state => state.user?.accessToken)
 
@@ -108,3 +108,5 @@ export const CreateProduct = () => {
     </Container >
   )
 }
+
+export default CreateProduct

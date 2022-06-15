@@ -15,19 +15,19 @@ const { SubMenu } = Menu;
 
 //TODO perfectly align icons and filters text
 
-export const Shop = () => {
+const Shop = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [price, setPrice] = useState([0, 5000]);
   const [ok, setOk] = useState(false);
   const [categories, setCategories] = useState([]);
   const [categoryIds, setCategoryIds] = useState([]);
-  const [star, setStar] = useState("");
+  const [setStar] = useState("");
   const [subCategories, setSubCategories] = useState([]);
-  const [subCategory, setSubCategory] = useState("");
+  const [setSubCategory] = useState("");
   const [shipping, setShipping] = useState("");
   const [brand, setBrand] = useState("");
-  const [brands, setBrands] = useState([
+  const [brands] = useState([
     "Apple",
     "Samsung",
     "Microsoft",
@@ -35,7 +35,7 @@ export const Shop = () => {
     "Asus",
   ]);
   const [color, setColor] = useState("");
-  const [colors, setColors] = useState([
+  const [colors] = useState([
     "Black",
     "Brown",
     "Silver",
@@ -424,3 +424,5 @@ export const Shop = () => {
     </Container>
   );
 };
+
+export default Shop

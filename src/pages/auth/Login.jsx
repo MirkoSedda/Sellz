@@ -7,13 +7,13 @@ import { toast } from "react-toastify";
 import { Button } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 // import { GoogleOutlined } from "@ant-design/icons";
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/actions";
 import { validateInputs } from "../../functions/validateInputs";
 
-export const Login = () => {
+const Login = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -111,3 +111,4 @@ export const Login = () => {
     )
 }
 
+export default Login

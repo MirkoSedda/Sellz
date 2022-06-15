@@ -4,7 +4,7 @@ import { BestSellers } from '../../components/home/BestSellers';
 import { CategoriesList } from '../../components/categories/CategoriesList';
 import { SubCategoriesList } from '../../components/subCategories/SubCategoriesList';
 
-export const Home = () => {
+const Home = () => {
     return (
         <>
             <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
@@ -33,4 +33,4 @@ export const Home = () => {
     );
 };
 
-
+export default Home;

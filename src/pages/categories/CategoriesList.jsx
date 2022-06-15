@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { getCategory } from "../../functions/categories";
 import { ProductCard } from "../../components/cards/ProductCard";
 
-export const CategoriesList = () => {
+const CategoriesList = () => {
   const [category, setCategory] = useState({});
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -51,3 +51,4 @@ export const CategoriesList = () => {
   );
 };
 
+export default CategoriesList;
