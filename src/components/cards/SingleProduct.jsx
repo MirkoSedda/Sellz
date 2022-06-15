@@ -70,9 +70,6 @@ const SingleProduct = ({ product, onStarClick, star }) => {
 
     };
 
-    const handleModal = () => {
-
-    }
     return (
         <>
             <Col md={7} className="">
