@@ -4,7 +4,7 @@ import defaultImage from "../../images/product-image-placeholder.jpg"
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 const { Meta } = Card;
 
-export const AdminProductCard = ({ product, handleRemove }) => {
+const AdminProductCard = ({ product, handleRemove }) => {
   const { title, description, images, slug } = product;
   console.log(product)
 
@@ -38,4 +38,4 @@ export const AdminProductCard = ({ product, handleRemove }) => {
   );
 };
 
-
+export default AdminProductCard;

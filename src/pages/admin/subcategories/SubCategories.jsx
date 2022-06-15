@@ -8,11 +8,11 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { getCategories } from "../../../functions/categories"
 import { newSubCategory, getSubCategories, deleteSubCategory } from "../../../functions/subCategories";
-import { AdminSidebar } from "../../../components/sidebars/AdminSidebar"
 import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { CreateCategoryForm } from "../../../components/forms/CreateCategoryForm";
-import { SearchForm } from "../../../components/forms/SearchForm";
+import AdminSidebar from "../../../components/sidebars/AdminSidebar"
+import CreateCategoryForm from "../../../components/forms/CreateCategoryForm";
+import SearchForm from "../../../components/forms/SearchForm";
 
 const SubCategories = () => {
 

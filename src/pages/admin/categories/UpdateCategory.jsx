@@ -2,13 +2,13 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { AdminSidebar } from "../../../components/sidebars/AdminSidebar";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { updateCategory } from "../../../functions/categories";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { CreateCategoryForm } from "../../../components/forms/CreateCategoryForm";
+import AdminSidebar from "../../../components/sidebars/AdminSidebar";
+import CreateCategoryForm from "../../../components/forms/CreateCategoryForm";
 
 const UpdateCategory = () => {
     const params = useParams();

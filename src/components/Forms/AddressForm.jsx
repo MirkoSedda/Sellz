@@ -1,7 +1,7 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export const AddressForm = ({ saveAddressInDb, setAddress, address }) => (
+const AddressForm = ({ saveAddressInDb, setAddress, address }) => (
     <Form onSubmit={saveAddressInDb}>
         <Form.Group>
             <Form.Label>Address</Form.Label>
@@ -23,3 +23,5 @@ export const AddressForm = ({ saveAddressInDb, setAddress, address }) => (
         </Form.Group>
     </Form>
 )
+
+export default AddressForm;

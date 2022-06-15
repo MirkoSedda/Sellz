@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import { Select } from "antd";
 const { Option } = Select;
 
-export const CreateProductForm = ({
+const CreateProductForm = ({
   handleSubmit,
   handleChange,
   handleCategoryChange,
@@ -158,4 +158,4 @@ export const CreateProductForm = ({
   );
 };
 
-
+export default CreateProductForm

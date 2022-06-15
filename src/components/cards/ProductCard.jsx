@@ -5,11 +5,11 @@ import { Card, Tooltip } from "antd";
 import { EyeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import defaultImage from "../../images/product-image-placeholder.jpg"
 import { Link } from "react-router-dom";
-import { averageStarRating } from "../rating/averageStarRating";
+import averageStarRating from "../rating/averageStarRating";
 import _ from "lodash";
 const { Meta } = Card;
 
-export const ProductCard = ({ product }) => {
+const ProductCard = ({ product }) => {
 
     const dispatch = useDispatch();
 
@@ -88,3 +88,4 @@ export const ProductCard = ({ product }) => {
     );
 };
 
+export default ProductCard

@@ -10,7 +10,7 @@ import {
   CloseOutlined,
 } from "@ant-design/icons";
 
-export const ProductCardForCart = ({ p }) => {
+const ProductCardForCart = ({ p }) => {
 
   const colors = ["Black", "White", "Red", "Blue", "Green"]
 
@@ -153,3 +153,5 @@ export const ProductCardForCart = ({ p }) => {
     </tbody>
   );
 };
+
+export default ProductCardForCart;

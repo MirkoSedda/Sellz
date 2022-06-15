@@ -3,8 +3,8 @@ import { getProducts, getProductsByFilter } from "../../functions/products";
 import { getCategories } from "../../functions/categories";
 import { getSubCategories } from "../../functions/subCategories";
 import { useSelector, useDispatch } from "react-redux";
-import { ProductCard } from "../../components/cards/ProductCard";
-import { Rating } from "../../components/forms/Rating";
+import ProductCard from "../../components/cards/ProductCard";
+import Rating from "../../components/forms/Rating";
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"

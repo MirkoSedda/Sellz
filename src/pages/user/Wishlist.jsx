@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { UserSidebar } from "../../components/sidebars/UserSidebar";
+import UserSidebar from "../../components/sidebars/UserSidebar";
 import { getWishlist, removeFromWishlist } from "../../functions/user";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";

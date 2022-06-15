@@ -7,7 +7,7 @@ import { useSelector } from "react-redux"
 import { Avatar, Badge } from "antd"
 import { API_URL } from "../../costants"
 
-export const FileUpload = ({ values, setValues, setLoading }) => {
+const FileUpload = ({ values, setValues, setLoading }) => {
 
   const accessToken = useSelector(state => state.user?.accessToken)
 
@@ -106,3 +106,5 @@ export const FileUpload = ({ values, setValues, setLoading }) => {
     </Container>
   )
 }
+
+export default FileUpload;

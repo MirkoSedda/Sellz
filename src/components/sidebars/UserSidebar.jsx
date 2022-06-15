@@ -1,6 +1,7 @@
+
 import { Link } from "react-router-dom";
 
-export const UserSidebar = () => (
+const UserSidebar = () => (
     <nav>
         <ul className="nav flex-column">
             <li className="nav-item">
@@ -24,4 +25,4 @@ export const UserSidebar = () => (
     </nav>
 );
 
-
+export default UserSidebar

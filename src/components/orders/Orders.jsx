@@ -2,9 +2,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
-import { ShowPaymentInfo } from "../cards/ShowPaymentInfo";
+import ShowPaymentInfo from "../cards/ShowPaymentInfo";
 
-export const Orders = ({ orders, handleStatusChange }) => {
+const Orders = ({ orders, handleStatusChange }) => {
   const showOrderInTable = (order) => (
     <table className="table table-bordered">
       <thead className="thead-light">
@@ -76,3 +76,4 @@ export const Orders = ({ orders, handleStatusChange }) => {
   );
 };
 
+export default Orders;

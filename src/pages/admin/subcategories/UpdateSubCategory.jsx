@@ -8,9 +8,9 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { getCategories } from "../../../functions/categories"
 import { getSubCategories, updateSubCategory } from "../../../functions/subCategories"
-import { CreateCategoryForm } from "../../../components/forms/CreateCategoryForm";
 import { useParams, useNavigate } from "react-router-dom";
-import { AdminSidebar } from "../../../components/sidebars/AdminSidebar";
+import CreateCategoryForm from "../../../components/forms/CreateCategoryForm";
+import AdminSidebar from "../../../components/sidebars/AdminSidebar";
 
 const UpdateSubCategory = () => {
     const params = useParams()

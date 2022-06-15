@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import { getSubCategories } from "../../functions/subCategories";
 
-export const SubCategoriesList = () => {
+const SubCategoriesList = () => {
   const [subCategories, setSubCategories] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -35,3 +35,5 @@ export const SubCategoriesList = () => {
     </Container>
   );
 };
+
+export default SubCategoriesList;

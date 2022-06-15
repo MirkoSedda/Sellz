@@ -6,8 +6,8 @@ import Col from "react-bootstrap/Col"
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { ProductCardForCart } from "../../components/cards/ProductCardForCart";
 import { userCart } from "../../functions/user"
+import ProductCardForCart from "../../components/cards/ProductCardForCart";
 
 const Cart = () => {
 

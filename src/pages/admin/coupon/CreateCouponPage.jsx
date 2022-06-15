@@ -14,7 +14,7 @@ import {
 } from "../../../functions/coupon"
 import "react-datepicker/dist/react-datepicker.css"
 import { DeleteOutlined } from "@ant-design/icons"
-import { AdminSidebar } from "../../../components/sidebars/AdminSidebar"
+import AdminSidebar from "../../../components/sidebars/AdminSidebar"
 
 const CreateCouponPage = () => {
   const [name, setName] = useState("")

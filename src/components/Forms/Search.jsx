@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { SearchOutlined } from "@ant-design/icons"
 import Form from "react-bootstrap/Form";
 
-export const Search = () => {
+const Search = () => {
   const dispatch = useDispatch()
   const { search } = useSelector(state => ({ ...state }))
   const { text } = search
@@ -38,3 +38,5 @@ export const Search = () => {
     </Form>
   )
 }
+
+export default Search

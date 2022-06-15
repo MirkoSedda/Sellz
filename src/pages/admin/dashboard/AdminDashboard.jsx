@@ -2,11 +2,11 @@ import { useState, useEffect } from "react"
 import { getOrders, changeOrderStatus } from "../../../functions/admin"
 import { useSelector } from "react-redux"
 import { toast } from "react-toastify"
-import { Orders } from "../../../components/orders/Orders"
+import AdminSidebar from "../../../components/sidebars/AdminSidebar"
+import Orders from "../../../components/orders/Orders"
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
-import { AdminSidebar } from "../../../components/sidebars/AdminSidebar"
 
 const AdminDashboard = () => {
     const [orders, setOrders] = useState([])

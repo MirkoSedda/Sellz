@@ -1,7 +1,7 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export const CreateCategoryForm = ({ handleSubmit, name, setName }) => (
+const CreateCategoryForm = ({ handleSubmit, name, setName }) => (
     <Form onSubmit={handleSubmit}>
         <Form.Group>
             <Form.Label>Name</Form.Label>
@@ -19,3 +19,5 @@ export const CreateCategoryForm = ({ handleSubmit, name, setName }) => (
         </Form.Group>
     </Form>
 );
+
+export default CreateCategoryForm
