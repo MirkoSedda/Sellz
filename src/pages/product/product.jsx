@@ -9,8 +9,7 @@ import { SingleProduct } from "../../components/cards/SingleProduct";
 import { ProductCard } from "../../components/cards/ProductCard";
 import { productRating, getRelatedProducts } from "../../functions/products";
 
-
-export const Product = () => {
+const Product = () => {
 
     const accessToken = useSelector(state => state.user?.accessToken)
     const userId = useSelector(state => state.user?.user._id)
