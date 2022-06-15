@@ -2,9 +2,7 @@
 import {
     Container,
     Navbar,
-    Form,
     Nav,
-    FormControl,
     NavDropdown,
 } from "react-bootstrap";
 import { BsPersonCircle, BsCartPlus, BsPercent } from "react-icons/bs";
@@ -89,4 +87,4 @@ const NavBar = () => {
     );
 }
 
-export default Navbar
+export default NavBar
