@@ -9,7 +9,6 @@ import { SingleProduct } from "../../components/cards/SingleProduct";
 import { ProductCard } from "../../components/cards/ProductCard";
 import { productRating, getRelatedProducts } from "../../functions/products";
 
-
 const Product = () => {
 
     const accessToken = useSelector(state => state.user?.accessToken)
