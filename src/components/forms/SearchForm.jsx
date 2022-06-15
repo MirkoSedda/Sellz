@@ -1,3 +1,4 @@
+
 import Form from "react-bootstrap/Form";
 
 const SearchForm = ({ handleSearch, query }) => (
@@ -14,4 +15,4 @@ const SearchForm = ({ handleSearch, query }) => (
     </Form>
 )
 
-export default SearchForm;
+export default SearchForm
