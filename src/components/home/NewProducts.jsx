@@ -3,11 +3,11 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Pagination } from "antd";
-import { ProductCard } from '../cards/ProductCard';
+import ProductCard from '../cards/ProductCard';
+import LoadingCard from '../cards/LoadingCard';
 import { getProductsByParams, getProductsCountTotal } from '../../functions/products';
-import { LoadingCard } from '../cards/LoadingCard';
 
-export const NewProducts = () => {
+const NewProducts = () => {
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -66,3 +66,5 @@ export const NewProducts = () => {
         </Container>
     );
 };
+
+export default NewProducts;

@@ -1,5 +1,5 @@
 
-export const ShowPaymentInfo = ({ order }) => (
+const ShowPaymentInfo = ({ order }) => (
   <div>
     <p>
       <span>Order Id: {order.paymentIntent.id}</span>
@@ -33,3 +33,5 @@ export const ShowPaymentInfo = ({ order }) => (
     </p>
   </div>
 );
+
+export default ShowPaymentInfo;

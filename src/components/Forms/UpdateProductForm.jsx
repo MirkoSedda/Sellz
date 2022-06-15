@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Select } from "antd"
 const { Option } = Select
 
-export const UpdateProductForm = ({
+const UpdateProductForm = ({
   values,
   categories,
   selectedCategory,
@@ -167,3 +167,5 @@ export const UpdateProductForm = ({
     </Form>
   )
 }
+
+export default UpdateProductForm

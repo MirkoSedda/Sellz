@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useSelector, useDispatch } from "react-redux";
-import { AddressForm } from "../../components/forms/AddressForm";
+import AddressForm from "../../components/forms/AddressForm";
 import { toast } from "react-toastify";
 import { getUserCart, emptyUserCart, saveUserAddress, applyCoupon, createCashOrder } from "../../functions/user";
 import { useNavigate } from "react-router-dom";

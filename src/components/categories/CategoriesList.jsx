@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import { getCategories } from "../../functions/categories"
 
-export const CategoriesList = () => {
+const CategoriesList = () => {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -39,3 +39,5 @@ export const CategoriesList = () => {
         </Container>
     );
 };
+
+export default CategoriesList;

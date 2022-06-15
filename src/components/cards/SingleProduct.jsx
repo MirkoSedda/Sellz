@@ -8,9 +8,9 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import StarRating from "react-star-ratings";
 import defaultImage from "../../images/product-image-placeholder.jpg"
-import { ProductListItems } from "./ProductListItems";
-import { RatingModal } from "../modal/RatingModal";
-import { averageStarRating } from "../rating/averageStarRating";
+import ProductListItems from "./ProductListItems";
+import RatingModal from "../modal/RatingModal";
+import averageStarRating from "../rating/averageStarRating";
 import { toast } from "react-toastify";
 import { addToWishlist } from "../../functions/user";
 import _ from "lodash";
@@ -18,7 +18,7 @@ const { TabPane } = Tabs;
 
 //TODO check for logged in user before adding to wishlist
 
-export const SingleProduct = ({ product, onStarClick, star }) => {
+const SingleProduct = ({ product, onStarClick, star }) => {
 
     const { title, images, description, _id } = product;
 
@@ -160,4 +160,4 @@ export const SingleProduct = ({ product, onStarClick, star }) => {
     );
 };
 
-
+export default SingleProduct;

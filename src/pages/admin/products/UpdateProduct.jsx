@@ -4,14 +4,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { AdminSidebar } from "../../../components/sidebars/AdminSidebar";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { getProduct, updateProduct } from "../../../functions/products";
 import { getCategories, getSubCategoriesBasedOnCategory } from "../../../functions/categories";
-import { FileUpload } from "../../../components/forms/FileUpload";
 import { LoadingOutlined } from "@ant-design/icons";
-import { UpdateProductForm } from "../../../components/forms/UpdateProductForm";
+import AdminSidebar from "../../../components/sidebars/AdminSidebar";
+import FileUpload from "../../../components/forms/FileUpload";
+import UpdateProductForm from "../../../components/forms/UpdateProductForm";
 
 const initialState = {
   title: "",

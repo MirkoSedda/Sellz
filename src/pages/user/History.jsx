@@ -6,8 +6,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { getUserOrders } from "../../functions/user";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
-import { ShowPaymentInfo } from "../../components/cards/ShowPaymentInfo";
-import { UserSidebar } from "../../components/sidebars/UserSidebar";
+import ShowPaymentInfo from "../../components/cards/ShowPaymentInfo";
+import UserSidebar from "../../components/sidebars/UserSidebar";
 
 const History = () => {
 

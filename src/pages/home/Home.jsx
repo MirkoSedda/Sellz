@@ -1,8 +1,8 @@
 
-import { NewProducts } from '../../components/home/NewProducts';
-import { BestSellers } from '../../components/home/BestSellers';
-import { CategoriesList } from '../../components/categories/CategoriesList';
-import { SubCategoriesList } from '../../components/subCategories/SubCategoriesList';
+import NewProducts from '../../components/home/NewProducts';
+import BestSellers from '../../components/home/BestSellers';
+import CategoriesList from '../../components/categories/CategoriesList';
+import SubCategoriesList from '../../components/subCategories/SubCategoriesList';
 
 const Home = () => {
     return (

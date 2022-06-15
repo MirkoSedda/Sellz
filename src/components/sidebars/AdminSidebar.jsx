@@ -1,7 +1,7 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 
-export const AdminSidebar = () => (
+const AdminSidebar = () => (
     <nav>
         <ul className="nav flex-column">
             <li className="nav-item">
@@ -43,4 +43,4 @@ export const AdminSidebar = () => (
     </nav>
 );
 
-
+export default AdminSidebar

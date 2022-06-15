@@ -2,7 +2,7 @@ import { Card, Skeleton } from "antd"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
-export const LoadingCard = ({ numberOfCards }) => {
+const LoadingCard = ({ numberOfCards }) => {
 
   const cards = () => {
     let totalCards = []
@@ -22,3 +22,5 @@ export const LoadingCard = ({ numberOfCards }) => {
 
   return <Row className="pb-5">{cards()}</Row>
 }
+
+export default LoadingCard

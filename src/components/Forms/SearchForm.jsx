@@ -1,6 +1,6 @@
 import Form from "react-bootstrap/Form";
 
-export const SearchForm = ({ handleSearch, query }) => (
+const SearchForm = ({ handleSearch, query }) => (
     <Form>
         <Form.Group>
             <Form.Control
@@ -13,3 +13,5 @@ export const SearchForm = ({ handleSearch, query }) => (
         </Form.Group>
     </Form>
 )
+
+export default SearchForm;

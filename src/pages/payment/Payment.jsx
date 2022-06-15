@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col"
 import { loadStripe } from "@stripe/stripe-js";
 import { STRIPE_KEY } from "../../costants"
 import { Elements } from "@stripe/react-stripe-js";
-import { StripeCheckout } from "../../components/stripe/StripeCheckout";
+import StripeCheckout from "../../components/stripe/StripeCheckout";
 import "./stripe.css";
 
 // load stripe outside of components render to avoid recreating stripe object on every render

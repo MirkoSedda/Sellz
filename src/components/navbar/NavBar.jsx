@@ -9,7 +9,7 @@ import { BsPersonCircle, BsCartPlus, BsPercent } from "react-icons/bs";
 import { MdOutlineLocalOffer } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom'
-import { Search } from "../forms/Search";
+import Search from "../forms/Search";
 
 const NavBar = () => {
 

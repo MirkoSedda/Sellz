@@ -5,7 +5,7 @@ import { useSelector } from "react-redux"
 import { StarOutlined } from "@ant-design/icons"
 import { useNavigate } from "react-router-dom"
 
-export const RatingModal = ({ children }) => {
+const RatingModal = ({ children }) => {
   const user = useSelector(state => state.user?.user)
 
   const [modalVisible, setModalVisible] = useState(false)
@@ -41,3 +41,5 @@ export const RatingModal = ({ children }) => {
     </>
   )
 }
+
+export default RatingModal

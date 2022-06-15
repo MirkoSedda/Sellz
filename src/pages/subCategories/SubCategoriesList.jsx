@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useParams } from "react-router-dom";
 import { getSubCategory } from "../../functions/subCategories"
-import { ProductCard } from "../../components/cards/ProductCard"
+import ProductCard from "../../components/cards/ProductCard"
 
 const SubCategoriesList = () => {
   const [subCategory, setSubCategory] = useState({})

@@ -4,14 +4,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import { newProduct } from "../../../functions/products"
 import { getSubCategoriesBasedOnCategory } from "../../../functions/categories"
-import { AdminSidebar } from "../../../components/sidebars/AdminSidebar"
-import { CreateProductForm } from "../../../components/forms/CreateProductForm"
-import { FileUpload } from "../../../components/forms/FileUpload"
 import { getCategories } from "../../../functions/categories";
-import { useNavigate } from "react-router-dom"
+import AdminSidebar from "../../../components/sidebars/AdminSidebar"
+import CreateProductForm from "../../../components/forms/CreateProductForm"
+import FileUpload from "../../../components/forms/FileUpload"
 
 const CreateProduct = () => {
 

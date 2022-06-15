@@ -10,7 +10,7 @@ import { DollarOutlined, CheckOutlined } from "@ant-design/icons";
 import defaultImage from "../../images/product-image-placeholder.jpg"
 import { createOrder, emptyUserCart } from "../../functions/user";
 
-export const StripeCheckout = () => {
+const StripeCheckout = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch();
@@ -182,3 +182,5 @@ export const StripeCheckout = () => {
     </>
   );
 };
+
+export default StripeCheckout;

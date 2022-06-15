@@ -1,7 +1,7 @@
 
 import StarRating from "react-star-ratings"
 
-export const Rating = ({ starClick, numberOfStars }) => (
+const Rating = ({ starClick, numberOfStars }) => (
     <>
         <StarRating
             changeRating={() => starClick(numberOfStars)}
@@ -15,4 +15,4 @@ export const Rating = ({ starClick, numberOfStars }) => (
     </>
 )
 
-
+export default Rating

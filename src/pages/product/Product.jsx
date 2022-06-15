@@ -5,9 +5,9 @@ import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import { getProduct } from "../../functions/products";
-import { SingleProduct } from "../../components/cards/SingleProduct";
-import { ProductCard } from "../../components/cards/ProductCard";
 import { productRating, getRelatedProducts } from "../../functions/products";
+import SingleProduct from "../../components/cards/SingleProduct";
+import ProductCard from "../../components/cards/ProductCard";
 
 const Product = () => {
 
