@@ -85,7 +85,7 @@ const Register = () => {
                 icon={<MailOutlined />}
                 size="large"
             >
-                Login with Email/Password
+                Register with email and password
             </Button>
         </Form>
     );

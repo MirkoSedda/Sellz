@@ -3,20 +3,21 @@ import { Modal, Button } from "antd"
 import { toast } from "react-toastify"
 import { useSelector } from "react-redux"
 import { StarOutlined } from "@ant-design/icons"
-import { useNavigate } from "react-router-dom"
+import LoginModal from "../modal/LoginModal"
 
 const RatingModal = ({ children }) => {
   const user = useSelector(state => state.user?.user)
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
+  const [show, setShow] = useState(false);
   const [modalVisible, setModalVisible] = useState(false)
-  const navigate = useNavigate()
 
   const handleModal = () => {
     if (user) {
       setModalVisible(true)
     } else {
-      //  TODO implement modal for login 
-      navigate("/login")
+      handleShow(true)
     }
   }
 
@@ -38,6 +39,7 @@ const RatingModal = ({ children }) => {
         onCancel={() => setModalVisible(false)}>
         {children}
       </Modal>
+      <LoginModal handleShow={handleShow} handleClose={handleClose} show={show} />
     </>
   )
 }

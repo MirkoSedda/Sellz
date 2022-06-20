@@ -15,7 +15,6 @@ const FileUpload = ({ values, setValues, setLoading }) => {
 
         const files = e.target.files
         const allUploadedFiles = values.images
-        // TODO remove PayloadTooLargeError: request entity too large
         if (files) {
             setLoading(true)
             for (let i = 0; i < files.length; i++) {

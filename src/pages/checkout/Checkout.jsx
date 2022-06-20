@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
     const [products, setProducts] = useState([]);
-    const [setLoading] = useState([]);
+    const [loading, setLoading] = useState([]);
     const [total, setTotal] = useState(0);
     const [address, setAddress] = useState("");
     const [addressSaved, setAddressSaved] = useState(false);

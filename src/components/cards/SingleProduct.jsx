@@ -1,6 +1,6 @@
 
+import { useState, useEffect } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Col from "react-bootstrap/Col";
 import { Card, Tabs, Tooltip } from "antd";
@@ -11,21 +11,30 @@ import defaultImage from "../../images/product-image-placeholder.jpg"
 import ProductListItems from "./ProductListItems";
 import RatingModal from "../modal/RatingModal";
 import averageStarRating from "../rating/averageStarRating";
+import LoginModal from "../modal/LoginModal";
 import { toast } from "react-toastify";
-import { addToWishlist } from "../../functions/user";
+import { addToWishlist, getWishlist } from "../../functions/user";
 import _ from "lodash";
 const { TabPane } = Tabs;
 
-//TODO check for logged in user before adding to wishlist
-
 const SingleProduct = ({ product, onStarClick, star }) => {
 
-    const { title, images, description, _id } = product;
+    const [show, setShow] = useState(false);
+    const [wishListed, setWishlisted] = useState([]);
+    const [wish, setWish] = useState(false);
 
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const { title, images, description, _id } = product;
     const accessToken = useSelector(state => state.user?.accessToken)
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+
+    useEffect(() => {
+        loadWishlisted()
+        // eslint-disable-next-line 
+    }, [])
 
     const handleAddToCart = () => {
         let cart = [];
@@ -56,16 +65,20 @@ const SingleProduct = ({ product, onStarClick, star }) => {
         }
     };
 
+    const loadWishlisted = () => {
+        getWishlist(accessToken).then((w) =>
+            setWishlisted(w.data.wishlist))
+        if (wishListed.some((w) => w._id === product._id)) setWish(!wish)
+        console.log("🚀 ~ file: SingleProduct.jsx ~ line 72 ~ loadWishlisted ~ wish", wish)
+    }
+
     const handleAddToWishlist = () => {
         if (accessToken) {
-            console.log("🚀 ~ file: SingleProduct.jsx ~ line 60 ~ addToWishlist ~ accessToken", accessToken)
             addToWishlist(product._id, accessToken).then((res) => {
-                console.log("🚀 ~ file: SingleProduct.jsx ~ line 68 ~ addToWishlist ~ addedToWishlist", res.data)
                 toast.success("Added to wishlist");
             });
         } else {
-            //  TODO implement modal for login 
-            navigate("/login")
+            handleShow(true)
         }
 
     };
@@ -130,11 +143,21 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                                 Add to cart
                             </div>
                         </Tooltip>,
-                        <Tooltip title={accessToken ? "Add to wishlist" : "Please login to add to wishlist."}>
+                        // TODO fix the wishlist 
+                        <Tooltip title={accessToken && !wish ? "Add to wishlist." :
+                            accessToken && wish ? "Remove from wishlist." :
+                                accessToken ? "Add to wishlist" :
+                                    !accessToken ? "Login to wishlist" : null
+                        }>
                             <div onClick={handleAddToWishlist}>
                                 <HeartOutlined className="text-info" />
                                 <br />
-                                {accessToken ? "Add to wishlist" : "Login to add to wishlist."}                            </div>
+                                {accessToken && !wish ? "Add to wishlist." :
+                                    accessToken && wish ? "Remove from wishlist." :
+                                        accessToken ? "Add to wishlist" :
+                                            !accessToken ? "Login to wishlist" : null
+                                }
+                            </div>
                         </Tooltip >,
                         <Tooltip title={"Leave rating"}>
                             <RatingModal>
@@ -150,6 +173,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                         </Tooltip>,
                     ]}
                 >
+                    <LoginModal handleShow={handleShow} handleClose={handleClose} show={show} />
                     <ProductListItems product={product} />
                 </Card>
             </Col>

@@ -3,15 +3,15 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import { toast } from "react-toastify";
-import { Button } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 // import { GoogleOutlined } from "@ant-design/icons";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../redux/actions";
-import { validateInputs } from "../../functions/validateInputs";
+import loginUser from "../../redux/actions";
+import validateInputs from "../../functions/validateInputs";
 
 const Login = () => {
 
@@ -21,7 +21,7 @@ const Login = () => {
     const [email, setEmail] = useState('admin@admin.com');
     const [password, setPassword] = useState('admin');
     const [loading, setLoading] = useState(false)
-    const [setError] = useState(false)
+    const [error, setError] = useState(false)
 
     const userData = { email, password };
 
@@ -78,7 +78,7 @@ const Login = () => {
                 icon={<MailOutlined />}
                 size="large"
             >
-                Login with Email/Password
+                Login with email and password
             </Button>
         </Form>
     );

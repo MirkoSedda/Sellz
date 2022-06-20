@@ -97,17 +97,17 @@ const UpdateProduct = () => {
 
   const handleCategoryChange = (e) => {
     e.preventDefault();
-    console.log("CLICKED CATEGORY", e.target.value);
+    console.log("🚀 ~ file: UpdateProduct.jsx ~ line 101 ~ handleCategoryChange ~ clicked category", e.target.value)
     setValues({ ...values, subCategories: [] });
 
     setSelectedCategory(e.target.value);
 
     getSubCategoriesBasedOnCategory(e.target.value).then((res) => {
-      console.log("SUB OPTIONS ON CATGORY CLICK", res);
+      console.log("🚀 ~ file: UpdateProduct.jsx ~ line 106 ~ getSubCategoriesBasedOnCategory ~ res", res)
       setSubCategoryOptions(res.data);
     });
 
-    console.log("EXISTING CATEGORY values.category", values.category);
+    console.log("🚀 ~ file: UpdateProduct.jsx ~ line 111 ~ handleCategoryChange ~ values.category", values.category)
 
     // if user clicks back to the original category
     // show its sub categories in default
