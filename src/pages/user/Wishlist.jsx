@@ -14,7 +14,6 @@ const Wishlist = () => {
     const [wishlist, setWishlist] = useState([]);
 
     const accessToken = useSelector(state => state.user?.accessToken)
-    console.log("🚀 ~ file: Wishlist.jsx ~ line 17 ~ Wishlist ~ accessToken", accessToken)
 
     useEffect(() => {
         loadWishlist();
@@ -42,7 +41,6 @@ const Wishlist = () => {
                 </Col>
                 <Col md={10} className="">
                     <h4>Wishlist</h4>
-
                     {wishlist?.map((p) => (
                         <div key={p._id} className="alert alert-secondary">
                             <Link to={`/product/${p.slug}`}>{p.title}</Link>

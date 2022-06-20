@@ -23,16 +23,18 @@ const UpdateProductForm = ({
         category,
         shipping,
         quantity,
+        images,
         colors,
         brands,
         color,
         brand,
     } = values
+    console.log("🚀 ~ file: UpdateProductForm.jsx ~ line 32 ~ values", values)
 
-
-    // TODO render images in the update product form
     return (
         <Form onSubmit={handleSubmit}>
+
+
             <Form.Group>
                 <Form.Label>Title</Form.Label>
                 <Form.Control

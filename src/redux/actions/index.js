@@ -3,10 +3,10 @@ import { getUserCart } from "../../functions/user"
 import { toastSuccess, toastError } from "../../functions/toastNotification"
 import "react-toastify/dist/ReactToastify.css"
 
-export const loginUser = userData => {
+const loginUser = userData => {
   return async dispatch => {
     try {
-      const res = await fetch(`${API_URL}/users/login`, {
+      const res = await fetch(`${API_URL}/api/users/login`, {
         method: "POST",
         body: JSON.stringify(userData),
         headers: {
@@ -36,3 +36,5 @@ export const loginUser = userData => {
     }
   }
 }
+
+export default loginUser

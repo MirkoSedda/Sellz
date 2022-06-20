@@ -10,7 +10,6 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import { Menu, Slider, Checkbox, Radio } from "antd";
 import { DollarOutlined, DownSquareOutlined, StarOutlined } from "@ant-design/icons";
-
 const { SubMenu } = Menu;
 
 //TODO perfectly align icons and filters text
@@ -22,12 +21,12 @@ const Shop = () => {
   const [ok, setOk] = useState(false);
   const [categories, setCategories] = useState([]);
   const [categoryIds, setCategoryIds] = useState([]);
-  const [setStar] = useState("");
+  const [star, setStar] = useState("");
   const [subCategories, setSubCategories] = useState([]);
-  const [setSubCategory] = useState("");
+  const [subCategory, setSubCategory] = useState("");
   const [shipping, setShipping] = useState("");
   const [brand, setBrand] = useState("");
-  const [brands] = useState([
+  const [brands, setBrands] = useState([
     "Apple",
     "Samsung",
     "Microsoft",
@@ -35,30 +34,26 @@ const Shop = () => {
     "Asus",
   ]);
   const [color, setColor] = useState("");
-  const [colors] = useState([
+  const [colors, setColors] = useState([
     "Black",
     "Brown",
     "Silver",
     "White",
     "Blue",
   ]);
-
   const dispatch = useDispatch();
   const { search } = useSelector((state) => ({ ...state }));
   const { text } = search;
-
   useEffect(() => {
     loadAllProducts();
     getCategories().then((res) => setCategories(res.data));
     getSubCategories().then((res) => setSubCategories(res.data));
   }, []);
-
   const getFilteredProducts = (query) => {
     getProductsByFilter(query).then((res) => {
       setProducts(res.data);
     });
   };
-
   // 1. load all products on page load
   const loadAllProducts = () => {
     getProducts().then((p) => {
@@ -67,7 +62,6 @@ const Shop = () => {
       setLoading(false);
     });
   };
-
   // 2. load products on user search input
   useEffect(() => {
     const delayed = setTimeout(() => {
@@ -75,14 +69,11 @@ const Shop = () => {
     }, 300);
     return () => clearTimeout(delayed);
   }, [text]);
-
-
   // 3. load products based on price range
   useEffect(() => {
     getFilteredProducts({ price });
     // eslint-disable-next-line 
   }, [ok]);
-
   // handler for the price slider
   const handlePriceSlider = (value) => {
     dispatch({
@@ -97,7 +88,6 @@ const Shop = () => {
       setOk(!ok);
     }, 300);
   };
-
   // 4. load products based on category
   // show all of the categories in a list of checkboxes
   const showCategories = () =>
@@ -115,7 +105,6 @@ const Shop = () => {
         <br />
       </div>
     ))
-
   // handler for the categories checkboxes  
   const handleCategoriesCheck = (e) => {
     dispatch({
@@ -125,12 +114,10 @@ const Shop = () => {
     setPrice([0, 0]);
     setStar("");
     setSubCategory("");
-
     let inTheState = [...categoryIds];
     let checkedCategories = e.target.value;
     // foundInTheState is an array so indexOf returns the index or -1
     let foundInTheState = inTheState.indexOf(checkedCategories);
-
     //if the category its not in the state we add it to the array
     if (foundInTheState === -1) {
       inTheState.push(checkedCategories);
@@ -143,7 +130,6 @@ const Shop = () => {
     //this finally fetches the selected categories <3
     getFilteredProducts({ category: inTheState });
   };
-
   // 5. show products based on star rating
   const handleStarClick = (num) => {
     dispatch({
@@ -155,7 +141,6 @@ const Shop = () => {
     setStar(num);
     getFilteredProducts({ stars: num });
   };
-
   // handler for the star ratings
   const showStars = () => (
     <div className="pr-4 pl-4 pb-2">
@@ -166,9 +151,7 @@ const Shop = () => {
       <Rating starClick={handleStarClick} numberOfStars={1} />
     </div>
   );
-
   // 6. show products by sub category
-
   const handleSubCategory = (subCategory) => {
     console.log("SUB", subCategory);
     setSubCategory(subCategory);
@@ -181,7 +164,6 @@ const Shop = () => {
     setStar("");
     getFilteredProducts({ subCategory });
   };
-
   const showSubCategories = () =>
     subCategories.map((s) => (
       <div
@@ -193,7 +175,6 @@ const Shop = () => {
         {s.name}
       </div>
     ));
-
   // 7. show products based on brand name
   const showBrands = () =>
     brands.map((b) => (
@@ -207,9 +188,7 @@ const Shop = () => {
         {b}
       </Radio>
     ));
-
   const handleBrand = (e) => {
-
     dispatch({
       type: "SEARCH_QUERY",
       payload: { text: "" },
@@ -223,7 +202,6 @@ const Shop = () => {
     setBrand(e.target.value);
     getFilteredProducts({ brand: e.target.value });
   };
-
   // 8. show products based on color
   const showColors = () =>
     colors.map((c) => (
@@ -237,7 +215,6 @@ const Shop = () => {
         {c}
       </Radio>
     ));
-
   const handleColor = (e) => {
     dispatch({
       type: "SEARCH_QUERY",
@@ -252,7 +229,6 @@ const Shop = () => {
     setColor(e.target.value);
     getFilteredProducts({ color: e.target.value });
   };
-
   // 9. show products based on shipping yes/no
   const showShipping = () => (
     <>
@@ -264,7 +240,6 @@ const Shop = () => {
       >
         Yes
       </Checkbox>
-
       <Checkbox
         className="pb-2 pl-4 pr-4"
         onChange={handleShippingchange}
@@ -275,7 +250,6 @@ const Shop = () => {
       </Checkbox>
     </>
   );
-
   const handleShippingchange = (e) => {
     dispatch({
       type: "SEARCH_QUERY",
@@ -290,7 +264,6 @@ const Shop = () => {
     setShipping(e.target.value);
     getFilteredProducts({ shipping: e.target.value });
   };
-
   return (
     <Container className="">
       <Row className="">
@@ -298,7 +271,6 @@ const Shop = () => {
           <h3>Search & Filter</h3>
           <hr />
           <Menu defaultOpenKeys={["1", "2", "3", "4", "5", "6", "7"]} mode="inline">
-
             {/* price */}
             <SubMenu
               key="1"
@@ -311,7 +283,7 @@ const Shop = () => {
               <div>
                 <Slider
                   className="ml-4 mr-4 d-flex align-items-center"
-                  tipFormatter={(v) => `€ ${v}`}
+                  tipFormatter={(v) => `$ ${v}`}
                   range
                   value={price}
                   onChange={handlePriceSlider}
@@ -319,7 +291,6 @@ const Shop = () => {
                 />
               </div>
             </SubMenu>
-
             {/* brands */}
             <SubMenu
               key="5"
@@ -333,7 +304,6 @@ const Shop = () => {
                 {showBrands()}
               </div>
             </SubMenu>
-
             {/* category */}
             <SubMenu
               key="2"
@@ -345,7 +315,6 @@ const Shop = () => {
             >
               <div style={{ marginTop: "-10px" }}>{showCategories()}</div>
             </SubMenu>
-
             {/* sub category */}
             <SubMenu
               key="4"
@@ -359,7 +328,6 @@ const Shop = () => {
                 {showSubCategories()}
               </div>
             </SubMenu>
-
             {/* stars */}
             <SubMenu
               key="3"
@@ -371,7 +339,6 @@ const Shop = () => {
             >
               <div style={{ marginTop: "-10px" }}>{showStars()}</div>
             </SubMenu>
-
             {/* colors */}
             <SubMenu
               key="6"
@@ -385,7 +352,6 @@ const Shop = () => {
                 {showColors()}
               </div>
             </SubMenu>
-
             {/* shipping */}
             <SubMenu
               key="7"
@@ -399,19 +365,15 @@ const Shop = () => {
                 {showShipping()}
               </div>
             </SubMenu>
-
           </Menu>
         </Col>
-
         <Col md={9} className="">
           {loading ? (
             <h4 className="text-danger text-center">Loading...</h4>
           ) : (
             <h4 className="text-danger text-center">Products</h4>
           )}
-
           {products.length < 1 && <p>No products found</p>}
-
           <Row className="row pb-5">
             {products.map((p) => (
               <Col md={4} key={p._id} className="mt-3">

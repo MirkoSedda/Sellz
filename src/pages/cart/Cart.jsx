@@ -3,11 +3,14 @@ import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+import Button from "react-bootstrap/Button"
+import Modal from "react-bootstrap/Modal"
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { userCart } from "../../functions/user"
 import ProductCardForCart from "../../components/cards/ProductCardForCart";
+import LoginModal from "../../components/modal/LoginModal";
 
 const Cart = () => {
 
@@ -17,6 +20,10 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false)
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const getTotal = () => (cart.reduce((currentValue, nextValue) => {
     return currentValue + nextValue.count * nextValue.price;
@@ -25,8 +32,7 @@ const Cart = () => {
   useEffect(() => {
     saveOrderInDb()
     // eslint-disable-next-line 
-  }, [cart])
-
+  }, [cart, accessToken])
 
   const saveOrderInDb = () => {
     console.log("cart", JSON.stringify(cart, null, 2));
@@ -104,33 +110,27 @@ const Cart = () => {
           <hr />
           {accessToken && !loading ? (
             <>
-              <button
-                className="btn btn-sm btn-primary mt-2"
+              <Button
+                className="btn-sm btn-primary mt-2"
                 disabled={!cart.length}
                 onClick={() => navigate("/checkout")}
               >
                 Proceed to Checkout
-              </button>
+              </Button>
               <br />
-              <button
+              <Button
                 onClick={saveCashOrderToDb}
-                className="btn btn-sm btn-warning mt-2"
+                className="btn-sm btn-warning mt-2"
                 disabled={!cart.length}
               >
                 Pay Cash on Delivery
-              </button>
+              </Button>
             </>
 
           ) : (
-            <button className="btn btn-sm btn-primary mt-2">
-              {/* TODO implement modal for login */}
-              <Link
-                to="/login"
-              >
-                Login to Checkout
-              </Link>
-            </button>
+            <Button onClick={handleShow}>Login to continue shopping</Button>
           )}
+          <LoginModal handleShow={handleShow} handleClose={handleClose} show={show} />
         </Col>
       </Row>
     </Container>
