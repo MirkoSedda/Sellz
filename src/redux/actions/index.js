@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css"
 const loginUser = userData => {
   return async dispatch => {
     try {
-      const res = await fetch(`${API_URL}/api/users/login`, {
+      const res = await fetch(`${API_URL}/users/login`, {
         method: "POST",
         body: JSON.stringify(userData),
         headers: {
