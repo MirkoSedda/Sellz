@@ -12,30 +12,31 @@ const BestSellers = () => {
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [productsCount, setProductsCount] = useState(null);
-    const [page, setPage] = useState(1);
-
-    const totalPages = (productsCount / 3) * 10
+    const [totalPage, setTotalPage] = useState(0);
+    const [current, setCurrent] = useState(1);
+    const [minIndex, setMinIndex] = useState(0);
+    const [maxIndex, setMaxIndex] = useState(0);
+    const pageSize = 3
 
     useEffect(() => {
         loadAllProducts();
-        // eslint-disable-next-line 
-    }, [page]);
-
-    useEffect(() => {
-        getProductsCountTotal().then((res) => {
-            setProductsCount(res.data.totalNumberOfProducts);
-        })
         // eslint-disable-next-line 
     }, []);
 
     const loadAllProducts = () => {
         setLoading(true);
-        // sort, order, limit
-        getProductsByParams("sold", "desc", page).then((res) => {
+        getProductsByParams("sold", "desc").then((res) => {
             setProducts(res.data);
-            setLoading(false);
-        });
+            setTotalPage(res.data.length / pageSize);
+            setMaxIndex(pageSize);
+        })
+        setLoading(false);
+    };
+
+    const handleChange = (page) => {
+        setCurrent(page)
+        setMinIndex((page - 1) * pageSize)
+        setMaxIndex(page * pageSize)
     };
 
     return (
@@ -45,22 +46,24 @@ const BestSellers = () => {
                 <LoadingCard count={3} />
             ) : (
                 <Row>
-                    <h4 className="text-center my-4">Best Sellers</h4>
-                    {products.map((product) => (
-                        <Col md={4} key={product._id} className="">
-                            <ProductCard product={product} />
-                        </Col>
-                    ))}
+                    <h4 className="text-center my-4">New Products</h4>
+                    {products.map((product, index) =>
+                        index >= minIndex &&
+                        index < maxIndex && (
+                            (
+                                <Col md={4} key={product._id} className="">
+                                    <ProductCard product={product} />
+                                </Col>
+                            )))}
                 </Row>
             )}
             <Row>
                 <Col className="text-center pt-5 p-3">
-                    {/* TODO last page doesnt render with less than 3 products */}
                     <Pagination
-                        current={page}
-                        // 3 is the number of items per page
-                        total={totalPages}
-                        onChange={(value) => setPage(value)}
+                        pageSize={pageSize}
+                        current={current}
+                        total={products.length}
+                        onChange={handleChange}
                     />
                 </Col>
             </Row>

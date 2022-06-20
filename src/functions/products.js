@@ -12,11 +12,10 @@ export const getProductsByLimit = async limit =>
 export const getRelatedProducts = async productId =>
   await axios.get(`${API_URL}/products/related/${productId}`)
 
-export const getProductsByParams = async (sort, order, page) =>
-  await axios.post(`${API_URL}/products/sort-order-page`, {
+export const getProductsByParams = async (sort, order) =>
+  await axios.post(`${API_URL}/products/sort-order`, {
     sort,
     order,
-    page,
   })
 
 export const getProductsByFilter = async query =>

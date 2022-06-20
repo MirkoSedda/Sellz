@@ -5,37 +5,37 @@ import Col from "react-bootstrap/Col";
 import { Pagination } from "antd";
 import ProductCard from '../cards/ProductCard';
 import LoadingCard from '../cards/LoadingCard';
-import { getProductsByParams, getProductsCountTotal } from '../../functions/products';
+import { getProductsByParams } from '../../functions/products';
 
 const NewProducts = () => {
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [productsCount, setProductsCount] = useState(null);
-    const [page, setPage] = useState(1);
-
-    // 3 is the number of items per page
-    const totalPages = (productsCount / 3) * 10
+    const [totalPage, setTotalPage] = useState(0);
+    const [current, setCurrent] = useState(1);
+    const [minIndex, setMinIndex] = useState(0);
+    const [maxIndex, setMaxIndex] = useState(0);
+    const pageSize = 3
 
     useEffect(() => {
         loadAllProducts();
-        // eslint-disable-next-line 
-    }, [page]);
-
-    useEffect(() => {
-        getProductsCountTotal().then((res) => {
-            setProductsCount(res.data.totalNumberOfProducts);
-        })
         // eslint-disable-next-line 
     }, []);
 
     const loadAllProducts = () => {
         setLoading(true);
-        // sort, order, limit
-        getProductsByParams("createdAt", "desc", page).then((res) => {
+        getProductsByParams("createdAt", "desc").then((res) => {
             setProducts(res.data);
-            setLoading(false);
-        });
+            setTotalPage(res.data.length / pageSize);
+            setMaxIndex(pageSize);
+        })
+        setLoading(false);
+    };
+
+    const handleChange = (page) => {
+        setCurrent(page)
+        setMinIndex((page - 1) * pageSize)
+        setMaxIndex(page * pageSize)
     };
 
     return (
@@ -46,20 +46,23 @@ const NewProducts = () => {
             ) : (
                 <Row>
                     <h4 className="text-center my-4">New Products</h4>
-                    {products.map((product) => (
-                        <Col md={4} key={product._id} className="">
-                            <ProductCard product={product} />
-                        </Col>
-                    ))}
+                    {products.map((product, index) =>
+                        index >= minIndex &&
+                        index < maxIndex && (
+                            (
+                                <Col md={4} key={product._id} className="">
+                                    <ProductCard product={product} />
+                                </Col>
+                            )))}
                 </Row>
             )}
             <Row>
-                {/* TODO last page doesnt render with less than 3 products */}
                 <Col className="text-center pt-5 p-3">
                     <Pagination
-                        current={page}
-                        total={totalPages}
-                        onChange={(value) => setPage(value)}
+                        pageSize={pageSize}
+                        current={current}
+                        total={products.length}
+                        onChange={handleChange}
                     />
                 </Col>
             </Row>
