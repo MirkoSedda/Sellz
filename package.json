@@ -1,6 +1,7 @@
 {
   "name": "sellz-frontend",
   "version": "0.1.0",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@react-pdf/renderer": "^2.2.0",
