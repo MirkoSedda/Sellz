@@ -7,7 +7,6 @@ import { Elements } from "@stripe/react-stripe-js";
 import StripeCheckout from "../../components/stripe/StripeCheckout";
 import "./stripe.css";
 
-// load stripe outside of components render to avoid recreating stripe object on every render
 const promise = loadStripe(STRIPE_KEY);
 
 const Payment = () => {

@@ -9,11 +9,15 @@ import { toast } from "react-toastify";
 import { DollarOutlined, CheckOutlined } from "@ant-design/icons";
 import defaultImage from "../../images/product-image-placeholder.jpg"
 import { createOrder, emptyUserCart } from "../../functions/user";
+
 const StripeCheckout = () => {
+
   const navigate = useNavigate()
   const dispatch = useDispatch();
+
   const coupon = useSelector((state) => state?.coupon);
   const accessToken = useSelector(state => state.user?.accessToken)
+
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState("");
@@ -22,8 +26,10 @@ const StripeCheckout = () => {
   const [cartTotal, setCartTotal] = useState(0);
   const [totalAfterDiscount, setTotalAfterDiscount] = useState(0);
   const [payable, setPayable] = useState(0);
+
   const stripe = useStripe();
   const elements = useElements();
+
   useEffect(() => {
     createPaymentIntent(accessToken, coupon).then((res) => {
       console.log("create payment intent", res.data);
@@ -33,11 +39,13 @@ const StripeCheckout = () => {
       setTotalAfterDiscount(res.data.totalAfterDiscount);
       setPayable(res.data.payable);
     });
-    // eslint-disable-next-line
+    // eslint-disable-next-line 
   }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setProcessing(true);
+
     const payload = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
         card: elements.getElement(CardElement),
@@ -46,6 +54,7 @@ const StripeCheckout = () => {
         },
       },
     });
+
     if (payload.error) {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
@@ -55,7 +64,7 @@ const StripeCheckout = () => {
       createOrder(payload, accessToken).then((res) => {
         if (res.data.ok) {
           // empty cart from local storage
-          localStorage.removeItem("cart");
+          if (typeof window !== "undefined") localStorage.removeItem("cart");
           // empty cart from redux
           dispatch({
             type: "ADD_TO_CART",
@@ -80,13 +89,15 @@ const StripeCheckout = () => {
         navigate("/user/history")
       }, 2000)
     }
-  };
+  }
+
   const handleChange = async (e) => {
     // listen for changes in the card element
-    // and display any errors as the customer types their card details
+    // and display any errors as the custoemr types their card details
     setDisabled(e.empty); // disable pay button if errors
     setError(e.error ? e.error.message : ""); // show error message
   };
+
   const cartStyle = {
     style: {
       base: {
@@ -147,7 +158,7 @@ const StripeCheckout = () => {
           onChange={handleChange}
         />
         <button
-          className="stripe-button text-center btn-dark text-white btn-block"
+          className="stripe-button"
           disabled={processing || disabled || succeeded}
         >
           <span id="button-text">
@@ -168,5 +179,6 @@ const StripeCheckout = () => {
       </form>
     </>
   );
-};
-export default StripeCheckout;
+}
+
+export default StripeCheckout
