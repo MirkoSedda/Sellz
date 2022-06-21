@@ -38,31 +38,28 @@ const SingleProduct = ({ product, onStarClick, star }) => {
 
     const handleAddToCart = () => {
         let cart = [];
-        // useful check for future nextJS version if SSR
-        if (typeof window !== "undefined") {
-            // if cart is in local storage GET it
-            if (localStorage.getItem("cart")) {
-                cart = JSON.parse(localStorage.getItem("cart"));
-            }
-            // push new product to cart
-            cart.push({
-                ...product,
-                count: 1,
-            });
-            // remove duplicates
-            let unique = _.uniqWith(cart, _.isEqual);
-            console.log('unique', unique)
-            localStorage.setItem("cart", JSON.stringify(unique));
-            dispatch({
-                type: "ADD_TO_CART",
-                payload: unique,
-            });
-            // show cart items in side drawer
-            dispatch({
-                type: "SET_VISIBLE",
-                payload: true,
-            });
+        // if cart is in local storage GET it
+        if (localStorage.getItem("cart")) {
+            cart = JSON.parse(localStorage.getItem("cart"));
         }
+        // push new product to cart
+        cart.push({
+            ...product,
+            count: 1,
+        });
+        // remove duplicates
+        let unique = _.uniqWith(cart, _.isEqual);
+        console.log('unique', unique)
+        localStorage.setItem("cart", JSON.stringify(unique));
+        dispatch({
+            type: "ADD_TO_CART",
+            payload: unique,
+        });
+        // show cart items in side drawer
+        dispatch({
+            type: "SET_VISIBLE",
+            payload: true,
+        });
     };
 
     const loadWishlisted = () => {
@@ -85,34 +82,37 @@ const SingleProduct = ({ product, onStarClick, star }) => {
 
     return (
         <>
-            <Col md={7} className="">
-                {images?.length ? (
-                    <Carousel
-                        showArrows={true}
-                        autoPlay
-                        infiniteLoop
-                    >
-                        {
-                            images?.map((i) =>
+            <Col md={8} className="mt-5">
+                <div className="mx-auto " style={{ width: "480px" }}>
+                    {images?.length ? (
+                        <Carousel
+                            showArrows={true}
+                            autoPlay
+                            infiniteLoop
+                        >
+                            {
+                                images?.map((i) =>
+                                    <img
+                                        src={i.url}
+                                        key={i.public_id}
+                                        alt={i.public_id}
+                                    />)
+                            }
+                        </Carousel>
+                    ) : (
+                        <Card cover=
+                            {
                                 <img
-                                    src={i.url}
-                                    key={i.public_id}
-                                    alt={i.public_id}
-                                />)
-                        }
-                    </Carousel>
-                ) : (
-                    <Card cover=
-                        {
-                            <img
-                                src={defaultImage}
-                                className="mb-3 card-image"
-                                alt={"default"}
-                            />
-                        }
-                    >
-                    </Card>
-                )}
+                                    src={defaultImage}
+                                    className="mb-3 card-image"
+                                    alt={"default"}
+                                />
+                            }
+                        >
+                        </Card>
+                    )}
+                </div>
+
 
                 <Tabs type="card">
                     <TabPane tab="Description" key="1">
@@ -125,8 +125,8 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                 </Tabs>
             </Col>
 
-            <Col md={5} className="">
-                <h1 className="bg-info p-3">{title}</h1>
+            <Col md={4} className="mt-5">
+                <h1 className="bg-info rounded p-3">{title}</h1>
 
                 {product?.ratings?.length > 0 ? (
                     averageStarRating(product)

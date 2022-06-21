@@ -111,7 +111,7 @@ const Cart = () => {
           {accessToken && !loading ? (
             <>
               <Button
-                className="btn-sm btn-primary mt-2"
+                className="btn-sm text-center btn-dark text-white btn-block mt-2"
                 disabled={!cart.length}
                 onClick={() => navigate("/checkout")}
               >
@@ -120,7 +120,7 @@ const Cart = () => {
               <br />
               <Button
                 onClick={saveCashOrderToDb}
-                className="btn-sm btn-warning mt-2"
+                className="btn-sm text-center btn-dark text-white btn-block mt-2"
                 disabled={!cart.length}
               >
                 Pay Cash on Delivery
@@ -128,12 +128,17 @@ const Cart = () => {
             </>
 
           ) : (
-            <Button onClick={handleShow}>Login to continue shopping</Button>
+            <Button
+              onClick={handleShow}
+              className="btn-sm text-center btn-dark text-white btn-block mt-2"
+            >
+              Login to continue shopping
+            </Button>
           )}
           <LoginModal handleShow={handleShow} handleClose={handleClose} show={show} />
         </Col>
       </Row>
-    </Container>
+    </Container >
   );
 };
 

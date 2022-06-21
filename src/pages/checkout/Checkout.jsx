@@ -115,7 +115,7 @@ const Checkout = () => {
                     className=""
                 />
             </Form>
-            <Button onClick={applyCouponToCart} className="btn-primary my-4">
+            <Button onClick={applyCouponToCart} className="text-center btn-dark text-white btn-block my-4">
                 Apply
             </Button>
         </>
@@ -196,7 +196,7 @@ const Checkout = () => {
                             <Col md={6} className="me-5">
                                 {cashOnDelivery ? (
                                     <Button
-                                        className="btn-primary"
+                                        className="text-center btn-dark text-white btn-block"
                                         disabled={!addressSaved || !products.length}
                                         onClick={cashOrder}
                                     >
@@ -204,7 +204,7 @@ const Checkout = () => {
                                     </Button>
                                 ) : (
                                     <Button
-                                        className="btn-primary"
+                                        className="text-center btn-dark text-white btn-block"
                                         disabled={!addressSaved || !products.length}
                                         onClick={() => navigate("/payment")}
                                     >
@@ -216,7 +216,7 @@ const Checkout = () => {
                                 <Button
                                     disabled={!products.length}
                                     onClick={emptyCart}
-                                    className="btn-primary"
+                                    className="text-center btn-dark text-white btn-block"
                                 >
                                     Empty Cart
                                 </Button>

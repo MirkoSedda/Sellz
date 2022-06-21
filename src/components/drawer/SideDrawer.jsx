@@ -1,5 +1,6 @@
 
 import { Drawer } from "antd";
+import Button from "react-bootstrap/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import defaultImage from "../../images/product-image-placeholder.jpg"
@@ -51,17 +52,17 @@ const SideDrawer = () => {
       ))}
 
       <Link to="/cart">
-        <button
+        <Button
           onClick={() =>
             dispatch({
               type: "SET_VISIBLE",
               payload: false,
             })
           }
-          className="text-center btn btn-primary btn-raised btn-block"
+          className="text-center btn-dark text-white btn-block"
         >
           Go To Cart
-        </button>
+        </Button>
       </Link>
     </Drawer>
   );

@@ -15,7 +15,7 @@ const CreateCategoryForm = ({ handleSubmit, name, setName }) => (
                 required
             />
             <br />
-            <Button onClick={handleSubmit} className="btn btn-outline-primary">Save</Button>
+            <Button onClick={handleSubmit} className="text-center btn-dark text-white btn-block">Save</Button>
             <hr />
         </Form.Group>
     </Form>

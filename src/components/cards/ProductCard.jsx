@@ -19,36 +19,31 @@ const ProductCard = ({ product }) => {
 
     const handleAddToCart = () => {
         let cart = [];
-        // useful check for future nextJS version if SSR
-        if (typeof window !== "undefined") {
-            // if cart is in local storage GET it
-            if (localStorage.getItem("cart")) {
-                cart = JSON.parse(localStorage.getItem("cart"));
-            }
-            // push new product to cart
-            cart.push({
-                ...product,
-                count: 1,
-            });
-            // remove duplicates
-            let unique = _.uniqWith(cart, _.isEqual);
-            console.log('unique', unique)
-            localStorage.setItem("cart", JSON.stringify(unique));
-            // show tooltip
-            setTooltip("Added");
-            dispatch({
-                type: "ADD_TO_CART",
-                payload: unique,
-            });
-            // show cart items in side drawer
-            dispatch({
-                type: "SET_VISIBLE",
-                payload: true,
-            });
+        // if cart is in local storage GET it
+        if (localStorage.getItem("cart")) {
+            cart = JSON.parse(localStorage.getItem("cart"));
         }
+        // push new product to cart
+        cart.push({
+            ...product,
+            count: 1,
+        });
+        // remove duplicates
+        let unique = _.uniqWith(cart, _.isEqual);
+        console.log('unique', unique)
+        localStorage.setItem("cart", JSON.stringify(unique));
+        // show tooltip
+        setTooltip("Added");
+        dispatch({
+            type: "ADD_TO_CART",
+            payload: unique,
+        });
+        // show cart items in side drawer
+        dispatch({
+            type: "SET_VISIBLE",
+            payload: true,
+        });
     };
-
-
 
     return (
         <>
@@ -68,12 +63,12 @@ const ProductCard = ({ product }) => {
                 }
                 actions={[
                     <Link to={`/product/${slug}`}>
-                        <EyeOutlined className="text-warning" />
+                        <EyeOutlined className="text-dark" />
                         <br /> View Product
                     </Link>,
                     <Tooltip title={product.quantity > 1 ? "Add to cart" : "Sorry we are out of stock :()"}>
                         <div onClick={product.quantity > 1 && handleAddToCart} disabled={product.quantity < 1}>
-                            <ShoppingCartOutlined className="text-danger" /> <br />
+                            <ShoppingCartOutlined className="text-dark" /> <br />
                             {product.quantity < 1 ? "Out of stock" : "Add to Cart"}
                         </div>
                     </Tooltip>,

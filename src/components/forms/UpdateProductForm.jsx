@@ -163,7 +163,7 @@ const UpdateProductForm = ({
                 </Select>
             </Form.Group>
             <br />
-            <Button onClick={handleSubmit} className="btn btn-outline-info">Save</Button>
+            <Button onClick={handleSubmit} className="text-center btn-dark text-white btn-block">Save</Button>
         </Form>
     )
 }
