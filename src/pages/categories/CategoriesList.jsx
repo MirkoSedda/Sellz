@@ -42,7 +42,7 @@ const CategoriesList = () => {
 
       <Row className="">
         {products?.map((p) => (
-          <Col className="" key={p._id}>
+          <Col className="mx-auto" key={p._id}>
             <ProductCard product={p} />
           </Col>
         ))}

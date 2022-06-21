@@ -16,7 +16,7 @@ const BestSellers = () => {
     const [current, setCurrent] = useState(1);
     const [minIndex, setMinIndex] = useState(0);
     const [maxIndex, setMaxIndex] = useState(0);
-    const pageSize = 3
+    const pageSize = 4
 
     useEffect(() => {
         loadAllProducts();
@@ -50,7 +50,7 @@ const BestSellers = () => {
                         index >= minIndex &&
                         index < maxIndex && (
                             (
-                                <Col md={4} key={product._id} className="">
+                                <Col md={3} key={product._id} className="">
                                     <ProductCard product={product} />
                                 </Col>
                             )))}

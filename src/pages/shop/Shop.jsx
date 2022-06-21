@@ -35,12 +35,7 @@ const Shop = () => {
   ]);
   const [color, setColor] = useState("");
   const [colors, setColors] = useState([
-    "Black",
-    "Brown",
-    "Silver",
-    "White",
-    "Blue",
-  ]);
+    "Black", "Silver", "Gold", "White", "Red", "Blue", "Green"]);
   const dispatch = useDispatch();
   const text = useSelector((state) => state?.search?.text);
   useEffect(() => {

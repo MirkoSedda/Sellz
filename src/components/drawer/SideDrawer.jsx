@@ -8,7 +8,9 @@ import defaultImage from "../../images/product-image-placeholder.jpg"
 const SideDrawer = () => {
   const dispatch = useDispatch();
   const drawer = useSelector((state) => (state.drawer));
+  console.log("🚀 ~ file: SideDrawer.jsx ~ line 11 ~ SideDrawer ~ drawer", drawer)
   const cart = useSelector((state) => (state.cart));
+  console.log("🚀 ~ file: SideDrawer.jsx ~ line 13 ~ SideDrawer ~ cart", cart)
 
   const imageStyle = {
     width: "100%",

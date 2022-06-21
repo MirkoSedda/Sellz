@@ -34,7 +34,7 @@ const RatingModal = ({ children }) => {
         visible={modalVisible}
         onOk={() => {
           setModalVisible(false)
-          toast.success("Thanks for your review. It will appear soon")
+          toast.info("Thanks for your review. It will appear soon")
         }}
         onCancel={() => setModalVisible(false)}>
         {children}

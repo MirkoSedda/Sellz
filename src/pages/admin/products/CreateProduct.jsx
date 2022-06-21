@@ -29,7 +29,7 @@ const CreateProduct = () => {
     shipping: "",
     quantity: "",
     images: [],
-    colors: ["Black", "White", "Red", "Blue", "Green"],
+    colors: ["Black", "Silver", "Gold", "White", "Red", "Blue", "Green"],
     brands: ["Apple", "Samsung", "Microsoft", "Lenovo", "Asus"],
     color: "",
     brand: "",
@@ -52,7 +52,7 @@ const CreateProduct = () => {
     newProduct(values, accessToken)
       .then(res => {
         setLoading(false)
-        toast.success(`${res.data.title} created successfully`)
+        toast.info(`${res.data.title} created successfully`)
         navigate("/admin/products")
       })
       .catch(err => {

@@ -23,7 +23,7 @@ const SubCategoriesList = () => {
         key={s._id}
         className="btn btn-outlined-primary btn-lg btn-block btn-raised m-3"
       >
-        <Link to={`/subcategories/${s.slug}`}>{s.name}</Link>
+        <Link to={`/subcategories/${s.slug}`} style={{ color: "black" }}>{s.name}</Link>
       </Col>
     ));
 

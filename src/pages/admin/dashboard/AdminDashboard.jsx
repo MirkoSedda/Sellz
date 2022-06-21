@@ -26,7 +26,7 @@ const AdminDashboard = () => {
 
     const handleStatusChange = (orderId, orderStatus) => {
         changeOrderStatus(orderId, orderStatus, accessToken).then(res => {
-            toast.success(`Order status updated to "${orderStatus}"`)
+            toast.info(`Order status updated to "${orderStatus}"`)
             loadOrders()
         })
     }

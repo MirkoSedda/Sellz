@@ -21,9 +21,9 @@ const CategoriesList = () => {
         categories?.map((c) => (
             <Col
                 key={c._id}
-                className="btn btn-outlined-primary btn-lg btn-block btn-raised m-3"
+                className=" btn btn-outlined-primary btn-lg btn-block btn-raised m-3"
             >
-                <Link to={`/categories/${c.slug}`}>{c.name}</Link>
+                <Link to={`/categories/${c.slug}`} style={{ color: "black" }}>{c.name}</Link>
             </Col>
         ));
 

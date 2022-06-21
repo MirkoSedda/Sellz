@@ -28,7 +28,7 @@ const UpdateCategory = () => {
             .then((res) => {
                 setLoading(false);
                 setName("");
-                toast.success(`"${res.data.name}" is updated !`);
+                toast.info(`"${res.data.name}" is updated !`);
                 navigate("/admin/categories");
             })
             .catch((err) => {
