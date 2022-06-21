@@ -20,24 +20,22 @@ const ProductCardForCart = ({ p }) => {
     console.log("color changed", e.target.value);
 
     let cart = [];
-    if (typeof window !== "undefined") {
-      if (localStorage.getItem("cart")) {
-        cart = JSON.parse(localStorage.getItem("cart"));
-      }
-
-      cart.map((product, i) => {
-        if (product._id === p._id) {
-          cart[i].color = e.target.value;
-        }
-      });
-
-      //  console.log('updated color in cart', cart)
-      localStorage.setItem("cart", JSON.stringify(cart));
-      dispatch({
-        type: "ADD_TO_CART",
-        payload: cart,
-      });
+    if (localStorage.getItem("cart")) {
+      cart = JSON.parse(localStorage.getItem("cart"));
     }
+
+    cart.map((product, i) => {
+      if (product._id === p._id) {
+        cart[i].color = e.target.value;
+      }
+    });
+
+    //  console.log('updated color in cart', cart)
+    localStorage.setItem("cart", JSON.stringify(cart));
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: cart,
+    });
   };
 
   const handleQuantityChange = (e) => {
@@ -51,46 +49,42 @@ const ProductCardForCart = ({ p }) => {
 
     let cart = [];
 
-    if (typeof window !== "undefined") {
-      if (localStorage.getItem("cart")) {
-        cart = JSON.parse(localStorage.getItem("cart"));
-      }
-
-      cart.map((product, i) => {
-        if (product._id == p._id) {
-          cart[i].count = count;
-        }
-      });
-
-      localStorage.setItem("cart", JSON.stringify(cart));
-      dispatch({
-        type: "ADD_TO_CART",
-        payload: cart,
-      });
+    if (localStorage.getItem("cart")) {
+      cart = JSON.parse(localStorage.getItem("cart"));
     }
+
+    cart.map((product, i) => {
+      if (product._id == p._id) {
+        cart[i].count = count;
+      }
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: cart,
+    });
   };
 
   const handleRemove = () => {
     // console.log(p._id, "to remove");
     let cart = [];
 
-    if (typeof window !== "undefined") {
-      if (localStorage.getItem("cart")) {
-        cart = JSON.parse(localStorage.getItem("cart"));
-      }
-      // [1,2,3,4,5]
-      cart.map((product, i) => {
-        if (product._id === p._id) {
-          cart.splice(i, 1);
-        }
-      });
-
-      localStorage.setItem("cart", JSON.stringify(cart));
-      dispatch({
-        type: "ADD_TO_CART",
-        payload: cart,
-      });
+    if (localStorage.getItem("cart")) {
+      cart = JSON.parse(localStorage.getItem("cart"));
     }
+    // [1,2,3,4,5]
+    cart.map((product, i) => {
+      if (product._id === p._id) {
+        cart.splice(i, 1);
+      }
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: cart,
+    });
   };
 
   return (

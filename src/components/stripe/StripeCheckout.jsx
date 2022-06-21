@@ -160,7 +160,7 @@ const StripeCheckout = () => {
           onChange={handleChange}
         />
         <button
-          className="stripe-button"
+          className="stripe-button text-center btn-dark text-white btn-block"
           disabled={processing || disabled || succeeded}
         >
           <span id="button-text">

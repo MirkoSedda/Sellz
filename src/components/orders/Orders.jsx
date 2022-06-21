@@ -45,7 +45,7 @@ const Orders = ({ orders, handleStatusChange }) => {
     <>
       {orders.map((order) => (
         <Row key={order._id} className="pb-5">
-          <Button className="btn-block bg-light">
+          <Button className="text-center btn-dark text-white btn-block">
             <ShowPaymentInfo order={order} showStatus={false} />
 
             <Row className="">

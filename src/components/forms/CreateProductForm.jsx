@@ -147,7 +147,7 @@ const CreateProductForm = ({
                 )
             }
             <Button
-                className="btn-outline-dark mt-3"
+                className="text-center btn-dark text-white btn-block mt-3"
                 onClick={handleSubmit}
             >Save</Button>
         </Form >

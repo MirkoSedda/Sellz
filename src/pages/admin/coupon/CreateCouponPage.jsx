@@ -111,7 +111,7 @@ const CreateCouponPage = () => {
 
             <Button
               onClick={handleSubmit}
-              className="btn btn-primary mt-4"
+              className="text-center btn-dark text-white btn-block mt-4"
             >
               Save
             </Button>

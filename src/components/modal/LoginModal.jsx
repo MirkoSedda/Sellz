@@ -74,7 +74,7 @@ const LoginModal = ({ handleShow, handleClose, show }) => {
             <Button
               onClick={handleSubmit}
               type="primary"
-              className="mb-3"
+              className="text-center btn-dark text-white btn-block mb-3"
               block
               shape="round"
               icon={<MailOutlined />}
