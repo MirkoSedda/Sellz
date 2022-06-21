@@ -62,7 +62,7 @@ const StripeCheckout = () => {
       // here you get result after successful payment
       // create order and save in database for admin to process
       createOrder(payload, accessToken).then((res) => {
-        if (res.data.ok) {
+        if (res.data) {
           // empty cart from local storage
           localStorage.removeItem("cart");
           // empty cart from redux
@@ -160,7 +160,7 @@ const StripeCheckout = () => {
           onChange={handleChange}
         />
         <button
-          className="stripe-button text-center btn-dark text-white btn-block"
+          className="stripe-button"
           disabled={processing || disabled || succeeded}
         >
           <span id="button-text">
