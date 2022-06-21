@@ -77,22 +77,22 @@ export const getProductsCountTotal = async () =>
 
 export const newProduct = async (product, accessToken) =>
   await axios.post(`${API_URL}/products`, product, {
-     headers: {
-        authorization: accessToken,
-        "Access-Control-Allow-Headers": "*",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "*",
-      },
+    headers: {
+      authorization: accessToken,
+      "Access-Control-Allow-Headers": "*",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "*",
+    },
   })
 
 export const updateProduct = async (slug, product, accessToken) =>
   await axios.put(`${API_URL}/products/${slug}`, product, {
-     headers: {
-        authorization: accessToken,
-        "Access-Control-Allow-Headers": "*",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "*",
-      },
+    headers: {
+      authorization: accessToken,
+      "Access-Control-Allow-Headers": "*",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "*",
+    },
   })
 
 export const productRating = async (userId, productId, star, accessToken) =>

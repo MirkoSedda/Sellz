@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import { Pagination } from "antd";
 import ProductCard from '../cards/ProductCard';
 import LoadingCard from '../cards/LoadingCard';
-import { getProductsByParams, getProductsCountTotal } from '../../functions/products';
+import { getProductsByParams } from '../../functions/products';
 
 const BestSellers = () => {
 
