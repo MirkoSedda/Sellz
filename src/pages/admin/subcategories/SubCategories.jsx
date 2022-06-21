@@ -41,7 +41,7 @@ const SubCategories = () => {
             .then(res => {
                 setLoading(false)
                 setName("")
-                toast.success(`"${res.data.name}" is created`)
+                toast.info(`"${res.data.name}" is created`)
                 loadSubCategories()
             })
             .catch(err => {

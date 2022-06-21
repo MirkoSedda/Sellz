@@ -28,6 +28,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
 
     const { title, images, description, _id } = product;
     const accessToken = useSelector(state => state.user?.accessToken)
+    console.log("🚀 ~ file: SingleProduct.jsx ~ line 31 ~ SingleProduct ~ accessToken", accessToken)
 
     const dispatch = useDispatch();
 
@@ -72,7 +73,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
     const handleAddToWishlist = () => {
         if (accessToken) {
             addToWishlist(product._id, accessToken).then((res) => {
-                toast.success("Added to wishlist");
+                toast.info("Added to wishlist");
             });
         } else {
             handleShow(true)
@@ -82,8 +83,8 @@ const SingleProduct = ({ product, onStarClick, star }) => {
 
     return (
         <>
-            <Col md={8} className="mt-5">
-                <div className="mx-auto " style={{ width: "480px" }}>
+            <Col md={7} className="mt-5">
+                <div className="mx-auto " style={{ width: "350px" }}>
                     {images?.length ? (
                         <Carousel
                             showArrows={true}
@@ -104,7 +105,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                             {
                                 <img
                                     src={defaultImage}
-                                    className="mb-3 card-image"
+                                    className="mb-3 rounded card-image"
                                     alt={"default"}
                                 />
                             }
@@ -125,8 +126,8 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                 </Tabs>
             </Col>
 
-            <Col md={4} className="mt-5">
-                <h1 className="bg-info rounded p-3">{title}</h1>
+            <Col md={5} className="mt-5">
+                <h1 className="p-3">{title}</h1>
 
                 {product?.ratings?.length > 0 ? (
                     averageStarRating(product)
@@ -150,7 +151,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                                     !accessToken ? "Login to wishlist" : null
                         }>
                             <div onClick={handleAddToWishlist}>
-                                <HeartOutlined className="text-info" />
+                                <HeartOutlined className="text-black" />
                                 <br />
                                 {accessToken && !wish ? "Add to wishlist." :
                                     accessToken && wish ? "Remove from wishlist." :

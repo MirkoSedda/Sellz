@@ -47,38 +47,44 @@ const ProductCard = ({ product }) => {
 
     return (
         <>
-            {product?.ratings?.length > 0 ? (
-                averageStarRating(product)
-            ) : (
-                <div className="text-center pt-1 pb-3">No rating yet</div>
-            )}
-            <Card style={{ width: "250px" }} className=""
-                cover={
-                    <img
-                        src={images?.length ? images[0].url : defaultImage}
-                        alt={`${title}`}
-                        style={{ height: "230px", objectFit: "cover" }}
-                        className="p-1"
+            <div className={"mt-4 mx-auto"}>
+                {product?.ratings?.length > 0 ? (
+                    averageStarRating(product)
+                ) : (
+                    <div className="text-center pt-1 pb-3">No rating yet</div>
+                )}
+            </div>
+            <div className={"d-flex justify-content-center"}>
+                <Card style={{ width: "250px" }}
+                    cover={
+                        <img
+                            src={images?.length ? images[0].url : defaultImage}
+                            alt={`${title}`}
+                            style={{ height: "230px", objectFit: "cover" }}
+                            className="p-1"
+                        />
+                    }
+                    actions={[
+                        <Link to={`/product/${slug}`}>
+                            <EyeOutlined className="text-dark" />
+                            <br /> View Product
+                        </Link>,
+                        <Tooltip title={product.quantity > 1 ? "Add to cart" : "Sorry we are out of stock :()"}>
+                            <div onClick={product.quantity > 1 && handleAddToCart} disabled={product.quantity < 1}>
+                                <ShoppingCartOutlined className="text-dark" /> <br />
+                                {product.quantity < 1 ? "Out of stock" : "Add to Cart"}
+                            </div>
+                        </Tooltip>,
+                    ]}
+                >
+
+                    <Meta
+                        title={`${title} - €${price}`}
+                        description={`${description?.substring(0, 40)}...`}
                     />
-                }
-                actions={[
-                    <Link to={`/product/${slug}`}>
-                        <EyeOutlined className="text-dark" />
-                        <br /> View Product
-                    </Link>,
-                    <Tooltip title={product.quantity > 1 ? "Add to cart" : "Sorry we are out of stock :()"}>
-                        <div onClick={product.quantity > 1 && handleAddToCart} disabled={product.quantity < 1}>
-                            <ShoppingCartOutlined className="text-dark" /> <br />
-                            {product.quantity < 1 ? "Out of stock" : "Add to Cart"}
-                        </div>
-                    </Tooltip>,
-                ]}
-            >
-                <Meta
-                    title={`${title} - €${price}`}
-                    description={`${description?.substring(0, 40)}...`}
-                />
-            </Card >
+                </Card >
+            </div>
+
         </>
     );
 };

@@ -84,7 +84,7 @@ const StripeCheckout = () => {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
-      toast.success("Payment successful");
+      toast.info("Payment successful");
       setTimeout(() => {
         navigate("/user/history")
       }, 2000)

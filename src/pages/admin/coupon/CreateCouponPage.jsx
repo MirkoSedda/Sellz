@@ -44,7 +44,7 @@ const CreateCouponPage = () => {
         setName("")
         setDiscount("")
         setExpiry("")
-        toast.success(`"${res.data.name}" is created`)
+        toast.info(`"${res.data.name}" is created`)
       })
       .catch(err => console.log("create coupon err", err))
   }

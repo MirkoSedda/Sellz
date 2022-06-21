@@ -22,7 +22,7 @@ const initialState = {
   shipping: "",
   quantity: "",
   images: [],
-  colors: ["Black", "White", "Red", "Blue", "Green"],
+  colors: ["Black", "Silver", "Gold", "White", "Red", "Blue", "Green"],
   brands: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
   color: "",
   brand: "",
@@ -80,7 +80,7 @@ const UpdateProduct = () => {
     updateProduct(slug, values, accessToken)
       .then((res) => {
         setLoading(false);
-        toast.success(`"${res.data.title}" is updated`);
+        toast.info(`"${res.data.title}" is updated`);
         navigate("/admin/products");
       })
       .catch((err) => {

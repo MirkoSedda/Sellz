@@ -12,7 +12,7 @@ import {
 
 const ProductCardForCart = ({ p }) => {
 
-  const colors = ["Black", "White", "Red", "Blue", "Green"]
+  const colors = ["Black", "Silver", "Gold", "White", "Red", "Blue", "Green"]
 
   const dispatch = useDispatch();
 

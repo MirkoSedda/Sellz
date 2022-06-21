@@ -1,6 +1,6 @@
 import { API_URL } from "../../costants"
 import { getUserCart } from "../../functions/user"
-import { toastSuccess, toastError } from "../../functions/toastNotification"
+import { toastInfo, toastError } from "../../functions/toastNotification"
 import "react-toastify/dist/ReactToastify.css"
 
 const loginUser = userData => {
@@ -30,7 +30,7 @@ const loginUser = userData => {
         getUserCart(accessToken).then(res => {
           console.log("RES", res)
         })
-        toastSuccess("Logged in successfully")
+        toastInfo("Logged in successfully")
         return { accessToken, user }
       }
     } catch (error) {

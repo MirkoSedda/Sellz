@@ -1,4 +1,3 @@
-
 import {
     Container,
     Navbar,
@@ -30,7 +29,7 @@ const NavBar = () => {
         <Navbar bg="dark" expand="sm" className="p-0" sticky="top">
             <Container>
                 <Navbar.Brand href="#" className="mr-5">
-                    <Link to={"/"} style={{ textDecoration: "none" }}>
+                    <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
                         <div className="d-flex flex-column align-items-center">
                             {/* <img src={ } alt="" className="navLogo py-1" /> */}
                             <p className="my-0 whiteText">Sellz</p>
@@ -42,15 +41,12 @@ const NavBar = () => {
                     <Link to="/shop" className="whiteText">
                         <MdOutlineLocalOffer className="navIcons" />
                     </Link>
-                    <Nav.Link href="#action2" className="whiteText">
-                        <BsPercent className="navIcons" />
-                    </Nav.Link>
                 </Navbar.Collapse>
                 <Search />
                 {user && (
-                    <Link to="/cart" className="d-flex align-items-center px-1 ml-3 ">
+                    <Link to="/cart" className="d-flex align-items-center text-white px-1 ml-3 ">
                         {/* TODO change number of items color to white */}
-                        <BsCartPlus className="navIcons mx-2" /> {cart.length}
+                        <BsCartPlus className="navIcons mx-2 " /> {cart.length}
                     </Link>
                 )}
                 {user && <div className={"text-white ms-4"}>{`Hello ${user}`} </div>}

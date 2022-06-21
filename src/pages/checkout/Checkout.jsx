@@ -53,7 +53,7 @@ const Checkout = () => {
             setTotal(0);
             setTotalAfterDiscount(0);
             setCoupon("");
-            toast.success("Cart is empty. Continue shopping.");
+            toast.info("Cart is empty. Continue shopping.");
         });
     };
 
@@ -63,7 +63,7 @@ const Checkout = () => {
             if (res.data.address) {
                 setAddressSaved(true);
                 // console.log("🚀 ~ file: Checkout.jsx ~ line 59 ~ saveUserAddress ~ res.data", res.data.address)
-                toast.success("Address saved");
+                toast.info("Address saved");
             }
         });
     };
@@ -150,7 +150,7 @@ const Checkout = () => {
                         setTimeout(() => {
                             navigate("/user/history");
                         }, 2000))
-                    toast.success("Cash order placed successfully");
+                    toast.info("Cash order placed successfully");
                 });
 
             }

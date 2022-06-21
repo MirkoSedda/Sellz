@@ -29,7 +29,7 @@ const ProductListItems = ({ product }) => {
           Category{" "}
           <Link
             to={`/categories/${category.slug}`}
-            className=""
+            className="text-black"
           >
             {category.name}
           </Link>
@@ -44,7 +44,7 @@ const ProductListItems = ({ product }) => {
             <Link
               key={s._id}
               to={`/subCategories/${s.slug}`}
-              className=""
+              className="text-black"
             >
               {s.name}
             </Link>

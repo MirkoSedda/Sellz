@@ -46,7 +46,7 @@ const UpdateSubCategory = () => {
                 console.log(slug, name, parent, accessToken);
                 setLoading(false);
                 setName("");
-                toast.success(`"${res.data.name}" is updated`);
+                toast.info(`"${res.data.name}" is updated`);
                 navigate("/admin/subcategories");
             })
             .catch((err) => {

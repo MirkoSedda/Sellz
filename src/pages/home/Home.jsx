@@ -1,4 +1,5 @@
 
+import Container from "react-bootstrap/Container";
 import NewProducts from '../../components/home/NewProducts';
 import BestSellers from '../../components/home/BestSellers';
 import CategoriesList from '../../components/categories/CategoriesList';
@@ -6,7 +7,7 @@ import SubCategoriesList from '../../components/subCategories/SubCategoriesList'
 
 const Home = () => {
     return (
-        <>
+        <Container fluid>
             <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
                 New Products
             </h4>
@@ -29,7 +30,7 @@ const Home = () => {
 
             <br />
             <br />
-        </>
+        </Container>
     );
 };
 

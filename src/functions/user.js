@@ -1,6 +1,6 @@
 import axios from "axios"
 import { API_URL } from "../costants"
-import { toastSuccess, toastError } from "./toastNotification"
+import { toastInfo, toastError } from "./toastNotification"
 import "react-toastify/dist/ReactToastify.css"
 
 export const registerUser = async user => {
@@ -17,7 +17,7 @@ export const registerUser = async user => {
     })
     const { _id } = await res.json()
     console.log("_id:", _id)
-    toastSuccess("Thanks for registering")
+    toastInfo("Thanks for registering")
     return { _id }
   } catch (error) {
     toastError(`Error registering user: ${error}`)
