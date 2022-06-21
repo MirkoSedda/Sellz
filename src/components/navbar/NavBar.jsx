@@ -17,7 +17,7 @@ const NavBar = () => {
     const navigate = useNavigate();
     const userRole = useSelector((state) => state.user?.user?.role);
     const user = useSelector((state) => state.user?.user?.name);
-    const { cart } = useSelector((state) => ({ ...state }));
+    const cart = useSelector((state) => state.cart);
 
     const logout = () => {
         dispatch({ type: 'LOGOUT', payload: null });

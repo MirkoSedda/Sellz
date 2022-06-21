@@ -7,8 +7,9 @@ import Form from "react-bootstrap/Form";
 
 const Search = () => {
     const dispatch = useDispatch()
-    const { search } = useSelector(state => ({ ...state }))
-    const { text } = search
+    const text = useSelector(state => (state.search?.text))
+    console.log("🚀 ~ file: Search.jsx ~ line 11 ~ Search ~ text", text)
+
 
     const navigate = useNavigate()
 

@@ -45,7 +45,6 @@ const NewProducts = () => {
                 <LoadingCard count={3} />
             ) : (
                 <Row>
-                    <h4 className="text-center my-4">New Products</h4>
                     {products.map((product, index) =>
                         index >= minIndex &&
                         index < maxIndex && (

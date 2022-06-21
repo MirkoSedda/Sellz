@@ -12,7 +12,7 @@ import ProductCard from "../../components/cards/ProductCard";
 const Product = () => {
 
     const accessToken = useSelector(state => state.user?.accessToken)
-    const userId = useSelector(state => state.user?.user._id)
+    const userId = useSelector(state => state.user?.user?._id)
 
     const [product, setProduct] = useState({});
     const [relatedProducts, setRelatedProducts] = useState([]);

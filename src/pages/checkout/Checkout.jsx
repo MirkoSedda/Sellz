@@ -22,8 +22,8 @@ const Checkout = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch();
-    const { accessToken } = useSelector(state => state.user)
-    const { cashOnDelivery } = useSelector((state) => state);
+    const accessToken = useSelector(state => state.user?.accessToken)
+    const cashOnDelivery = useSelector((state) => state.cashOnDelivery);
     console.log("🚀 ~ file: Checkout.jsx ~ line 26 ~ Checkout ~ cashOnDelivery", cashOnDelivery)
     const validCoupon = useSelector((state) => state.coupon);
     console.log("🚀 ~ file: Checkout.jsx ~ line 28 ~ Checkout ~ validCoupon", validCoupon)
