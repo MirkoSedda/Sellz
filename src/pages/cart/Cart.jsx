@@ -14,7 +14,7 @@ import LoginModal from "../../components/modal/LoginModal";
 
 const Cart = () => {
 
-  const { cart } = useSelector((state) => ({ ...state }));
+  const cart = useSelector((state) => state.cart);
   const accessToken = useSelector(state => state.user?.accessToken)
   const navigate = useNavigate();
   const dispatch = useDispatch();

@@ -14,7 +14,7 @@ const StripeCheckout = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch();
-  const { coupon } = useSelector((state) => ({ ...state }));
+  const coupon = useSelector((state) => state?.coupon);
   const accessToken = useSelector(state => state.user?.accessToken)
 
   const [succeeded, setSucceeded] = useState(false);

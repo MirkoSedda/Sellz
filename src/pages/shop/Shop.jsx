@@ -42,8 +42,7 @@ const Shop = () => {
     "Blue",
   ]);
   const dispatch = useDispatch();
-  const { search } = useSelector((state) => ({ ...state }));
-  const { text } = search;
+  const text = useSelector((state) => state?.search?.text);
   useEffect(() => {
     loadAllProducts();
     getCategories().then((res) => setCategories(res.data));

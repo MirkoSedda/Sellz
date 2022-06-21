@@ -52,12 +52,12 @@ const ProductCard = ({ product }) => {
             ) : (
                 <div className="text-center pt-1 pb-3">No rating yet</div>
             )}
-            <Card
+            <Card style={{ width: "250px" }} className=""
                 cover={
                     <img
                         src={images?.length ? images[0].url : defaultImage}
                         alt={`${title}`}
-                        style={{ height: "150px", objectFit: "cover" }}
+                        style={{ height: "230px", objectFit: "cover" }}
                         className="p-1"
                     />
                 }
