@@ -17,19 +17,18 @@ const Orders = ({ orders, handleStatusChange }) => {
           <th scope="col">Shipping</th>
         </tr>
       </thead>
-
       <tbody>
-        {order?.products?.map((p, i) => (
+        {order.products.map((p, i) => (
           <tr key={i}>
             <td>
-              <b>{p?.product?.title}</b>
+              <b>{p.product.title}</b>
             </td>
-            <td>{p?.product?.price}</td>
-            <td>{p?.product?.brand}</td>
-            <td>{p?.color}</td>
-            <td>{p?.count}</td>
+            <td>{p.product.price}</td>
+            <td>{p.product.brand}</td>
+            <td>{p.color}</td>
+            <td>{p.count}</td>
             <td>
-              {p?.product?.shipping === "Yes" ? (
+              {p.product.shipping === "Yes" ? (
                 <CheckCircleOutlined style={{ color: "green" }} />
               ) : (
                 <CloseCircleOutlined style={{ color: "red" }} />
@@ -40,14 +39,12 @@ const Orders = ({ orders, handleStatusChange }) => {
       </tbody>
     </table>
   );
-
   return (
     <>
-      {orders?.map((order) => (
+      {orders.map((order) => (
         <Row key={order._id} className="pb-5">
-          <Button className="text-center btn-dark text-white btn-block">
+          <Button className="btn-block bg-light">
             <ShowPaymentInfo order={order} showStatus={false} />
-
             <Row className="">
               <Col md={4} className="">Delivery Status</Col>
               <Col md={8} className="">
@@ -68,7 +65,6 @@ const Orders = ({ orders, handleStatusChange }) => {
               </Col>
             </Row>
           </Button>
-
           {showOrderInTable(order)}
         </Row>
       ))}
