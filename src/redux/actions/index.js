@@ -2,7 +2,6 @@ import { API_URL } from "../../costants"
 import { getUserCart } from "../../functions/user"
 import { toastInfo, toastError } from "../../functions/toastNotification"
 import "react-toastify/dist/ReactToastify.css"
-
 const loginUser = userData => {
   return async dispatch => {
     try {
@@ -11,9 +10,6 @@ const loginUser = userData => {
         body: JSON.stringify(userData),
         headers: {
           "Content-type": "application/json",
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "*",
         },
       })
       if (res.ok) {
@@ -39,5 +35,4 @@ const loginUser = userData => {
     }
   }
 }
-
 export default loginUser
