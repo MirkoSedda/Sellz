@@ -8,6 +8,9 @@ export const createPaymentIntent = (accessToken, coupon) =>
     {
       headers: {
         authorization: accessToken,
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
       },
     }
   )
