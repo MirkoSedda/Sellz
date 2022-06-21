@@ -40,15 +40,15 @@ const SubCategoriesList = () => {
         </Col>
       </Row>
 
-      <Col className="">
-        {products?.map(p => (
-          <Col className="" key={p._id}>
+      <Row className="">
+        {products?.map((p) => (
+          <Col className="mx-auto" key={p._id}>
             <ProductCard product={p} />
           </Col>
         ))}
-      </Col>
+      </Row>
     </Container>
-  )
-}
+  );
+};
 
 export default SubCategoriesList
