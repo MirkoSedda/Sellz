@@ -11,6 +11,9 @@ const loginUser = userData => {
         body: JSON.stringify(userData),
         headers: {
           "Content-type": "application/json",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "*",
         },
       })
       if (res.ok) {

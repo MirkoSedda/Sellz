@@ -8,6 +8,9 @@ export const createCoupon = async (coupon, accessToken) =>
     {
       headers: {
         authorization: accessToken,
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
       },
     }
   )
@@ -18,5 +21,8 @@ export const removeCoupon = async (couponId, accessToken) =>
   await axios.delete(`${API_URL}/coupons/${couponId}`, {
     headers: {
       authorization: accessToken,
+      "Access-Control-Allow-Headers": "*",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "*",
     },
   })
