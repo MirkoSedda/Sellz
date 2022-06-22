@@ -9,7 +9,9 @@ const Rating = ({ starClick, numberOfStars }) => (
             starDimension="20px"
             starSpacing="2px"
             starHoverColor="blue"
+            starSelectingHoverColor="blue"
             starEmptyColor="blue"
+
         />
         <br />
     </>
