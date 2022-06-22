@@ -31,7 +31,7 @@ const CreateProductForm = ({
                 <Form.Control
                     type="text"
                     name="title"
-                    placeholder="Provide a title..."
+                    placeholder="Please provide a title..."
                     className=""
                     value={title}
                     onChange={handleChange}
@@ -43,7 +43,7 @@ const CreateProductForm = ({
                 <Form.Control
                     type="text"
                     name="description"
-                    placeholder="Provide a description..."
+                    placeholder="Please provide a description..."
                     className=""
                     value={description}
                     onChange={handleChange}
@@ -55,7 +55,7 @@ const CreateProductForm = ({
                 <Form.Control
                     type="number"
                     name="price"
-                    placeholder="Provide a price..."
+                    placeholder="Please provide a price..."
                     className=""
                     value={price}
                     onChange={handleChange}
@@ -80,7 +80,7 @@ const CreateProductForm = ({
                 <Form.Control
                     type="number"
                     name="quantity"
-                    placeholder="Provide a quantity..."
+                    placeholder="Please provide a quantity..."
                     className=""
                     value={quantity}
                     onChange={handleChange}

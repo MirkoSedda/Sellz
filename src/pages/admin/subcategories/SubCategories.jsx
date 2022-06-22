@@ -95,7 +95,7 @@ const SubCategories = () => {
                             className=""
                             onChange={(e) => setCategory(e.target.value)}
                         >
-                            <option>Please select a category</option>
+                            <option>Please select a category...</option>
                             {categories.length > 0 &&
                                 categories.map((c) => <option key={`category_${c.id}`} value={c._id} >
                                     {c.name}

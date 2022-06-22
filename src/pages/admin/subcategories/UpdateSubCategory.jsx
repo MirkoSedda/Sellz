@@ -75,7 +75,7 @@ const UpdateSubCategory = () => {
                                 className="form-control"
                                 onChange={(e) => setParent(e.target.value)}
                             >
-                                <option>Please select</option>
+                                <option>Please select a category...</option>
                                 {categories.length > 0 &&
                                     categories.map((c) => (
                                         <option key={c._id} value={c._id} selected={c._id === parent}>
