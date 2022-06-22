@@ -84,7 +84,6 @@ const ProductCard = ({ product }) => {
                     />
                 </Card >
             </div>
-
         </>
     );
 };

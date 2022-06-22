@@ -60,16 +60,16 @@ const GetAllProducts = () => {
                     ) : (
                         <h4>All Products</h4>
                     )}
-                    <div className="row">
+                    <Row>
                         {products.map((product) => (
-                            <div key={product._id} className="col-md-4 pb-3">
+                            <Col md={6} key={product._id} className="pb-3">
                                 <AdminProductCard
                                     product={product}
                                     handleRemove={handleRemove}
                                 />
-                            </div>
+                            </Col>
                         ))}
-                    </div>
+                    </Row>
                 </Col>
             </Row>
         </Container>
