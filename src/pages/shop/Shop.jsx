@@ -263,7 +263,7 @@ const Shop = () => {
   return (
     <Container className="mt-5">
       <Row className="">
-        <Col md={3} className="text-center mb-4">
+        <Col md={3} className="mb-4">
           <h3>Search & Filter</h3>
           <hr />
           <Menu

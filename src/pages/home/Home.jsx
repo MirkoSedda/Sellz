@@ -4,10 +4,15 @@ import NewProducts from '../../components/home/NewProducts';
 import BestSellers from '../../components/home/BestSellers';
 import CategoriesList from '../../components/categories/CategoriesList';
 import SubCategoriesList from '../../components/subCategories/SubCategoriesList';
+import MyCarousel from "../../components/carousel/MyCarousel";
 
 const Home = () => {
+
     return (
         <Container fluid>
+
+            <MyCarousel />
+
             <h4 className="text-center p-3 mt-5 mb-2 display-4">
                 New Products
             </h4>
