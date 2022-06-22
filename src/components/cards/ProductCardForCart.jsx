@@ -132,15 +132,15 @@ const ProductCardForCart = ({ p }) => {
         </td>
         <td className="text-center">
           {p.shipping === "Yes" ? (
-            <CheckCircleOutlined className="text-success" />
+            <CheckCircleOutlined className="text-black" />
           ) : (
-            <CloseCircleOutlined className="text-danger" />
+            <CloseCircleOutlined className="text-black" />
           )}
         </td>
         <td className="text-center">
           <CloseOutlined
             onClick={handleRemove}
-            className="text-danger pointer"
+            className="text-black pointer"
           />
         </td>
       </tr>

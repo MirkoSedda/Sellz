@@ -48,7 +48,7 @@ const Wishlist = () => {
                                 onClick={() => handleRemove(p._id)}
                                 className="btn btn-sm float-right"
                             >
-                                <DeleteOutlined className="text-danger" />
+                                <DeleteOutlined className="text-black" />
                             </span>
                         </div>
                     ))}

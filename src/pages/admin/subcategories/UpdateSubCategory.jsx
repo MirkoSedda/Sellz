@@ -63,7 +63,7 @@ const UpdateSubCategory = () => {
                 </Col>
                 <Col md={10}>
                     {loading ? (
-                        <h4 className="text-danger">Loading..</h4>
+                        <h4 className="text-black">Loading..</h4>
                     ) : (
                         <h4>Update sub category</h4>
                     )}

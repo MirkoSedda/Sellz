@@ -56,7 +56,7 @@ const GetAllProducts = () => {
 
                 <Col md={10}>
                     {loading ? (
-                        <h4 className="text-danger">Loading...</h4>
+                        <h4 className="text-black">Loading...</h4>
                     ) : (
                         <h4>All Products</h4>
                     )}

@@ -80,7 +80,7 @@ const Categories = () => {
                 </Col>
                 <Col md={10}>
                     {loading ? (
-                        <h4 className="text-danger">Loading..</h4>
+                        <h4 className="text-black">Loading..</h4>
                     ) : (
                         <h4>Create category</h4>
                     )}
@@ -99,7 +99,7 @@ const Categories = () => {
                                 onClick={() => handleRemove(c.slug)}
                                 className="btn btn-sm float-right"
                             >
-                                <DeleteOutlined className="text-danger" />
+                                <DeleteOutlined className="text-black" />
                             </span>
                             <Link to={`/admin/categories/${c.slug}`}>
                                 <span className="btn btn-sm float-right">

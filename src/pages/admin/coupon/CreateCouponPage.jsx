@@ -68,7 +68,7 @@ const CreateCouponPage = () => {
         </Col>
         <Col md={10} className="">
           {loading ? (
-            <h4 className="text-danger">Loading...</h4>
+            <h4 className="text-black">Loading...</h4>
           ) : (
             <h4>Coupon</h4>
           )}
@@ -140,7 +140,7 @@ const CreateCouponPage = () => {
                   <td>
                     <DeleteOutlined
                       onClick={() => handleRemove(c._id)}
-                      className="text-danger pointer"
+                      className="text-black pointer"
                     />
                   </td>
                 </tr>

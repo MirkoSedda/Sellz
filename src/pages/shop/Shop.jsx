@@ -259,7 +259,7 @@ const Shop = () => {
     getFilteredProducts({ shipping: e.target.value });
   };
   return (
-    <Container className="">
+    <Container className="mt-5">
       <Row className="">
         <Col md={3} className="text-center mb-4">
           <h3>Search & Filter</h3>
@@ -363,14 +363,14 @@ const Shop = () => {
         </Col>
         <Col md={9} className="">
           {loading ? (
-            <h4 className="text-danger text-center">Loading...</h4>
+            <h4 className="text-black text-center">Loading...</h4>
           ) : (
-            <h4 className="text-danger text-center">Products</h4>
+            <h4 className="text-black text-center">Products</h4>
           )}
           {products.length < 1 && <p>No products found</p>}
           <Row className="row pb-5">
             {products.map((p) => (
-              <Col md={4} key={p._id} className="mt-3">
+              <Col md={6} lg={4} key={p._id} className="mt-3">
                 <ProductCard product={p} />
               </Col>
             ))}
