@@ -17,7 +17,8 @@ const Orders = ({ orders, handleStatusChange }) => {
           <th scope="col">Shipping</th>
         </tr>
       </thead>
-      <tbody>
+
+      <tbody className="text-black">
         {order.products.map((p, i) => (
           <tr key={i}>
             <td>
@@ -43,7 +44,7 @@ const Orders = ({ orders, handleStatusChange }) => {
     <>
       {orders.map((order) => (
         <Row key={order._id} className="pb-5">
-          <Button className="btn-block bg-light">
+          <div className="card">
             <ShowPaymentInfo order={order} showStatus={false} />
             <Row className="">
               <Col md={4} className="">Delivery Status</Col>
@@ -64,7 +65,7 @@ const Orders = ({ orders, handleStatusChange }) => {
                 </select>
               </Col>
             </Row>
-          </Button>
+          </div>
           {showOrderInTable(order)}
         </Row>
       ))}
