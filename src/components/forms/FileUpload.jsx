@@ -91,7 +91,19 @@ const FileUpload = ({ values, setValues, setLoading }) => {
             </Row>
             <Row>
                 <Form.Group>
-                    <Button className="mb-5 text-center btn-dark text-white btn-block">
+                    <Form.Group>
+                        <Form.Label className="ms-5 mb-5 p-2 text-center btn btn-dark text-white">
+                            Choose File
+                            <Form.Control
+                                type="file"
+                                multiple
+                                hidden
+                                accept="images/*"
+                                onChange={fileUploadAndResize}
+                            />
+                        </Form.Label>
+                    </Form.Group>
+                    {/* <Button className="mb-5 text-center btn-dark text-white btn-block">
                         Upload a picture
                         <Form.Control
                             type="file"
@@ -100,7 +112,7 @@ const FileUpload = ({ values, setValues, setLoading }) => {
                             accept="images/*"
                             onChange={fileUploadAndResize}
                         />
-                    </Button>
+                    </Button> */}
                 </Form.Group>
             </Row>
         </Container>
