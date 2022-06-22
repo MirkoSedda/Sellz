@@ -26,7 +26,7 @@ const Search = () => {
     }
 
     return (
-        <Form className="d-flex justify-content-center align-items-center" onSubmit={handleSubmit}>
+        <Form className="d-flex py-2 justify-content-center align-items-center" onSubmit={handleSubmit}>
             <Form.Group>
                 <Form.Control
                     onChange={handleChange}
