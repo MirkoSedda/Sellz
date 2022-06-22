@@ -77,12 +77,12 @@ const History = () => {
         ));
 
     return (
-        <Container>
+        <Container className="mt-5">
             <Row>
                 <Col md={2}>
                     <UserSidebar />
                 </Col>
-                <Col md={10}>
+                <Col md={10} className="text-center">
                     <h4>
                         {orders.length > 0 ? "User purchase orders" : "No purchase orders"}
                     </h4>
