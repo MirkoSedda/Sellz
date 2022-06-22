@@ -6,6 +6,7 @@ import { Pagination } from "antd";
 import ProductCard from '../cards/ProductCard';
 import LoadingCard from '../cards/LoadingCard';
 import { getProductsByParams } from '../../functions/products';
+import { ITEMS_PER_PAGE } from '../../costants';
 
 const NewProducts = () => {
 
@@ -15,7 +16,7 @@ const NewProducts = () => {
     const [current, setCurrent] = useState(1);
     const [minIndex, setMinIndex] = useState(0);
     const [maxIndex, setMaxIndex] = useState(0);
-    const pageSize = 4
+    const pageSize = ITEMS_PER_PAGE
 
     useEffect(() => {
         loadAllProducts();
@@ -49,7 +50,7 @@ const NewProducts = () => {
                         index >= minIndex &&
                         index < maxIndex && (
                             (
-                                <Col md={3} key={product._id} className="">
+                                <Col md={ITEMS_PER_PAGE + 1} key={product._id} className="">
                                     <ProductCard product={product} />
                                 </Col>
                             )))}
