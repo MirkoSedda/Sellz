@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
 import Resizer from "react-image-file-resizer"
 import axios from "axios"
 import { useSelector } from "react-redux"
@@ -75,22 +75,31 @@ const FileUpload = ({ values, setValues, setLoading }) => {
         <Container>
             <Row>
                 {values?.images?.map(image => (
-                    <Badge
-                        count="X"
-                        key={image.public_id}
-                        onClick={() => handleImageRemove(image.public_id)}
-                        style={{ cursor: "pointer" }}>
+                    <>
+                        <span>
+                            <Badge
+                                count="X"
+                                key={image.public_id}
+                                onClick={() => handleImageRemove(image.public_id)}
+                                style={{
+                                    cursor: "pointer",
+                                    position: "absolute",
+                                    zIndex: 100,
+                                }}
+                            >
+                            </Badge>
+                        </span>
                         <Avatar
                             src={image.url}
                             size={100}
                             shape="square"
-                            className="ml-3"
+                            className="ml-3 mb-3"
                         />
-                    </Badge>
+                    </>
                 ))}
             </Row>
             <Row>
-                <Form.Group>
+                <Col>
                     <Form.Group>
                         <Form.Label className="ms-5 mb-5 p-2 text-center btn btn-dark text-white">
                             Choose File
@@ -103,19 +112,9 @@ const FileUpload = ({ values, setValues, setLoading }) => {
                             />
                         </Form.Label>
                     </Form.Group>
-                    {/* <Button className="mb-5 text-center btn-dark text-white btn-block">
-                        Upload a picture
-                        <Form.Control
-                            type="file"
-                            multiple
-                            hidden
-                            accept="images/*"
-                            onChange={fileUploadAndResize}
-                        />
-                    </Button> */}
-                </Form.Group>
+                </Col>
             </Row>
-        </Container>
+        </Container >
     )
 }
 
