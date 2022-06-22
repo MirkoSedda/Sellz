@@ -83,27 +83,36 @@ const CreateProduct = () => {
           <AdminSidebar />
         </Col>
 
-        {loading ? (
-          <h4 className="text-black">Loading..</h4>
-        ) : (
-          <Col>
-            <h4 className="text-center mb-5">Create product</h4>
+        <Col>
+          <h4 className="text-center mb-5">Create product</h4>
+
+          {loading ? (
+            <>
+              <h4> Loading image...</h4>
+              <FileUpload
+                values={values}
+                setValues={setValues}
+                setLoading={setLoading}
+              />
+            </>
+          ) :
             <FileUpload
               values={values}
               setValues={setValues}
               setLoading={setLoading}
             />
-            <CreateProductForm
-              values={values}
-              subCategoryOption={subCategoryOption}
-              showSubCategories={showSubCategories}
-              handleSubmit={handleSubmit}
-              handleChange={handleChange}
-              handleCategoryChange={handleCategoryChange}
-              setValues={setValues}
-            />
-          </Col>
-        )}
+          }
+
+          <CreateProductForm
+            values={values}
+            subCategoryOption={subCategoryOption}
+            showSubCategories={showSubCategories}
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            handleCategoryChange={handleCategoryChange}
+            setValues={setValues}
+          />
+        </Col>
       </Row>
     </Container >
   )
