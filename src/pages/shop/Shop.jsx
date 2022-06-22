@@ -10,6 +10,8 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import { Menu, Slider, Checkbox, Radio } from "antd";
 import { DollarOutlined, DownSquareOutlined, StarOutlined } from "@ant-design/icons";
+import "../../App.css"
+
 const { SubMenu } = Menu;
 
 //TODO perfectly align icons and filters text
@@ -261,15 +263,20 @@ const Shop = () => {
   return (
     <Container className="mt-5">
       <Row className="">
-        <Col md={3} className="text-center mb-4">
+        <Col md={3} className="mb-4">
           <h3>Search & Filter</h3>
           <hr />
-          <Menu defaultOpenKeys={["1", "2", "3", "4", "5", "6", "7"]} mode="inline">
+          <Menu
+            defaultOpenKeys={["1", "2", "3", "4", "5", "6", "7"]}
+            mode="inline"
+            className="py-2"
+          >
             {/* price */}
             <SubMenu
               key="1"
+              className="py-2"
               title={
-                <span className="h6 d-flex align-items-center">
+                <span className="h6 ps-0 d-flex align-items-center">
                   <DollarOutlined /> Price
                 </span>
               }
@@ -288,6 +295,7 @@ const Shop = () => {
             {/* brands */}
             <SubMenu
               key="5"
+              className="py-2"
               title={
                 <span className="h6">
                   <DownSquareOutlined /> Brands
@@ -301,6 +309,7 @@ const Shop = () => {
             {/* category */}
             <SubMenu
               key="2"
+              className="py-2"
               title={
                 <span className="h6">
                   <DownSquareOutlined /> Categories
@@ -312,6 +321,7 @@ const Shop = () => {
             {/* sub category */}
             <SubMenu
               key="4"
+              className="py-2"
               title={
                 <span className="h6">
                   <DownSquareOutlined /> Sub Categories
@@ -325,6 +335,7 @@ const Shop = () => {
             {/* stars */}
             <SubMenu
               key="3"
+              className="py-2"
               title={
                 <span className="h6">
                   <StarOutlined /> Rating
@@ -336,6 +347,7 @@ const Shop = () => {
             {/* colors */}
             <SubMenu
               key="6"
+              className="py-2"
               title={
                 <span className="h6">
                   <DownSquareOutlined /> Colors
@@ -349,6 +361,7 @@ const Shop = () => {
             {/* shipping */}
             <SubMenu
               key="7"
+              className="py-2"
               title={
                 <span className="h6">
                   <DownSquareOutlined /> Shipping
@@ -363,9 +376,9 @@ const Shop = () => {
         </Col>
         <Col md={9} className="">
           {loading ? (
-            <h4 className="text-black text-center">Loading...</h4>
+            <h3 className="text-black text-center">Loading...</h3>
           ) : (
-            <h4 className="text-black text-center">Products</h4>
+            <h3 className="text-black text-center">Products</h3>
           )}
           {products.length < 1 && <p>No products found</p>}
           <Row className="row pb-5">

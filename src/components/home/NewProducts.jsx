@@ -50,14 +50,14 @@ const NewProducts = () => {
                         index >= minIndex &&
                         index < maxIndex && (
                             (
-                                <Col md={ITEMS_PER_PAGE + 1} key={product._id} className="">
+                                <Col md={3} key={product._id} className="">
                                     <ProductCard product={product} />
                                 </Col>
                             )))}
                 </Row>
             )}
             <Row>
-                <Col className="text-center pt-5 p-3">
+                <Col className="text-center m-4">
                     <Pagination
                         pageSize={pageSize}
                         current={current}

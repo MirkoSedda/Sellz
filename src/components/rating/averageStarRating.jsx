@@ -22,9 +22,9 @@ const averageStarRating = (product) => {
         <StarRating
           starDimension="20px"
           starSpacing="2px"
-          starRatedColor="blue"
-          starHoverColor="blue"
-          starSelectingHoverColor="blue"
+          starRatedColor="#3756e4"
+          starHoverColor="#3756e4"
+          starSelectingHoverColor="#3756e4"
           rating={result}
           editing={false}
         />

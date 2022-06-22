@@ -4,6 +4,7 @@ import {
     Nav,
     NavDropdown,
 } from "react-bootstrap";
+import sellz from "../../images/Sellz.png"
 import { BsPersonCircle, BsCartPlus, BsPercent } from "react-icons/bs";
 import { MdOutlineLocalOffer } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,8 +31,8 @@ const NavBar = () => {
             <Container>
                 <Navbar.Brand href="#" className="mr-5">
                     <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
-                        <div className="d-flex flex-column align-items-center">
-                            {/* <img src={ } alt="" className="navLogo py-1" /> */}
+                        <div className="d-flex align-items-center">
+                            <img src={sellz} alt="logo" className="navLogo py-1" />
                             <p className="my-0 whiteText">Sellz</p>
                         </div>
                     </Link>

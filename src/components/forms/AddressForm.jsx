@@ -17,10 +17,9 @@ const AddressForm = ({ saveAddressInDb, setAddress, address }) => (
             <br />
             <Button
                 onClick={saveAddressInDb}
-                className="text-center btn-dark text-white btn-block">
+                className="text-center btn-dark text-white btn-block mb-2">
                 Save
             </Button>
-            <hr />
         </Form.Group>
     </Form>
 )
