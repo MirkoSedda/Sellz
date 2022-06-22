@@ -52,3 +52,7 @@
 }
 
 /* Navbar classes */
+
+.ant-menu-submenu-title {
+  padding-left: 0px !important;
+}

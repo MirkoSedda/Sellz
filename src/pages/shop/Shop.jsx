@@ -10,6 +10,8 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import { Menu, Slider, Checkbox, Radio } from "antd";
 import { DollarOutlined, DownSquareOutlined, StarOutlined } from "@ant-design/icons";
+import "../../App.css"
+
 const { SubMenu } = Menu;
 
 //TODO perfectly align icons and filters text
