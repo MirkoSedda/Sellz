@@ -63,7 +63,7 @@ const NavBar = () => {
                     >
                         <NavDropdown.Item>
                             {userRole && userRole === "Admin" && (
-                                <Link to="/admin/dashboard" >
+                                <Link to="/admin/dashboard" className="text-black" >
                                     Dashboard
                                 </Link>
                             )}
