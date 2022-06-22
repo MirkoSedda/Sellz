@@ -34,16 +34,16 @@ const Wishlist = () => {
 
     return (
 
-        <Container>
+        <Container className="mt-5">
             <Row>
                 <Col md={2}>
                     <UserSidebar />
                 </Col>
-                <Col md={10} className="">
-                    <h4>Wishlist</h4>
+                <Col md={10} >
+                    <h4 className="text-center">Wishlist</h4>
                     {wishlist?.map((p) => (
-                        <div key={p._id} className="alert alert-secondary">
-                            <Link to={`/product/${p.slug}`}>{p.title}</Link>
+                        <div key={p._id} className="ps-5 alert alert-secondary">
+                            <Link to={`/product/${p.slug}`} className="text-black">{p.title}</Link>
                             <span
                                 onClick={() => handleRemove(p._id)}
                                 className="btn btn-sm float-right"

@@ -5,7 +5,7 @@ const UserSidebar = () => (
     <nav>
         <ul className="nav flex-column">
             <li className="nav-item">
-                <Link to="/user/history" className="nav-link">
+                <Link to="/user/history" className="text-black nav-link">
                     History
                 </Link>
             </li>
@@ -17,7 +17,7 @@ const UserSidebar = () => (
             </li> */}
 
             <li className="nav-item">
-                <Link to="/user/wishlist" className="nav-link">
+                <Link to="/user/wishlist" className="text-black nav-link">
                     Wishlist
                 </Link>
             </li>
