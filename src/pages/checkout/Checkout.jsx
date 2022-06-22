@@ -16,7 +16,7 @@ const Checkout = () => {
     const [total, setTotal] = useState(0);
     const [address, setAddress] = useState("");
     const [addressSaved, setAddressSaved] = useState(false);
-    const [coupon, setCoupon] = useState("DEMODAY20");
+    const [coupon, setCoupon] = useState("DEMODAY");
     const [totalAfterDiscount, setTotalAfterDiscount] = useState(0);
     const [setDiscountError] = useState("");
 
@@ -188,7 +188,7 @@ const Checkout = () => {
 
                     {totalAfterDiscount > 0 && (
                         <p className="bg-info p-2">
-                            Discount Applied: Total Payable: {totalAfterDiscount}
+                            Discounted price: €{totalAfterDiscount}
                         </p>
                     )}
                     <Row>
