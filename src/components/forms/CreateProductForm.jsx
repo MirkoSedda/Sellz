@@ -27,7 +27,7 @@ const CreateProductForm = ({
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group>
-                <Form.Label>Title</Form.Label>
+                <Form.Label className="mt-2">Title</Form.Label>
                 <Form.Control
                     type="text"
                     name="title"
@@ -39,7 +39,7 @@ const CreateProductForm = ({
             </Form.Group>
 
             <Form.Group>
-                <Form.Label>Description</Form.Label>
+                <Form.Label className="mt-2">Description</Form.Label>
                 <Form.Control
                     type="text"
                     name="description"
@@ -51,7 +51,7 @@ const CreateProductForm = ({
             </Form.Group>
 
             <Form.Group>
-                <Form.Label>Price</Form.Label>
+                <Form.Label className="mt-2">Price</Form.Label>
                 <Form.Control
                     type="number"
                     name="price"
@@ -63,7 +63,7 @@ const CreateProductForm = ({
             </Form.Group>
 
             <Form.Group>
-                <Form.Label>Shipping</Form.Label>
+                <Form.Label className="mt-2">Shipping</Form.Label>
                 <Form.Select
                     name="shipping"
                     className=""
@@ -76,7 +76,7 @@ const CreateProductForm = ({
             </Form.Group>
 
             <Form.Group>
-                <Form.Label>Quantity</Form.Label>
+                <Form.Label className="mt-2">Quantity</Form.Label>
                 <Form.Control
                     type="number"
                     name="quantity"
@@ -88,7 +88,7 @@ const CreateProductForm = ({
             </Form.Group>
 
             <Form.Group>
-                <Form.Label>Color</Form.Label>
+                <Form.Label className="mt-2">Color</Form.Label>
                 <Form.Select name="color" className="" onChange={handleChange}>
                     <option>Please select a color...</option>
                     {colors.map((c) => (
@@ -101,7 +101,7 @@ const CreateProductForm = ({
 
 
             <Form.Group>
-                <Form.Label>Brand</Form.Label>
+                <Form.Label className="mt-2">Brand</Form.Label>
                 <Form.Select name="brand" className="" onChange={handleChange}>
                     <option>Please select a brand...</option>
                     {brands.map((b) => (
@@ -113,7 +113,7 @@ const CreateProductForm = ({
             </Form.Group>
 
             <Form.Group>
-                <Form.Label>Category</Form.Label>
+                <Form.Label className="mt-2">Category</Form.Label>
                 <Form.Select
                     name="category"
                     className=""
@@ -132,7 +132,7 @@ const CreateProductForm = ({
             {
                 showSubCategories && (
                     <Form.Group>
-                        <Form.Label>Sub Categories</Form.Label>
+                        <Form.Label className="mt-2">Sub Categories</Form.Label>
                         <Select
                             mode="multiple"
                             style={{ width: "100%" }}
