@@ -77,7 +77,7 @@ const SubCategories = () => {
     const searched = (query) => (q) => q.name.toLowerCase().includes(query);
 
     return (
-        <Container>
+        <Container className="mt-5">
             <Row>
                 <Col md={2}>
                     <AdminSidebar />
@@ -86,7 +86,7 @@ const SubCategories = () => {
                     {loading ? (
                         <h4 className="text-black">Loading..</h4>
                     ) : (
-                        <h4>Create sub category</h4>
+                        <h4 className="mb-5 text-center">Create sub category</h4>
                     )}
                     <Form.Group>
                         <Form.Label>Category</Form.Label>
