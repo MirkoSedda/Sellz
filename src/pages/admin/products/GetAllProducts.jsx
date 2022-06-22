@@ -48,7 +48,7 @@ const GetAllProducts = () => {
     }
 
     return (
-        <Container>
+        <Container className="mt-5">
             <Row>
                 <Col md={2}>
                     <AdminSidebar />
@@ -56,20 +56,20 @@ const GetAllProducts = () => {
 
                 <Col md={10}>
                     {loading ? (
-                        <h4 className="text-danger">Loading...</h4>
+                        <h4 className="text-black">Loading...</h4>
                     ) : (
-                        <h4>All Products</h4>
+                        <h4 className="mb-5 text-center">All Products</h4>
                     )}
-                    <div className="row">
+                    <Row>
                         {products.map((product) => (
-                            <div key={product._id} className="col-md-4 pb-3">
+                            <Col md={6} key={product._id} className="pb-3">
                                 <AdminProductCard
                                     product={product}
                                     handleRemove={handleRemove}
                                 />
-                            </div>
+                            </Col>
                         ))}
-                    </div>
+                    </Row>
                 </Col>
             </Row>
         </Container>

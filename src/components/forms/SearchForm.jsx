@@ -6,7 +6,7 @@ const SearchForm = ({ handleSearch, query }) => (
         <Form.Group>
             <Form.Control
                 type="search"
-                placeholder="Filter categories"
+                placeholder="Type to filter categories"
                 className="my-4"
                 onChange={handleSearch}
                 value={query}

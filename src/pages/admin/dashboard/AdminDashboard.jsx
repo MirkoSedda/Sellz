@@ -32,13 +32,13 @@ const AdminDashboard = () => {
     }
 
     return (
-        <Container>
+        <Container className="mt-5">
             <Row>
                 <Col md={2}>
                     <AdminSidebar />
                 </Col>
                 <Col md={10}>
-                    <h4>admin dashboard</h4>
+                    <h4 className="mb-5 text-center">Admin dashboard</h4>
                     <Orders orders={orders} handleStatusChange={handleStatusChange} />
                 </Col>
             </Row>

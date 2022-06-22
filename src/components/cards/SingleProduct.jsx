@@ -127,7 +127,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
             </Col>
 
             <Col md={5} className="mt-5">
-                <h1 className="p-3">{title}</h1>
+                <h1 className="p-3 text-center">{title}</h1>
 
                 {product?.ratings?.length > 0 ? (
                     averageStarRating(product)
@@ -139,7 +139,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                     actions={[
                         <Tooltip title={"Add to cart"}>
                             <div onClick={handleAddToCart}>
-                                <ShoppingCartOutlined className="text-danger" />
+                                <ShoppingCartOutlined className="text-black" />
                                 <br />
                                 Add to cart
                             </div>
@@ -168,7 +168,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                                     rating={star}
                                     changeRating={onStarClick}
                                     isSelectable={true}
-                                    starRatedColor="red"
+                                    starRatedColor="blue"
                                 />
                             </RatingModal>
                         </Tooltip>,

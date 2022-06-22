@@ -42,17 +42,17 @@ const History = () => {
             </thead>
 
             <tbody>
-                {order?.products.map((p, i) => (
+                {order.products.map((p, i) => (
                     <tr key={i}>
                         <td>
-                            <b>{p?.product?.title}</b>
+                            <b>{p.product.title}</b>
                         </td>
-                        <td>{p?.product?.price}</td>
-                        <td>{p?.product?.brand}</td>
-                        <td>{p?.color}</td>
-                        <td>{p?.count}</td>
+                        <td>{p.product.price}</td>
+                        <td>{p.product.brand}</td>
+                        <td>{p.color}</td>
+                        <td>{p.count}</td>
                         <td>
-                            {p?.product?.shipping === "Yes" ? (
+                            {p.product.shipping === "Yes" ? (
                                 <CheckCircleOutlined style={{ color: "green" }} />
                             ) : (
                                 <CloseCircleOutlined style={{ color: "red" }} />
@@ -77,12 +77,12 @@ const History = () => {
         ));
 
     return (
-        <Container>
+        <Container className="mt-5">
             <Row>
                 <Col md={2}>
                     <UserSidebar />
                 </Col>
-                <Col md={10}>
+                <Col md={10} className="text-center">
                     <h4>
                         {orders.length > 0 ? "User purchase orders" : "No purchase orders"}
                     </h4>

@@ -8,6 +8,7 @@ const CreateCategoryForm = ({ handleSubmit, name, setName }) => (
             <Form.Label>Name</Form.Label>
             <Form.Control
                 type="text"
+                placeholder="Please provide a name..."
                 className=""
                 onChange={(e) => setName(e.target.value)}
                 value={name}
@@ -16,7 +17,7 @@ const CreateCategoryForm = ({ handleSubmit, name, setName }) => (
             />
             <br />
             <Button onClick={handleSubmit} className="text-center btn-dark text-white btn-block">Save</Button>
-            <hr />
+            <br />
         </Form.Group>
     </Form>
 );

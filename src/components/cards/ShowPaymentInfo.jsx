@@ -1,6 +1,6 @@
 
 const ShowPaymentInfo = ({ order }) => (
-  <div>
+  <div className="p-2">
     <p>
       <span>Order Id: {order.paymentIntent.id}</span>
       {" / "}

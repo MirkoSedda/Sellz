@@ -127,7 +127,7 @@ const UpdateProduct = () => {
 
         <Col md={10}>
           {loading ? (
-            <LoadingOutlined className="text-danger h1" />
+            <LoadingOutlined className="text-black h1" />
           ) : (
             <>
               <h4>Product update</h4>

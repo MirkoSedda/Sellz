@@ -2,22 +2,21 @@
 import { Link } from "react-router-dom";
 
 const UserSidebar = () => (
-    <nav>
-        <ul className="nav flex-column">
-            <li className="nav-item">
-                <Link to="/user/history" className="nav-link">
+    <nav className="mt-5 pt-5">
+        <ul className="nav flex-column ">
+            <li className="nav-item pb-4">
+                <Link to="/user/history" className="text-black nav-link">
                     History
                 </Link>
             </li>
-
-            <li className="nav-item">
+            {/* TODO implement password recovery functionality
+             <li className="nav-item">
                 <Link to="/user/password" className="nav-link">
                     Password
                 </Link>
-            </li>
-
+            </li> */}
             <li className="nav-item">
-                <Link to="/user/wishlist" className="nav-link">
+                <Link to="/user/wishlist" className="text-black nav-link">
                     Wishlist
                 </Link>
             </li>

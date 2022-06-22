@@ -73,16 +73,16 @@ const Categories = () => {
     const searched = (query) => (q) => q.name.toLowerCase().includes(query);
 
     return (
-        <Container>
+        <Container className="mt-5">
             <Row>
                 <Col md={2}>
                     <AdminSidebar />
                 </Col>
                 <Col md={10}>
                     {loading ? (
-                        <h4 className="text-danger">Loading..</h4>
+                        <h4 className="text-black">Loading..</h4>
                     ) : (
-                        <h4>Create category</h4>
+                        <h4 className="mb-4">Create category</h4>
                     )}
 
                     <CreateCategoryForm
@@ -99,7 +99,7 @@ const Categories = () => {
                                 onClick={() => handleRemove(c.slug)}
                                 className="btn btn-sm float-right"
                             >
-                                <DeleteOutlined className="text-danger" />
+                                <DeleteOutlined className="text-black" />
                             </span>
                             <Link to={`/admin/categories/${c.slug}`}>
                                 <span className="btn btn-sm float-right">

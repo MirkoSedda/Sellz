@@ -77,16 +77,16 @@ const SubCategories = () => {
     const searched = (query) => (q) => q.name.toLowerCase().includes(query);
 
     return (
-        <Container>
+        <Container className="mt-5">
             <Row>
                 <Col md={2}>
                     <AdminSidebar />
                 </Col>
                 <Col md={10}>
                     {loading ? (
-                        <h4 className="text-danger">Loading..</h4>
+                        <h4 className="text-black">Loading..</h4>
                     ) : (
-                        <h4>Create sub category</h4>
+                        <h4 className="mb-5 text-center">Create sub category</h4>
                     )}
                     <Form.Group>
                         <Form.Label>Category</Form.Label>
@@ -95,7 +95,7 @@ const SubCategories = () => {
                             className=""
                             onChange={(e) => setCategory(e.target.value)}
                         >
-                            <option>Please select a category</option>
+                            <option>Please select a category...</option>
                             {categories.length > 0 &&
                                 categories.map((c) => <option key={`category_${c.id}`} value={c._id} >
                                     {c.name}
@@ -118,7 +118,7 @@ const SubCategories = () => {
                                 onClick={() => handleRemove(s.slug)}
                                 className="btn btn-sm float-right"
                             >
-                                <DeleteOutlined className="text-danger" />
+                                <DeleteOutlined className="text-black" />
                             </span>
                             <Link to={`/admin/subcategories/${s.slug}`}>
                                 <span className="btn btn-sm float-right">

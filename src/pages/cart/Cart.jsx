@@ -81,7 +81,7 @@ const Cart = () => {
   );
 
   return (
-    <Container className="pt-2">
+    <Container className="mt-5">
       <Row className="">
         <Col md={8} className="">
           <h4>Cart ~ {cart.length} Product{cart.length > 1 && "s"}</h4>

@@ -63,7 +63,7 @@ const UpdateSubCategory = () => {
                 </Col>
                 <Col md={10}>
                     {loading ? (
-                        <h4 className="text-danger">Loading..</h4>
+                        <h4 className="text-black">Loading..</h4>
                     ) : (
                         <h4>Update sub category</h4>
                     )}
@@ -75,7 +75,7 @@ const UpdateSubCategory = () => {
                                 className="form-control"
                                 onChange={(e) => setParent(e.target.value)}
                             >
-                                <option>Please select</option>
+                                <option>Please select a category...</option>
                                 {categories.length > 0 &&
                                     categories.map((c) => (
                                         <option key={c._id} value={c._id} selected={c._id === parent}>
