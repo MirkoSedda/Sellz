@@ -77,7 +77,7 @@ const CreateProduct = () => {
   }
 
   return (
-    <Container>
+    <Container className="mt-5">
       <Row>
         <Col md={2}>
           <AdminSidebar />
@@ -87,7 +87,7 @@ const CreateProduct = () => {
           <h4 className="text-black">Loading..</h4>
         ) : (
           <Col>
-            <h4>Create product</h4>
+            <h4 className="text-center mb-5">Create product</h4>
             <FileUpload
               values={values}
               setValues={setValues}

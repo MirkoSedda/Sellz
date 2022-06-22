@@ -1,6 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import Resizer from "react-image-file-resizer"
 import axios from "axios"
 import { useSelector } from "react-redux"
@@ -90,8 +91,8 @@ const FileUpload = ({ values, setValues, setLoading }) => {
             </Row>
             <Row>
                 <Form.Group>
-                    <Form.Label className="btn btn-primary">
-                        Choose File
+                    <Button className="mb-5 text-center btn-dark text-white btn-block">
+                        Upload a picture
                         <Form.Control
                             type="file"
                             multiple
@@ -99,7 +100,7 @@ const FileUpload = ({ values, setValues, setLoading }) => {
                             accept="images/*"
                             onChange={fileUploadAndResize}
                         />
-                    </Form.Label>
+                    </Button>
                 </Form.Group>
             </Row>
         </Container>
