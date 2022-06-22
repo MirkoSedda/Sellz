@@ -17,9 +17,9 @@ import { DeleteOutlined } from "@ant-design/icons"
 import AdminSidebar from "../../../components/sidebars/AdminSidebar"
 
 const CreateCouponPage = () => {
-  const [name, setName] = useState("")
+  const [name, setName] = useState("DEMODAY")
   const [expiry, setExpiry] = useState("")
-  const [discount, setDiscount] = useState("")
+  const [discount, setDiscount] = useState("50")
   const [loading, setLoading] = useState("")
   const [coupons, setCoupons] = useState([])
 

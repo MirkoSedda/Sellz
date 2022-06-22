@@ -18,7 +18,7 @@ const SubCategories = () => {
 
     const accessToken = useSelector((state) => state.user?.accessToken)
 
-    const [name, setName] = useState("");
+    const [name, setName] = useState("demoday");
     const [loading, setLoading] = useState(false);
     const [categories, setCategories] = useState([]);
     const [category, setCategory] = useState("");

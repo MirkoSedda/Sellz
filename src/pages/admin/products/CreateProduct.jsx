@@ -20,14 +20,14 @@ const CreateProduct = () => {
   const navigate = useNavigate()
 
   const [values, setValues] = useState({
-    title: "",
-    description: "",
-    price: "",
+    title: "demo product",
+    description: "demo day product",
+    price: "999",
     categories: [],
     category: "",
     subCategories: [],
     shipping: "",
-    quantity: "",
+    quantity: "100",
     images: [],
     colors: ["Black", "Silver", "Gold", "White", "Red", "Blue", "Green"],
     brands: ["Apple", "Samsung", "Microsoft", "Lenovo", "Asus"],

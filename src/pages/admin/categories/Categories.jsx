@@ -16,7 +16,7 @@ const Categories = () => {
 
     const accessToken = useSelector((state) => state.user?.accessToken)
 
-    const [name, setName] = useState("");
+    const [name, setName] = useState("demo");
     const [loading, setLoading] = useState(false);
     const [categories, setCategories] = useState([]);
     const [query, setQuery] = useState("");

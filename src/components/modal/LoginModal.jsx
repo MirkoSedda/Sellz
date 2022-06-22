@@ -14,8 +14,8 @@ const LoginModal = ({ handleShow, handleClose, show }) => {
 
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@admin.com");
+  const [password, setPassword] = useState("admin");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false)
 
