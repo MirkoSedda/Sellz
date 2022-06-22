@@ -9,12 +9,12 @@ const UserSidebar = () => (
                     History
                 </Link>
             </li>
-
-            <li className="nav-item">
+            {/* TODO implement password recovery functionality
+             <li className="nav-item">
                 <Link to="/user/password" className="nav-link">
                     Password
                 </Link>
-            </li>
+            </li> */}
 
             <li className="nav-item">
                 <Link to="/user/wishlist" className="nav-link">
