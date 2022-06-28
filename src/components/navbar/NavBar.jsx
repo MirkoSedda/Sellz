@@ -69,7 +69,7 @@ const NavBar = () => {
                                 </Link>
                             )}
                             {userRole && userRole === "User" && (
-                                <Link to="/user/history" >
+                                <Link to="/user/history" className="text-black">
                                     Dashboard
                                 </Link>
                             )}

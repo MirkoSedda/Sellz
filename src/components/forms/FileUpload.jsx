@@ -21,10 +21,10 @@ const FileUpload = ({ values, setValues, setLoading }) => {
             for (let i = 0; i < files.length; i++) {
                 Resizer.imageFileResizer(
                     files[i],
-                    720, // maxWidth
-                    720, // maxHeight
+                    400, // maxWidth
+                    400, // maxHeight
                     "JPEG",
-                    100, // quality
+                    90, // quality
                     0, // rotation
                     uri => {
                         console.log(uri);
