@@ -1,4 +1,3 @@
-//console.log(JSON.stringify(data, null, 4))
 import "./App.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 // import { lazy, Suspense } from "react"
