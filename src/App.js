@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 // import { lazy, Suspense } from "react"
 import { ToastContainer } from "react-toastify"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-
+//
 import Home from "./pages/home/Home"
 import AdminDashboard from "./pages/admin/dashboard/AdminDashboard"
 import Register from "./pages/auth/Register"
